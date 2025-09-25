@@ -18,6 +18,54 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Call to Action */}
           <div className="space-y-8">
+            <Card className="p-8 bg-gradient-metal border-border shadow-metal">
+              <div className="text-center">
+                <MessageCircle className="h-16 w-16 text-primary mx-auto mb-6 animate-laser-pulse" />
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Безкоштовна консультація
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Наші фахівці допоможуть підібрати оптимальне рішення для вашого проекту, 
+                  розрахують вартість та терміни виконання.
+                </p>
+                <div className="space-y-4">
+                  <Button variant="hero" size="lg" className="w-full">
+                    Замовити дзвінок
+                  </Button>
+                  <Button variant="outline" size="lg" className="w-full">
+                    Написати в Telegram
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-primary/5 border-primary/20">
+              <h4 className="text-lg font-semibold text-foreground mb-4">
+                Що ми обговоримо:
+              </h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-foreground">Технічні вимоги до виробу</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-foreground">Обсяги та терміни виробництва</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-foreground">Вартість послуг</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span className="text-foreground">Варіанти співпраці</span>
+                </li>
+              </ul>
+            </Card>
+          </div>
+
+          {/* Contact Information */}
+          <div className="space-y-8">
             <Card className="p-6 bg-card border-border shadow-card">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gradient-laser rounded-full flex items-center justify-center">
@@ -72,54 +120,6 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </Card>
-          </div>
-
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <Card className="p-8 bg-gradient-metal border-border shadow-metal">
-              <div className="text-center">
-                <MessageCircle className="h-16 w-16 text-primary mx-auto mb-6 animate-laser-pulse" />
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Безкоштовна консультація
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Наші фахівці допоможуть підібрати оптимальне рішення для вашого проекту, 
-                  розрахують вартість та терміни виконання.
-                </p>
-                <div className="space-y-4">
-                  <Button variant="hero" size="lg" className="w-full">
-                    Замовити дзвінок
-                  </Button>
-                  <Button variant="outline" size="lg" className="w-full">
-                    Написати в Telegram
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6 bg-primary/5 border-primary/20">
-              <h4 className="text-lg font-semibold text-foreground mb-4">
-                Що ми обговоримо:
-              </h4>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Технічні вимоги до виробу</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Обсяги та терміни виробництва</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Вартість послуг</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Варіанти співпраці</span>
-                </li>
-              </ul>
             </Card>
           </div>
         </div>
