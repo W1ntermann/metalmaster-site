@@ -141,7 +141,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="text-left">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Готові розпочати співпracю?
+                  Готові розпочати співпрацю?
                 </h3>
                 <p className="text-muted-foreground">
                   Розкажіть нам про ваш проект — підберемо оптимальне рішення
