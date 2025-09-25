@@ -29,10 +29,22 @@ const Contact = () => {
                   розрахують вартість та терміни виконання.
                 </p>
                 <div className="space-y-4">
-                  <Button variant="hero" size="lg" className="w-full">
+                  <Button 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => window.open('tel:+380488888888', '_self')}
+                    aria-label="Зателефонувати за номером +380 (48) 888-88-88"
+                  >
                     Замовити дзвінок
                   </Button>
-                  <Button variant="outline" size="lg" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => window.open('https://t.me/armind_od', '_blank')}
+                    aria-label="Написати в Telegram"
+                  >
                     Написати в Telegram
                   </Button>
                 </div>
