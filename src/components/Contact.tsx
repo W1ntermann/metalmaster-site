@@ -16,7 +16,7 @@ const Contact = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Call to Action */}
           <div className="space-y-8">
             <Card className="p-6 bg-card border-border shadow-card">
               <div className="flex items-start gap-4">
@@ -75,7 +75,7 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Call to Action */}
+          {/* Contact Information */}
           <div className="space-y-8">
             <Card className="p-8 bg-gradient-metal border-border shadow-metal">
               <div className="text-center">
