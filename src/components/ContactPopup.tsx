@@ -16,6 +16,13 @@ const ContactPopup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    // Перевіряємо чи користувач вже заповнював форму (зберігається в localStorage)
+    const hasSubmitted = localStorage.getItem('contactFormSubmitted');
+    if (hasSubmitted) {
+      setIsSubmitted(true);
+      return;
+    }
+
     let hasShown = false;
     
     const handleScroll = () => {
@@ -28,19 +35,39 @@ const ContactPopup = () => {
       }
     };
 
+    // Показати popup при спробі покинути сторінку
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!hasShown && !isSubmitted) {
+        setIsOpen(true);
+        hasShown = true;
+        e.preventDefault();
+        return '';
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('beforeunload', handleBeforeUnload);
     
-    // Альтернативно показати через 30 секунд, якщо користувач не прокрутив
+    // Альтернативно показати через 45 секунд
     const timer = setTimeout(() => {
       if (!hasShown && !isSubmitted) {
         setIsOpen(true);
         hasShown = true;
       }
-    }, 30000);
+    }, 45000);
+
+    // Повторно показати через 3 хвилини після закриття (якщо не заповнено)
+    const retryTimer = setTimeout(() => {
+      if (!isSubmitted && !localStorage.getItem('contactFormSubmitted')) {
+        setIsOpen(true);
+      }
+    }, 180000); // 3 хвилини
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
       clearTimeout(timer);
+      clearTimeout(retryTimer);
     };
   }, [isSubmitted]);
 
@@ -52,6 +79,10 @@ const ContactPopup = () => {
     
     // Симуляція успішної відправки
     setIsSubmitted(true);
+    
+    // Зберігаємо в localStorage, що форма була заповнена
+    localStorage.setItem('contactFormSubmitted', 'true');
+    localStorage.setItem('contactFormData', JSON.stringify(formData));
     
     // Показати повідомлення про успіх на 3 секунди
     setTimeout(() => {
