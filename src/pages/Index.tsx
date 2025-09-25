@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Advantages from "@/components/Advantages";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ContactPopup from "@/components/ContactPopup";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Advantages />
       <About />
       <Footer />
+      <ContactPopup />
     </main>
   );
 };
