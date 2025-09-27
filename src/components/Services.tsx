@@ -1,32 +1,84 @@
+import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Zap, RotateCcw, Zap as Welding, Palette } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Zap, RotateCcw, Zap as Welding, Palette, CheckCircle, ArrowRight } from "lucide-react";
 
 const Services = () => {
+  const [selectedService, setSelectedService] = useState<number | null>(null);
+
   const services = [
     {
       icon: Zap,
       title: "Лазерна різка",
       description: "Високоточна різка металу товщиною до 25 мм. Мінімальні деформації, ідеальна якість кромки.",
-      features: ["Точність ±0.1 мм", "Без деформацій", "Різні типи металу", "Серійне виробництво"]
+      features: ["Точність ±0.1 мм", "Без деформацій", "Різні типи металу", "Серійне виробництво"],
+      detailedInfo: {
+        overview: "Наша лазерна різка забезпечує найвищу точність обробки металевих деталей. Використовуємо волоконні лазери потужністю до 12 кВт для швидкої та якісної обробки.",
+        capabilities: [
+          "Товщина металу: до 25 мм (сталь), до 15 мм (нержавіюча сталь), до 10 мм (алюміній)",
+          "Розмір листа: до 3000x1500 мм",
+          "Точність позиціонування: ±0.05 мм",
+          "Швидкість різки: до 40 м/хв (залежно від товщини)"
+        ],
+        materials: ["Конструкційна сталь", "Нержавіюча сталь", "Алюміній та його сплави", "Латунь", "Мідь"],
+        applications: ["Деталі машинобудування", "Архітектурні елементи", "Рекламні конструкції", "Декоративні вироби"],
+        pricing: "від 50 грн/м.п."
+      }
     },
     {
       icon: RotateCcw,
       title: "Згинання металу",
       description: "Гнуття листового металу на сучасному обладнанні з програмним управлінням.",
-      features: ["До 10 мм товщини", "Складні геометрії", "Повторюваність", "Швидке налаштування"]
+      features: ["До 10 мм товщини", "Складні геометрії", "Повторюваність", "Швидке налаштування"],
+      detailedInfo: {
+        overview: "Сучасний гідравлічний прес-гальмо з ЧПУ дозволяє виконувати високоточне згинання металу за складними кресленнями з повторюваністю результату.",
+        capabilities: [
+          "Максимальна товщина: 10 мм для сталі",
+          "Довжина згину: до 3000 мм",
+          "Кут згину: від 0° до 180°",
+          "Точність кута: ±0.5°"
+        ],
+        materials: ["Чорний метал товщиною до 10 мм", "Нержавіюча сталь до 8 мм", "Алюміній до 6 мм"],
+        applications: ["Корпуси обладнання", "Елементи фасадів", "Короби вентиляції", "Декоративні панелі"],
+        pricing: "від 15 грн/згин"
+      }
     },
     {
       icon: Welding,
       title: "Лазерне зварювання",
       description: "Безконтактне зварювання з мінімальною зоною термічного впливу.",
-      features: ["Висока якість шва", "Без деформацій", "Автоматизація", "Різні матеріали"]
+      features: ["Висока якість шва", "Без деформацій", "Автоматизація", "Різні матеріали"],
+      detailedInfo: {
+        overview: "Лазерне зварювання забезпечує найвищу якість з'єднання при мінімальному тепловому впливі на матеріал. Ідеально для тонкостінних конструкцій.",
+        capabilities: [
+          "Товщина матеріалу: 0.1-6 мм",
+          "Ширина шва: 0.1-2 мм",
+          "Швидкість зварювання: до 10 м/хв",
+          "Глибина проплавлення: до 6 мм"
+        ],
+        materials: ["Нержавіюча сталь", "Вуглецева сталь", "Алюмінієві сплави", "Титан"],
+        applications: ["Медичні інструменти", "Електронні корпуси", "Ювелірні вироби", "Точне машинобудування"],
+        pricing: "від 80 грн/м.п."
+      }
     },
     {
       icon: Palette,
       title: "Порошкове фарбування",
       description: "Стійке покриття з широкою палітрою кольорів та фактур.",
-      features: ["200+ кольорів RAL", "Різні фактури", "Корозійна стійкість", "Екологічність"]
+      features: ["200+ кольорів RAL", "Різні фактури", "Корозійна стійкість", "Екологічність"],
+      detailedInfo: {
+        overview: "Порошкове фарбування забезпечує довговічне і красиве покриття виробів. Використовуємо італійське обладнання та сертифіковані порошкові фарби.",
+        capabilities: [
+          "Розмір камери: 6x3x2.5 м",
+          "Максимальна вага виробу: до 500 кг",
+          "Товщина покриття: 60-120 мкм",
+          "Температура полімеризації: 180-200°C"
+        ],
+        materials: ["Більше 200 кольорів RAL", "Структурні покриття", "Металік ефекти", "Антик фактури"],
+        applications: ["Фасадні системи", "Меблеві конструкції", "Огорожі та ворота", "Садово-паркові форми"],
+        pricing: "від 120 грн/м²"
+      }
     }
   ];
 
@@ -72,7 +124,11 @@ const Services = () => {
                       ))}
                     </div>
                     
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setSelectedService(index)}
+                    >
                       Детальніше
                     </Button>
                   </div>
@@ -82,6 +138,116 @@ const Services = () => {
           })}
         </div>
       </div>
+
+      {/* Service Detail Modals */}
+      {selectedService !== null && (
+        <Dialog open={selectedService !== null} onOpenChange={() => setSelectedService(null)}>
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-16 h-16 bg-gradient-laser rounded-lg flex items-center justify-center">
+                  {React.createElement(services[selectedService].icon, { 
+                    className: "h-8 w-8 text-primary-foreground" 
+                  })}
+                </div>
+                <DialogTitle className="text-2xl font-bold text-foreground">
+                  {services[selectedService].title}
+                </DialogTitle>
+              </div>
+            </DialogHeader>
+
+            <div className="space-y-6">
+              {/* Overview */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3">Опис послуги</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {services[selectedService].detailedInfo.overview}
+                </p>
+              </div>
+
+              {/* Technical Capabilities */}
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  Технічні можливості
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {services[selectedService].detailedInfo.capabilities.map((capability, idx) => (
+                    <div key={idx} className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+                      <ArrowRight className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground text-sm">{capability}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Materials */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Матеріали</h3>
+                  <div className="space-y-2">
+                    {services[selectedService].detailedInfo.materials.map((material, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span className="text-foreground">{material}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Застосування</h3>
+                  <div className="space-y-2">
+                    {services[selectedService].detailedInfo.applications.map((application, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span className="text-foreground">{application}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Pricing */}
+              <div className="bg-gradient-metal p-6 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Вартість послуги</h3>
+                    <p className="text-muted-foreground">Орієнтовна вартість залежно від складності</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-primary">
+                      {services[selectedService].detailedInfo.pricing}
+                    </div>
+                    <p className="text-sm text-muted-foreground">за одиницю</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="flex gap-4">
+                <Button 
+                  variant="hero" 
+                  className="flex-1"
+                  onClick={() => {
+                    setSelectedService(null);
+                    const element = document.getElementById('contact');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Замовити розрахунок
+                </Button>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setSelectedService(null)}
+                >
+                  Закрити
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </section>
   );
 };
