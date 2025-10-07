@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Settings, Award, Eye, ArrowRight } from "lucide-react";
+import { Zap, Settings, Award, Eye } from "lucide-react";
 
 const Equipment = () => {
   const equipment = [
@@ -72,11 +72,6 @@ const Equipment = () => {
       description: "Прецизійне обладнання для контролю геометричних параметрів готових виробів."
     }
   ];
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section id="equipment" className="py-20 bg-gradient-to-b from-background to-muted/10">
@@ -191,23 +186,18 @@ const Equipment = () => {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <Card className="inline-block p-8 bg-gradient-metal border-border shadow-metal max-w-2xl">
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
-                  <Award className="h-8 w-8 text-primary-foreground" />
-                </div>
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
+                <Award className="h-8 w-8 text-primary-foreground" />
               </div>
-              <div className="text-left flex-1">
+              <div className="text-center">
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Хочете побачити наше обладнання?
+                  Професійне обладнання світового рівня
                 </h3>
-                <p className="text-muted-foreground mb-4">
-                  Запрошуємо на екскурсію по виробництву. Покажемо весь процес обробки металу від А до Я.
+                <p className="text-muted-foreground">
+                  Наш парк обладнання забезпечує найвищу якість обробки металу 
+                  та дотримання найсуворіших стандартів виробництва
                 </p>
-                <Button variant="hero" onClick={scrollToContact} className="group">
-                  Записатися на екскурсію
-                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
               </div>
             </div>
           </Card>

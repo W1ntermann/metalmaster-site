@@ -62,16 +62,16 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground">
               <Phone className="h-4 w-4" />
-              <a href="tel:+380488888888" className="hover:text-primary transition-colors">
+              <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
                 +380 (48) 888-88-88
               </a>
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <a href="tel:+380677777777" className="hover:text-primary transition-colors">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Phone className="h-4 w-4 text-green-500" />
+              <a href="tel:+380677777777" className="hover:text-primary transition-colors font-medium text-green-600">
                 +380 (67) 777-77-77
               </a>
             </div>
@@ -114,15 +114,15 @@ const Header = () => {
                   
                   <div className="pt-4 border-t border-border">
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Phone className="h-4 w-4" />
-                        <a href="tel:+380488888888" className="hover:text-primary transition-colors">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium text-foreground">
                           +380 (48) 888-88-88
                         </a>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Phone className="h-4 w-4" />
-                        <a href="tel:+380677777777" className="hover:text-primary transition-colors">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Phone className="h-4 w-4 text-green-500" />
+                        <a href="tel:+380677777777" className="hover:text-primary transition-colors font-medium text-green-600">
                           +380 (67) 777-77-77
                         </a>
                       </div>
