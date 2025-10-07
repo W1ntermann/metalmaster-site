@@ -16,49 +16,50 @@ const ContactPopup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    // Перевіряємо чи користувач вже заповнював форму (зберігається в localStorage)
+    // Перевіряємо чи користувач вже заповнював форму
     const hasSubmitted = localStorage.getItem('contactFormSubmitted');
+    const lastShown = localStorage.getItem('popupLastShown');
+    const now = Date.now();
+    
     if (hasSubmitted) {
       setIsSubmitted(true);
       return;
     }
 
+    // Якщо popup показувався менше ніж 10 хвилин тому, не показувати
+    if (lastShown && (now - parseInt(lastShown)) < 600000) { // 10 хвилин
+      return;
+    }
+
     let hasShown = false;
     let timeoutId: number;
-    let retryTimeoutId: number;
     
     const handleScroll = () => {
-      // Показати popup після прокрутки 30% сторінки (зменшив поріг)
+      if (hasShown || isSubmitted || isOpen) return;
+      
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      if (scrollPercent > 30 && !hasShown && !isSubmitted && !isOpen) {
+      if (scrollPercent > 40) { // Збільшив поріг до 40%
         setIsOpen(true);
         hasShown = true;
+        localStorage.setItem('popupLastShown', now.toString());
       }
     };
 
-    // Показати popup через 10 секунд (зменшив час для тестування)
+    // Показати popup через 30 секунд (збільшив час)
     timeoutId = setTimeout(() => {
       if (!hasShown && !isSubmitted && !isOpen) {
         setIsOpen(true);
         hasShown = true;
+        localStorage.setItem('popupLastShown', now.toString());
       }
-    }, 10000);
-
-    // Повторно показати через 2 хвилини після закриття (якщо не заповнено)
-    retryTimeoutId = setTimeout(() => {
-      if (!isSubmitted && !localStorage.getItem('contactFormSubmitted') && !isOpen) {
-        hasShown = false; // Дозволити показати знову
-        setIsOpen(true);
-      }
-    }, 120000); // 2 хвилини
+    }, 30000);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutId) clearTimeout(timeoutId);
-      if (retryTimeoutId) clearTimeout(retryTimeoutId);
     };
   }, [isSubmitted, isOpen]);
 
@@ -88,8 +89,16 @@ const ContactPopup = () => {
     }));
   };
 
+  const handleClose = (open: boolean) => {
+    if (!open) {
+      // Зберігаємо час закриття popup
+      localStorage.setItem('popupLastShown', Date.now().toString());
+    }
+    setIsOpen(open);
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-md mx-auto bg-card border-border shadow-glow">
         <DialogHeader className="text-center space-y-4">
           <div className="mx-auto w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
@@ -168,7 +177,7 @@ const ContactPopup = () => {
               <Button 
                 type="button" 
                 variant="outline" 
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleClose(false)}
                 className="px-4"
                 aria-label="Закрити форму"
               >
