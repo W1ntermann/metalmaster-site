@@ -26,7 +26,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                <span>вул. Промислова, 25, м. Одеса</span>
+                <span>вул. Миколи Боровського, 28, м. Одеса, 65041</span>
               </div>
             </div>
           </div>

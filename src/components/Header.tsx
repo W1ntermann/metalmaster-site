@@ -39,11 +39,11 @@ const Header = () => {
             Послуги
           </button>
           <button 
-            onClick={() => scrollToSection('advantages')}
+            onClick={() => scrollToSection('equipment')}
             className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
-            aria-label="Перейти до секції переваг"
+            aria-label="Перейти до секції обладнання"
           >
-            Переваги
+            Обладнання
           </button>
           <button 
             onClick={() => scrollToSection('about')}
@@ -84,16 +84,16 @@ const Header = () => {
                     Послуги
                   </button>
                   <button 
+                    onClick={() => scrollToSection('equipment')}
+                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
+                  >
+                    Обладнання
+                  </button>
+                  <button 
                     onClick={() => scrollToSection('about')}
                     className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
                     Про нас
-                  </button>
-                  <button 
-                    onClick={() => scrollToSection('advantages')}
-                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
-                  >
-                    Переваги
                   </button>
                   <button 
                     onClick={() => scrollToSection('contact')}
