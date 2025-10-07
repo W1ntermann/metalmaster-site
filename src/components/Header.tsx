@@ -62,19 +62,11 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
-                +380 (48) 888-88-88
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <a href="tel:+380677777777" className="hover:text-primary transition-colors font-medium">
-                +380 (67) 777-77-77
-              </a>
-            </div>
+          <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
+            <Phone className="h-4 w-4" />
+            <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
+              +380 (48) 888-88-88
+            </a>
           </div>
           
           {/* Mobile Menu */}
@@ -113,19 +105,11 @@ const Header = () => {
                   </button>
                   
                   <div className="pt-4 border-t border-border">
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Phone className="h-4 w-4" />
-                        <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
-                          +380 (48) 888-88-88
-                        </a>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Phone className="h-4 w-4" />
-                        <a href="tel:+380677777777" className="hover:text-primary transition-colors font-medium">
-                          +380 (67) 777-77-77
-                        </a>
-                      </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                      <Phone className="h-4 w-4" />
+                      <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
+                        +380 (48) 888-88-88
+                      </a>
                     </div>
                     <Button 
                       variant="hero" 

@@ -84,15 +84,10 @@ const Contact = () => {
                   <Phone className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Телефони</h3>
-                  <div className="space-y-1 mb-2">
-                    <a href="tel:+380488888888" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
-                      +380 (48) 888-88-88
-                    </a>
-                    <a href="tel:+380677777777" className="block text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
-                      +380 (67) 777-77-77
-                    </a>
-                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Телефон</h3>
+                  <a href="tel:+380488888888" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
+                    +380 (48) 888-88-88
+                  </a>
                   <p className="text-muted-foreground">Пн-Пт: 8:00-18:00, Сб: 9:00-14:00</p>
                 </div>
               </div>
