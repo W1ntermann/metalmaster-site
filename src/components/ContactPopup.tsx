@@ -24,52 +24,43 @@ const ContactPopup = () => {
     }
 
     let hasShown = false;
+    let timeoutId: number;
+    let retryTimeoutId: number;
     
     const handleScroll = () => {
-      // Показати popup після прокрутки 50% сторінки
+      // Показати popup після прокрутки 30% сторінки (зменшив поріг)
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      if (scrollPercent > 50 && !hasShown && !isSubmitted) {
+      if (scrollPercent > 30 && !hasShown && !isSubmitted && !isOpen) {
         setIsOpen(true);
         hasShown = true;
       }
     };
 
-    // Показати popup при спробі покинути сторінку
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!hasShown && !isSubmitted) {
-        setIsOpen(true);
-        hasShown = true;
-        e.preventDefault();
-        return '';
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
-    // Альтернативно показати через 45 секунд
-    const timer = setTimeout(() => {
-      if (!hasShown && !isSubmitted) {
+    // Показати popup через 10 секунд (зменшив час для тестування)
+    timeoutId = setTimeout(() => {
+      if (!hasShown && !isSubmitted && !isOpen) {
         setIsOpen(true);
         hasShown = true;
       }
-    }, 45000);
+    }, 10000);
 
-    // Повторно показати через 3 хвилини після закриття (якщо не заповнено)
-    const retryTimer = setTimeout(() => {
-      if (!isSubmitted && !localStorage.getItem('contactFormSubmitted')) {
+    // Повторно показати через 2 хвилини після закриття (якщо не заповнено)
+    retryTimeoutId = setTimeout(() => {
+      if (!isSubmitted && !localStorage.getItem('contactFormSubmitted') && !isOpen) {
+        hasShown = false; // Дозволити показати знову
         setIsOpen(true);
       }
-    }, 180000); // 3 хвилини
+    }, 120000); // 2 хвилини
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      clearTimeout(timer);
-      clearTimeout(retryTimer);
+      if (timeoutId) clearTimeout(timeoutId);
+      if (retryTimeoutId) clearTimeout(retryTimeoutId);
     };
-  }, [isSubmitted]);
+  }, [isSubmitted, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
