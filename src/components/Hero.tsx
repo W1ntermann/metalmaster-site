@@ -25,8 +25,6 @@ const Hero = () => {
         <div className="max-w-4xl">
           <div className="mb-6">
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium">
-              <Zap className="h-4 w-4 animate-laser-pulse" />
-              Армада Індастрі - обробка металу в Одесі
             </span>
           </div>
 
@@ -55,24 +53,9 @@ const Hero = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
               <Clock className="h-8 w-8 text-primary" />
-              <div>
-                <div className="font-semibold text-foreground">Від 24 годин</div>
-                <div className="text-sm text-muted-foreground">Швидке виконання</div>
-              </div>
             </div>
             <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
               <Shield className="h-8 w-8 text-primary" />
-              <div>
-                <div className="font-semibold text-foreground">200+ кольорів RAL</div>
-                <div className="text-sm text-muted-foreground">Різні фактури</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
-              <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
-              <div>
-                <div className="font-semibold text-foreground">Екологічні матеріали</div>
-                <div className="text-sm text-muted-foreground">Контроль якості</div>
-              </div>
             </div>
           </div>
         </div>
