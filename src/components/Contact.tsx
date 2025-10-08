@@ -113,8 +113,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Адреса</h3>
-                  <p className="text-foreground font-medium mb-1">вул. Промислова, 25</p>
-                  <p className="text-foreground font-medium mb-1">м. Одеса, 65000</p>
+                  <p className="text-foreground font-medium mb-1">вул. Миколи Боровського, 28</p>
+                  <p className="text-foreground font-medium mb-1">м. Одеса, 65041</p>
                   <p className="text-muted-foreground">Зручна транспортна розв'язка</p>
                 </div>
               </div>
