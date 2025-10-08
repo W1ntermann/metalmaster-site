@@ -92,8 +92,114 @@ const LaserCutting = () => {
         </div>
       </section>
 
-      {/* Materials & Applications */}
+      {/* Equipment Section */}
       <section className="py-20 bg-muted/10">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+            Наше обладнання для лазерної різки
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* TRUMPF TruLaser */}
+            <Card className="overflow-hidden bg-card border-border shadow-card">
+              <div className="relative h-48 bg-gradient-metal flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Zap className="h-8 w-8 text-primary-foreground" />
+                  </div>
+                  <p className="text-foreground font-medium">Лазерна різка</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3">
+                  TRUMPF TruLaser 3030
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Високопродуктивний лазерний комплекс для точної різки металу з мінімальними деформаціями.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Потужність:</span>
+                    <span className="text-foreground font-medium">12 кВт</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Робоча зона:</span>
+                    <span className="text-foreground font-medium">3000×1500 мм</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Макс. товщина:</span>
+                    <span className="text-foreground font-medium">25 мм</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-semibold text-foreground flex items-center gap-1">
+                    <CheckCircle className="h-4 w-4 text-primary" />
+                    Особливості:
+                  </h4>
+                  <div className="space-y-1">
+                    {["Волоконний лазер", "Автоматична заміна сопел", "Система контролю якості"].map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                        <span className="text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* IPG Laser Welding */}
+            <Card className="overflow-hidden bg-card border-border shadow-card">
+              <div className="relative h-48 bg-gradient-metal flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Zap className="h-8 w-8 text-primary-foreground" />
+                  </div>
+                  <p className="text-foreground font-medium">Лазерне зварювання</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-foreground mb-3">
+                  IPG YLS-2000
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Сучасна система лазерного зварювання для високоякісних з'єднань тонкостінних конструкцій.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Потужність:</span>
+                    <span className="text-foreground font-medium">2 кВт</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Робоча зона:</span>
+                    <span className="text-foreground font-medium">1000×800 мм</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Макс. товщина:</span>
+                    <span className="text-foreground font-medium">6 мм</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-sm font-semibold text-foreground flex items-center gap-1">
+                    <CheckCircle className="h-4 w-4 text-primary" />
+                    Особливості:
+                  </h4>
+                  <div className="space-y-1">
+                    {["Безконтактне зварювання", "Мінімальна ЗТВ", "Програмне управління"].map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                        <span className="text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Materials & Applications */}
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
@@ -131,17 +237,56 @@ const LaserCutting = () => {
       {/* Pricing */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Вартість послуг</h2>
-            <Card className="p-8 bg-gradient-metal border-border">
-              <div className="text-4xl font-bold text-primary mb-4">від 50 грн/м.п.</div>
-              <p className="text-muted-foreground mb-6">
-                Остаточна вартість залежить від товщини металу, складності контуру та обсягу замовлення
-              </p>
-              <Button variant="hero" size="lg" className="w-full">
-                Отримати точний розрахунок
-              </Button>
-            </Card>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Вартість послуг</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Pricing Card */}
+              <Card className="p-8 bg-gradient-metal border-border">
+                <div className="text-center mb-6">
+                  <div className="text-4xl font-bold text-primary mb-4">від 50 грн/м.п.</div>
+                  <p className="text-muted-foreground">
+                    Остаточна вартість залежить від товщини металу, складності контуру та обсягу замовлення
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <Button variant="hero" size="lg" className="w-full">
+                    <Phone className="h-5 w-5 mr-2" />
+                    Порахувати вартість
+                  </Button>
+                  <Button variant="outline" size="lg" className="w-full">
+                    Завантажити прайс-лист
+                  </Button>
+                </div>
+              </Card>
+
+              {/* Quick Calculator */}
+              <Card className="p-8 bg-card border-border">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">
+                  Швидкий розрахунок
+                </h3>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm text-muted-foreground block mb-2">Товщина (мм)</label>
+                      <div className="text-lg font-semibold text-foreground p-2 bg-muted rounded">1-25</div>
+                    </div>
+                    <div>
+                      <label className="text-sm text-muted-foreground block mb-2">Матеріал</label>
+                      <div className="text-lg font-semibold text-foreground p-2 bg-muted rounded">Сталь</div>
+                    </div>
+                  </div>
+                  <div className="border-t pt-4">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-muted-foreground">Базова ціна:</span>
+                      <span className="text-lg font-bold text-primary">50-150 грн/м.п.</span>
+                    </div>
+                    <Button variant="outline" size="lg" className="w-full">
+                      Детальний розрахунок
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
