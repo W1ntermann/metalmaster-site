@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Clock, Shield } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import heroImage from "@/assets/hero-industrial.jpg";
 const Hero = () => {
   const scrollToContact = () => {
@@ -52,10 +52,10 @@ const Hero = () => {
           {/* Key Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
-              <Clock className="h-8 w-8 text-primary" />
+              <Zap className="h-8 w-8 text-primary" />
             </div>
             <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
-              <Shield className="h-8 w-8 text-primary" />
+              <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
             </div>
           </div>
         </div>
