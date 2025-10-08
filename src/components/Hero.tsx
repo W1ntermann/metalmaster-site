@@ -50,14 +50,6 @@ const Hero = () => {
           </div>
 
           {/* Key Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
-              <Zap className="h-8 w-8 text-primary" />
-            </div>
-            <div className="flex items-center gap-3 p-4 bg-card/50 border border-border rounded-lg backdrop-blur-sm">
-              <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
-            </div>
-          </div>
         </div>
       </div>
     </section>;
