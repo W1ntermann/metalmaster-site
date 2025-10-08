@@ -100,28 +100,28 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Головна навігація">
           <button 
             onClick={() => scrollToSection('services')}
-            className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
             aria-label="Перейти до секції послуг"
           >
             Послуги
           </button>
           <button 
             onClick={() => scrollToSection('clients')}
-            className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
             aria-label="Перейти до секції клієнтів"
           >
             Клієнти
           </button>
           <button 
             onClick={() => scrollToSection('about')}
-            className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
             aria-label="Перейти до секції про нас"
           >
             Про нас
           </button>
           <button 
             onClick={() => scrollToSection('contact')}
-            className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
             aria-label="Перейти до секції контактів"
           >
             Контакти
