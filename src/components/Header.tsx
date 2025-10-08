@@ -23,6 +23,7 @@ const Header = () => {
       </a>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Left side - Contact and CTA */}
         <div className="flex items-center gap-3">
           <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
             <Phone className="h-4 w-4" />
@@ -97,6 +98,7 @@ const Header = () => {
           </Button>
         </div>
         
+        {/* Center - Navigation */}
         <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Головна навігація">
           <button 
             onClick={() => scrollToSection('services')}
@@ -128,6 +130,7 @@ const Header = () => {
           </button>
         </nav>
 
+        {/* Right side - Logo */}
         <div className="flex items-center gap-2">
           <div className="relative">
             <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
