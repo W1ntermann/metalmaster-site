@@ -39,8 +39,7 @@ const About = () => {
             Про <span className="bg-gradient-laser bg-clip-text text-transparent">нашу компанію</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Армада Індастрі — це провідна компанія в сфері обробки металу в Одесі, 
-            яка спеціалізується на високоточних лазерних технологіях
+            Повний спектр послуг з обробки металу: лазерна різка, згинання, лазерне зварювання та фарбування
           </p>
         </div>
 

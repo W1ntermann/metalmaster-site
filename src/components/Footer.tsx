@@ -38,8 +38,6 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-foreground mb-4">Послуги</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Лазерна різка металу</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Згинання листового металу</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Лазерне зварювання</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Порошкове фарбування</a></li>
             </ul>
           </div>
