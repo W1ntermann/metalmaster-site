@@ -54,10 +54,10 @@ const Header = () => {
                     Обладнання
                   </button>
                   <button 
-                    onClick={() => scrollToSection('about')}
+                    onClick={() => scrollToSection('clients')}
                     className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
-                    Про нас
+                    Клієнти
                   </button>
                   <button 
                     onClick={() => scrollToSection('contact')}
@@ -113,11 +113,11 @@ const Header = () => {
             Обладнання
           </button>
           <button 
-            onClick={() => scrollToSection('about')}
+            onClick={() => scrollToSection('clients')}
             className="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm px-2 py-1"
-            aria-label="Перейти до секції про нас"
+            aria-label="Перейти до секції клієнтів"
           >
-            Про нас
+            Клієнти
           </button>
           <button 
             onClick={() => scrollToSection('contact')}
