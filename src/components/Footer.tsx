@@ -1,4 +1,5 @@
 import { Zap, Phone, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -24,7 +25,12 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span>info@armind.od.ua</span>
+                <a 
+                  href="mailto:info@armind.od.ua" 
+                  className="hover:text-primary transition-colors font-medium"
+                >
+                  info@armind.od.ua
+                </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
@@ -37,8 +43,22 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-foreground mb-4">Послуги</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Лазерна різка металу</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Порошкове фарбування</a></li>
+              <li>
+                <Link 
+                  to="/laser-cutting" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Лазерна різка металу
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/powder-coating" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Порошкове фарбування
+                </Link>
+              </li>
             </ul>
           </div>
 
