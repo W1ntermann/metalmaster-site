@@ -3,6 +3,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Zap, RotateCcw, Zap as Welding, Palette, CheckCircle, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import laserRazorImage from "@/assets/laser-razor.png";
+import spreadPaintImage from "@/assets/spread-paint.jpg";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
@@ -13,6 +16,7 @@ const Services = () => {
       title: "Лазерна різка",
       description: "Високоточна різка металу товщиною до 25 мм. Мінімальні деформації, ідеальна якість кромки.",
       features: ["Точність ±0.1 мм", "Без деформацій", "Різні типи металу", "Серійне виробництво"],
+      image: laserRazorImage,
       detailedInfo: {
         overview: "Наша лазерна різка забезпечує найвищу точність обробки металевих деталей. Використовуємо волоконні лазери потужністю до 12 кВт для швидкої та якісної обробки.",
         capabilities: [
@@ -31,6 +35,7 @@ const Services = () => {
       title: "Порошкове фарбування",
       description: "Стійке покриття з широкою палітрою кольорів та фактур.",
       features: ["200+ кольорів RAL", "Різні фактури", "Корозійна стійкість", "Екологічність"],
+      image: spreadPaintImage,
       detailedInfo: {
         overview: "Порошкове фарбування забезпечує довговічне і красиве покриття виробів. Використовуємо італійське обладнання та сертифіковані порошкові фарби.",
         capabilities: [
@@ -63,40 +68,67 @@ const Services = () => {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Card key={index} className="p-8 bg-card border-border shadow-card hover:shadow-metal transition-all duration-300 group">
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-laser rounded-lg flex items-center justify-center group-hover:animate-laser-pulse">
-                      <Icon className="h-8 w-8 text-primary-foreground" />
+              <Card key={index} className="overflow-hidden bg-card border-border shadow-card hover:shadow-metal transition-all duration-300 group">
+                {service.image ? (
+                  // Спрощена картка з зображенням
+                  <>
+                    <div className="relative h-64 overflow-hidden">
+                      <img 
+                        src={service.image} 
+                        alt={service.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-2xl font-bold text-white mb-2">
+                          {service.title}
+                        </h3>
+                        <Link to={service.title === "Лазерна різка" ? "/laser-cutting" : "/powder-coating"}>
+                          <Button variant="hero" size="sm" className="w-full">
+                            Детальніше
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-foreground mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-                    
-                    <div className="grid grid-cols-2 gap-3 mb-6">
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-primary rounded-full"></div>
-                          <span className="text-sm text-foreground">{feature}</span>
+                  </>
+                ) : (
+                  // Повна картка для послуг без зображення
+                  <div className="p-8">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-laser rounded-lg flex items-center justify-center group-hover:animate-laser-pulse">
+                          <Icon className="h-8 w-8 text-primary-foreground" />
                         </div>
-                      ))}
+                      </div>
+                      
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-foreground mb-3">
+                          {service.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {service.description}
+                        </p>
+                        
+                        <div className="grid grid-cols-2 gap-3 mb-6">
+                          {service.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-primary rounded-full"></div>
+                              <span className="text-sm text-foreground">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => setSelectedService(index)}
+                        >
+                          Детальніше
+                        </Button>
+                      </div>
                     </div>
-                    
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => setSelectedService(index)}
-                    >
-                      Детальніше
-                    </Button>
                   </div>
-                </div>
+                )}
               </Card>
             );
           })}

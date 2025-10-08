@@ -78,7 +78,7 @@ const Header = () => {
                       className="w-full"
                       onClick={() => scrollToSection('contact')}
                     >
-                      Консультація
+                      Прорахунок
                     </Button>
                   </div>
                 </nav>
@@ -93,7 +93,7 @@ const Header = () => {
             aria-label="Замовити безкоштовну консультацію"
             className="hidden md:inline-flex"
           >
-            Консультація
+            Прорахунок
           </Button>
         </div>
         

@@ -41,7 +41,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Button variant="hero" size="lg" onClick={scrollToContact} className="group">
-              Замовити консультацію
+              Замовити прорахунок
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="outline" size="lg" onClick={scrollToServices}>
