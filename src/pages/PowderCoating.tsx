@@ -41,11 +41,20 @@ const PowderCoating = () => {
                 обладнання та сертифіковані порошкові фарби для довговічного результату.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="lg" className="group">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="group"
+                  onClick={() => window.open('tel:+380123456789', '_self')}
+                >
                   <Phone className="h-5 w-5 mr-2" />
                   Замовити розрахунок
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={() => window.open('mailto:info@armind.ua?subject=Каталог кольорів RAL', '_self')}
+                >
                   Каталог кольорів RAL
                 </Button>
               </div>
@@ -292,11 +301,21 @@ const PowderCoating = () => {
                   </p>
                 </div>
                 <div className="space-y-3">
-                  <Button variant="hero" size="lg" className="w-full">
+                  <Button 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => window.open('tel:+380123456789', '_self')}
+                  >
                     <Phone className="h-5 w-5 mr-2" />
                     Порахувати вартість
                   </Button>
-                  <Button variant="outline" size="lg" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => window.open('mailto:info@armind.ua?subject=Каталог кольорів RAL', '_self')}
+                  >
                     Каталог кольорів RAL
                   </Button>
                 </div>
@@ -323,7 +342,12 @@ const PowderCoating = () => {
                       <span className="text-muted-foreground">Базова ціна:</span>
                       <span className="text-lg font-bold text-primary">120-250 грн/м²</span>
                     </div>
-                    <Button variant="outline" size="lg" className="w-full">
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="w-full"
+                      onClick={() => window.open('tel:+380123456789', '_self')}
+                    >
                       Детальний розрахунок
                     </Button>
                   </div>

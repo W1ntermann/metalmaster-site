@@ -5,6 +5,7 @@ import Clients from "@/components/Clients";
 import HowToOrder from "@/components/HowToOrder";
 import About from "@/components/About";
 import Advantages from "@/components/Advantages";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ContactPopup from "@/components/ContactPopup";
@@ -20,6 +21,7 @@ const Index = () => {
       <Contact />
       <Advantages />
       <About />
+      <FAQ />
       <Footer />
       <ContactPopup />
     </main>
