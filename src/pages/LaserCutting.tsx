@@ -2,9 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Zap, CheckCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import laserRazorImage from "@/assets/laser-razor.png";
 
 const LaserCutting = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}

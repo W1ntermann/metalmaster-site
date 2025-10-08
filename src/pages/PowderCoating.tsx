@@ -2,9 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Palette, CheckCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import spreadPaintImage from "@/assets/spread-paint.jpg";
 
 const PowderCoating = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
