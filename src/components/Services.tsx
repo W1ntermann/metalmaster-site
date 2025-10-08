@@ -72,28 +72,36 @@ const Services = () => {
                 {service.image ? (
                   // Красива картка з зображенням
                   <>
-                    <div className="relative h-80 overflow-hidden rounded-t-lg">
+                    <div className="relative h-64 overflow-hidden rounded-t-lg">
                       <img 
                         src={service.image} 
                         alt={service.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500 filter group-hover:brightness-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
                         <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
                           <Icon className="h-6 w-6 text-white" />
                         </div>
                       </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">
-                          {service.title}
-                        </h3>
-                        <p className="text-white/90 text-sm mb-4 line-clamp-2 drop-shadow">
-                          {service.description}
-                        </p>
-                      </div>
                     </div>
-                    <div className="p-6 bg-gradient-to-b from-card to-card/80">
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-foreground mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        {service.description}
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-3 mb-6">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-primary rounded-full"></div>
+                            <span className="text-sm text-foreground">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      
                       <Link to={service.title === "Лазерна різка" ? "/laser-cutting" : "/powder-coating"}>
                         <Button variant="hero" size="lg" className="w-full group-hover:shadow-glow transition-all duration-300">
                           <span className="mr-2">Детальніше</span>
