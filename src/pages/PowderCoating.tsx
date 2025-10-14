@@ -281,12 +281,26 @@ const PowderCoating = () => {
         </div>
       </section>
 
-      {/* Applications - стандартний фон */}
-      <section className="py-20 bg-muted/10">
-        <div className="container mx-auto px-4">
+      {/* Applications with Background Image */}
+      <section className="py-20 relative">
+        {/* Фонова картинка тільки для цього блоку */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                 <CheckCircle className="h-6 w-6 text-primary" />
                 Переваги порошкового фарбування
               </h3>
@@ -298,15 +312,15 @@ const PowderCoating = () => {
                   "Механічна міцність покриття",
                   "Широка температурна стійкість"
                 ].map((advantage, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-card rounded-lg">
+                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
                     <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground">{advantage}</span>
+                    <span className="text-white">{advantage}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                 <CheckCircle className="h-6 w-6 text-primary" />
                 Сфери застосування
               </h3>
@@ -318,9 +332,9 @@ const PowderCoating = () => {
                   "Садово-паркові форми",
                   "Промислове обладнання"
                 ].map((application, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-card rounded-lg">
+                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-foreground">{application}</span>
+                    <span className="text-white">{application}</span>
                   </div>
                 ))}
               </div>
