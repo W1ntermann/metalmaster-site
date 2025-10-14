@@ -36,7 +36,7 @@ const Hero = () => {
             в Одесі
           </h1>
 
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">Повний спектр послуг з обробки металу: 
+          <p className="text-white text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">Повний спектр послуг з обробки металу: 
 лазерна різка, згинання, лазерне зварювання та фарбування. Довговічне покриття, понад 200 кольорів RAL, екологічно чисті матеріали.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
