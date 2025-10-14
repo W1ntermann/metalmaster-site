@@ -51,7 +51,7 @@ const FAQ = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Часті <span className="bg-gradient-laser bg-clip-text text-transparent">питання</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Відповіді на найпоширеніші питання про наші послуги та процес роботи
           </p>
         </div>
