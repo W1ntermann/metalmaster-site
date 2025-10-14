@@ -27,8 +27,8 @@ const Header = () => {
         <div className="flex items-center gap-3">
           <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
             <Phone className="h-4 w-4" />
-            <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
-              +380 (48) 888-88-88
+            <a href="tel:+380934236139" className="hover:text-primary transition-colors font-medium">
+              +380 (93) 423-61-39
             </a>
           </div>
           
