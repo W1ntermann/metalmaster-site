@@ -72,9 +72,12 @@ const LaserCutting = () => {
                     variant="outline" 
                     size="lg"
                     className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                    onClick={() => window.open('mailto:armindind@gmail.com?subject=Запит прайс-листу', '_self')}
+                    onClick={() => {
+                      const pricingSection = document.getElementById('pricing');
+                      pricingSection?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >
-                    Завантажити прайс
+                    Переглянути ціни
                   </Button>
                 </div>
               </div>
@@ -263,7 +266,7 @@ const LaserCutting = () => {
         </section>
 
         {/* Pricing */}
-        <section className="py-20 bg-white/5 backdrop-blur-sm">
+        <section id="pricing" className="py-20 bg-white/5 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-white mb-12 text-center">Вартість послуг</h2>
@@ -292,7 +295,7 @@ const LaserCutting = () => {
                       className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
                       onClick={() => window.open('mailto:armindind@gmail.com?subject=Запит прайс-листу', '_self')}
                     >
-                      Завантажити прайс-лист
+                      Надіслати запит
                     </Button>
                   </div>
                 </Card>
