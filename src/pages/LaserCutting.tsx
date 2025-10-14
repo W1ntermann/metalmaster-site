@@ -239,7 +239,7 @@ const LaserCutting = () => {
         </div>
       </section>
 
-      {/* Materials & Applications - стандартний фон */}
+      {/* Materials - стандартний фон */}
       <section className="py-20 bg-muted/10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -260,17 +260,84 @@ const LaserCutting = () => {
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                 <CheckCircle className="h-6 w-6 text-primary" />
-                Сфери застосування
+                Переваги лазерної різки
               </h3>
               <div className="space-y-3">
-                {["Деталі машинобудування", "Архітектурні елементи", "Рекламні конструкції", "Декоративні вироби", "Промислове обладнання"].map((application, idx) => (
+                {["Висока точність (±0.03 мм)", "Мінімальна зона термічного впливу", "Чиста кромка без обробки", "Автоматизація процесу", "Екологічність"].map((advantage, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-3 bg-card rounded-lg">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-foreground">{application}</span>
+                    <span className="text-foreground">{advantage}</span>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Applications with Background Image */}
+      <section className="py-20 relative">
+        {/* Фонова картинка тільки для цього блоку */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">
+            Сфери застосування
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Машинобудування</h3>
+              <p className="text-white/70 text-sm">Деталі механізмів, кріплення, шассі</p>
+            </Card>
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Архітектура</h3>
+              <p className="text-white/70 text-sm">Фасадні елементи, перила, декор</p>
+            </Card>
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Реклама</h3>
+              <p className="text-white/70 text-sm">Об'ємні літери, вивіски, стенди</p>
+            </Card>
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Меблі</h3>
+              <p className="text-white/70 text-sm">Металеві каркаси, фурнітура, декор</p>
+            </Card>
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Автомобілі</h3>
+              <p className="text-white/70 text-sm">Кузовні деталі, кріплення, аксесуари</p>
+            </Card>
+            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
+              <div className="w-12 h-12 bg-gradient-laser rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Zap className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Енергетика</h3>
+              <p className="text-white/70 text-sm">Кріплення, шассі, теплообмінники</p>
+            </Card>
           </div>
         </div>
       </section>
