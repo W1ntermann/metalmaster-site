@@ -68,15 +68,15 @@ const FAQ = () => {
                     {faq.question}
                   </h3>
                   {openFAQ === index ? (
-                    <ChevronUp className="h-5 w-5 text-primary flex-shrink-0" />
+                    <ChevronUp className="h-5 w-5 text-orange-500 flex-shrink-0" />
                   ) : (
                     <ChevronDown className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                   )}
                 </button>
                 {openFAQ === index && (
                   <div className="px-6 pb-6">
-                    <div className="border-t border-border pt-4">
-                      <p className="text-muted-foreground leading-relaxed">
+                    <div className="border-t border-orange-500/30 pt-4">
+                      <p className="text-orange-500 leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
