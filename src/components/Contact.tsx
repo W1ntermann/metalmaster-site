@@ -55,7 +55,7 @@ const Contact = () => {
             <Card className="p-0 overflow-hidden border-border shadow-card">
               <div className="h-64 w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.123456789012!2d30.7325678!3d46.4855769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6318a12345678%3A0x1234567890abcdef!2z0LLRg9C70LjRhtGPINCh0LjQutC40L3QsCDQkdC-0YDQvtGC0YHQutC-0LPQviwgMjgsINCe0LTQtdGB0YHQsCwg0J7QtNC10YHRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNjUwNDE!5e0!3m2!1suk!2sua!4v1234567890123!5m2!1suk!2sua"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.316833583287!2d30.66218727644353!3d46.48538697113913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6332a6a5bf5c5%3A0x7b8fc2b7e7e7e7e7!2z0LLRg9C70LjRhtGPINCh0LjQutC40L3QsCDQkdC-0YDQvtGC0YHQutC-0LPQviwgMjgsINCe0LTQtdGB0YHQsCwg0J7QtNC10YHRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNjUwNDE!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -76,7 +76,7 @@ const Contact = () => {
                   variant="outline" 
                   size="sm" 
                   className="w-full mt-3"
-                  onClick={() => window.open('https://maps.google.com/?q=вул. Миколи Боровського, 28, Одеса', '_blank')}
+                  onClick={() => window.open('https://maps.google.com/?q=46.485387,30.664776', '_blank')}
                 >
                   Прокласти маршрут
                 </Button>
