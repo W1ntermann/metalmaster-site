@@ -55,7 +55,7 @@ const Contact = () => {
             <Card className="p-0 overflow-hidden border-border shadow-card">
               <div className="h-64 w-full">
                 <iframe
-                  src="https://maps.google.com/maps?q=46.48554,30.66366&hl=uk&z=17&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.3!2d30.66366!3d46.48554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632783c000001%3A0x1!2z0LLRg9C7LiDQnNC40LrQvtC70Lgg0JHQvtGA0L7QstGB0YzQutC-0LPQviwgMjgsINCe0LTQtdGB0LAsIDY1MDc1!5e0!3m2!1suk!2sua!4v1"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
