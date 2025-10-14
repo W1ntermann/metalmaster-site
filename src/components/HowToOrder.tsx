@@ -1,4 +1,4 @@
-import howToOrderImage from "@/assets/how-to-order.jpg";
+import howToOrderImage from "@/assets/image-for-site.png";
 
 const HowToOrder = () => {
   return (

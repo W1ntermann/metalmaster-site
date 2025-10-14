@@ -24,7 +24,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-foreground mb-4">
                   Безкоштовна консультація
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-white text-muted-foreground mb-6 leading-relaxed">
                   Наші фахівці допоможуть підібрати оптимальне рішення для вашого проекту, 
                   розрахують вартість та терміни виконання.
                 </p>
