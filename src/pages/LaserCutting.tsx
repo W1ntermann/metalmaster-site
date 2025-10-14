@@ -66,7 +66,7 @@ const LaserCutting = () => {
                     onClick={() => window.open('tel:+380934236139', '_self')}
                   >
                     <Phone className="h-5 w-5 mr-2" />
-                    Замовити розрахунок
+                    Дізнатися вартість
                   </Button>
                   <Button 
                     variant="outline" 
