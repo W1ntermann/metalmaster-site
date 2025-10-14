@@ -58,7 +58,7 @@ const Services = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Наші <span className="bg-gradient-laser bg-clip-text text-transparent">послуги</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto">
             Повний цикл обробки металу на сучасному європейському обладнанні 
             з гарантією якості та дотриманням термінів
           </p>
