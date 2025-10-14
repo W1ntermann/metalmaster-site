@@ -45,13 +45,13 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-orange-500 to-orange-600">
+    <section id="faq" className="py-20 bg-gradient-to-b from-orange-50 to-orange-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Часті <span className="bg-gradient-to-r from-white to-orange-100 bg-clip-text text-transparent">питання</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Часті <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">питання</span>
           </h2>
-          <p className="text-white text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed">
             Відповіді на найпоширеніші питання про наші послуги та процес роботи
           </p>
         </div>
@@ -59,24 +59,24 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-4">
             {faqData.map((faq, index) => (
-              <Card key={index} className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-card hover:shadow-white/20 transition-all duration-300">
+              <Card key={index} className="overflow-hidden bg-white border-orange-200 shadow-sm hover:shadow-md transition-all duration-300">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-white/10 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-orange-50 transition-colors"
                 >
-                  <h3 className="text-lg font-semibold text-white pr-4">
+                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
                     {faq.question}
                   </h3>
                   {openFAQ === index ? (
-                    <ChevronUp className="h-5 w-5 text-white flex-shrink-0" />
+                    <ChevronUp className="h-5 w-5 text-orange-500 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-white/80 flex-shrink-0" />
+                    <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
                   )}
                 </button>
                 {openFAQ === index && (
                   <div className="px-6 pb-6">
-                    <div className="border-t border-white/20 pt-4">
-                      <p className="text-white/90 leading-relaxed">
+                    <div className="border-t border-orange-100 pt-4">
+                      <p className="text-gray-700 leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
