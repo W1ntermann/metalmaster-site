@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft, Zap, CheckCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import laserRazorImage from "@/assets/for-laser-cutting-two.jpg";
+import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
 
 const LaserCutting = () => {
   useEffect(() => {
