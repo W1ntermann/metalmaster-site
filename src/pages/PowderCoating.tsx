@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft, Palette, CheckCircle, Phone, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import spreadPaintImage from "@/assets/for-painting.jpg";
+import spreadPaintImage from "@/assets/for-painting-two.jpg";
 
 const PowderCoating = () => {
   useEffect(() => {
