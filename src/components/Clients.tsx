@@ -170,34 +170,6 @@ const Clients = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
-          <Card className="inline-block p-8 bg-gradient-metal border-border shadow-metal max-w-2xl">
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
-                <Building2 className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Хочете стати нашим клієнтом?
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  Приєднуйтесь до сотень задоволених клієнтів, які довіряють нам свої проекти
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Badge variant="outline" className="text-primary border-primary">
-                    Індивідуальний підхід
-                  </Badge>
-                  <Badge variant="outline" className="text-primary border-primary">
-                    Гарантія якості
-                  </Badge>
-                  <Badge variant="outline" className="text-primary border-primary">
-                    Швидкі терміни
-                  </Badge>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
       </div>
     </section>
   );
