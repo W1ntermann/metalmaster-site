@@ -45,7 +45,7 @@ const PowderCoating = () => {
                   variant="hero" 
                   size="lg" 
                   className="group"
-                  onClick={() => window.open('tel:+380123456789', '_self')}
+                  onClick={() => window.open('tel:+380934236139', '_self')}
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Замовити розрахунок
@@ -53,7 +53,7 @@ const PowderCoating = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  onClick={() => window.open('mailto:info@armind.ua?subject=Каталог кольорів RAL', '_self')}
+                  onClick={() => window.open('mailto:armindind@gmail.com?subject=Каталог кольорів RAL', '_self')}
                 >
                   Каталог кольорів RAL
                 </Button>
@@ -366,7 +366,7 @@ const PowderCoating = () => {
                 variant="hero" 
                 size="lg" 
                 className="w-full"
-                onClick={() => window.open('tel:+380123456789', '_self')}
+                onClick={() => window.open('tel:+380934236139', '_self')}
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Порахувати вартість
@@ -375,7 +375,7 @@ const PowderCoating = () => {
                 variant="outline" 
                 size="lg" 
                 className="w-full"
-                onClick={() => window.open('mailto:info@armind.ua?subject=Каталог кольорів RAL', '_self')}
+                onClick={() => window.open('mailto:armindind@gmail.com?subject=Каталог кольорів RAL', '_self')}
               >
                 Каталог кольорів RAL
               </Button>
