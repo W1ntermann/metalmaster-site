@@ -37,7 +37,7 @@ const LaserCutting = () => {
                 <span className="bg-gradient-laser bg-clip-text text-transparent">Лазерна різка</span> металу
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Високоточна лазерна різка металу товщиною до 25 мм з мінімальними деформаціями 
+                Високоточна лазерна різка металу товщиною до 20 мм з мінімальними деформаціями 
                 та ідеальною якістю кромки. Використовуємо волоконні лазери потужністю до 12 кВт.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -45,7 +45,7 @@ const LaserCutting = () => {
                   variant="hero" 
                   size="lg" 
                   className="group"
-                  onClick={() => window.open('tel:+380123456789', '_self')}
+                  onClick={() => window.open('tel:+380934236139', '_self')}
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Замовити розрахунок
@@ -53,7 +53,7 @@ const LaserCutting = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  onClick={() => window.open('mailto:info@armind.ua?subject=Запит прайс-листу', '_self')}
+                  onClick={() => window.open('mailto:armindind@gmail.com?subject=Запит прайс-листу', '_self')}
                 >
                   Завантажити прайс
                 </Button>
@@ -78,12 +78,12 @@ const LaserCutting = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="p-6 text-center bg-gradient-metal border-border">
-              <div className="text-2xl font-bold text-primary mb-2">±0.05 мм</div>
+              <div className="text-2xl font-bold text-primary mb-2">±0.03 мм</div>
               <div className="text-foreground font-medium mb-1">Точність позиціонування</div>
               <div className="text-sm text-muted-foreground">Найвища точність різки</div>
             </Card>
             <Card className="p-6 text-center bg-gradient-metal border-border">
-              <div className="text-2xl font-bold text-primary mb-2">до 25 мм</div>
+              <div className="text-2xl font-bold text-primary mb-2">до 20 мм</div>
               <div className="text-foreground font-medium mb-1">Товщина сталі</div>
               <div className="text-sm text-muted-foreground">Максимальна товщина</div>
             </Card>
@@ -262,7 +262,7 @@ const LaserCutting = () => {
                     variant="hero" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('tel:+380123456789', '_self')}
+                    onClick={() => window.open('tel:+380934236139', '_self')}
                   >
                     <Phone className="h-5 w-5 mr-2" />
                     Порахувати вартість
@@ -271,7 +271,7 @@ const LaserCutting = () => {
                     variant="outline" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('mailto:info@armind.ua?subject=Запит прайс-листу', '_self')}
+                    onClick={() => window.open('mailto:armindind@gmail.com?subject=Запит прайс-листу', '_self')}
                   >
                     Завантажити прайс-лист
                   </Button>
@@ -303,7 +303,7 @@ const LaserCutting = () => {
                       variant="outline" 
                       size="lg" 
                       className="w-full"
-                      onClick={() => window.open('tel:+380123456789', '_self')}
+                      onClick={() => window.open('tel:+380934236139', '_self')}
                     >
                       Детальний розрахунок
                     </Button>
