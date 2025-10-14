@@ -45,19 +45,13 @@ const FAQ = () => {
   };
 
   return (
-    <section 
-      id="faq" 
-      className="py-20"
-      style={{
-        background: 'linear-gradient(to bottom, #fef6e8, #fee9c7)'
-      }}
-    >
+    <section id="faq" className="py-20 bg-gradient-to-b from-background to-muted/10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Часті <span style={{ color: '#fea12e' }}>питання</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Часті <span className="bg-gradient-laser bg-clip-text text-transparent">питання</span>
           </h2>
-          <p className="text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Відповіді на найпоширеніші питання про наші послуги та процес роботи
           </p>
         </div>
@@ -65,33 +59,24 @@ const FAQ = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-4">
             {faqData.map((faq, index) => (
-              <Card 
-                key={index} 
-                className="overflow-hidden bg-white border-orange-200 shadow-sm hover:shadow-md transition-all duration-300"
-                style={{
-                  borderColor: '#fea12e'
-                }}
-              >
+              <Card key={index} className="overflow-hidden bg-card border-border shadow-card hover:shadow-glow transition-all duration-300">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-orange-50 transition-colors"
-                  style={{
-                    backgroundColor: openFAQ === index ? '#fef6e8' : 'transparent'
-                  }}
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-muted/50 transition-colors"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                  <h3 className="text-lg font-semibold text-foreground pr-4">
                     {faq.question}
                   </h3>
                   {openFAQ === index ? (
-                    <ChevronUp className="h-5 w-5 flex-shrink-0" style={{ color: '#fea12e' }} />
+                    <ChevronUp className="h-5 w-5 text-primary flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    <ChevronDown className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                   )}
                 </button>
                 {openFAQ === index && (
                   <div className="px-6 pb-6">
-                    <div className="border-t pt-4" style={{ borderColor: '#fea12e' }}>
-                      <p className="text-gray-700 leading-relaxed">
+                    <div className="border-t border-border pt-4">
+                      <p className="text-muted-foreground leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
