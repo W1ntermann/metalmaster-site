@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Shield, Clock, Palette, Zap, DollarSign, Award } from "lucide-react";
+import advantagesBackground from "@/assets/for-advantages.png"; // Додайте ваш файл з картинкою
 
 const Advantages = () => {
   const advantages = [
@@ -42,13 +43,25 @@ const Advantages = () => {
   ];
 
   return (
-    <section id="advantages" className="py-20 bg-gradient-metal">
-      <div className="container mx-auto px-4">
+    <section 
+      id="advantages" 
+      className="py-20 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${advantagesBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Темний оверлей для кращої читабельності тексту */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Чому обирають <span className="bg-gradient-laser bg-clip-text text-transparent">нас</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Чому обирають <span className="bg-gradient-to-r from-white to-orange-200 bg-clip-text text-transparent">нас</span>
           </h2>
-          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-white text-xl max-w-3xl mx-auto">
             Ми працюємо з найсучаснішим обладнанням та матеріалами, 
             гарантуючи найвищу якість і надійність для вашого бізнесу
           </p>
@@ -58,7 +71,7 @@ const Advantages = () => {
           {advantages.map((advantage, index) => {
             const Icon = advantage.icon;
             return (
-              <Card key={index} className="p-6 bg-card/80 backdrop-blur-sm border-border shadow-card hover:shadow-glow transition-all duration-300 group">
+              <Card key={index} className="p-6 bg-white/10 backdrop-blur-sm border-white/20 shadow-card hover:shadow-white/20 hover:bg-white/15 transition-all duration-300 group text-white">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mb-4 group-hover:animate-laser-pulse">
                     <Icon className="h-8 w-8 text-primary-foreground" />
@@ -68,11 +81,11 @@ const Advantages = () => {
                     {advantage.highlight}
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {advantage.title}
                   </h3>
                   
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-white/90 leading-relaxed">
                     {advantage.description}
                   </p>
                 </div>
@@ -82,13 +95,13 @@ const Advantages = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 p-6 bg-primary/10 border border-primary/20 rounded-2xl">
+          <div className="inline-flex items-center gap-4 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white">
             <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
             <div className="text-left">
-              <div className="text-lg font-semibold text-foreground">
+              <div className="text-lg font-semibold text-white">
                 Готові до співпраці?
               </div>
-              <div className="text-muted-foreground">
+              <div className="text-white/90">
                 Зв'яжіться з нами для консультації та розрахунку вартості
               </div>
             </div>
