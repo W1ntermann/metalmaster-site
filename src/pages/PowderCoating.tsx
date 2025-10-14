@@ -36,7 +36,7 @@ const PowderCoating = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                 <span className="bg-gradient-laser bg-clip-text text-transparent">Порошкове фарбування</span> металу
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-white text-xl text-muted-foreground mb-8 leading-relaxed">
                 Стійке покриття з широкою палітрою кольорів та фактур. Використовуємо італійське 
                 обладнання та сертифіковані порошкові фарби для довговічного результату.
               </p>

@@ -36,7 +36,7 @@ const LaserCutting = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                 <span className="bg-gradient-laser bg-clip-text text-transparent">Лазерна різка</span> металу
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-white text-xl text-muted-foreground mb-8 leading-relaxed">
                 Високоточна лазерна різка металу товщиною до 20 мм з мінімальними деформаціями 
                 та ідеальною якістю кромки. Використовуємо волоконні лазери потужністю до 12 кВт.
               </p>
