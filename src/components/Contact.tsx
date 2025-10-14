@@ -33,8 +33,8 @@ const Contact = () => {
                     variant="hero" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('tel:+380488888888', '_self')}
-                    aria-label="Зателефонувати за номером +380 (48) 888-88-88"
+                    onClick={() => window.open('tel:+380934236139', '_self')}
+                    aria-label="Зателефонувати за номером +380 (93) 423-61-39"
                   >
                     Замовити дзвінок
                   </Button>
@@ -51,28 +51,36 @@ const Contact = () => {
               </div>
             </Card>
 
-            <Card className="p-6 bg-primary/5 border-primary/20">
-              <h4 className="text-lg font-semibold text-foreground mb-4">
-                Що ми обговоримо:
-              </h4>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Технічні вимоги до виробу</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Обсяги та терміни виробництва</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Вартість послуг</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-foreground">Варіанти співпраці</span>
-                </li>
-              </ul>
+            {/* Карта */}
+            <Card className="p-0 overflow-hidden border-border shadow-card">
+              <div className="h-64 w-full">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.123456789012!2d30.7325678!3d46.4855769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6318a12345678%3A0x1234567890abcdef!2z0LLRg9C70LjRhtGPINCh0LjQutC40L3QsCDQkdC-0YDQvtGC0YHQutC-0LPQviwgMjgsINCe0LTQtdGB0YHQsCwg0J7QtNC10YHRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNjUwNDE!5e0!3m2!1suk!2sua!4v1234567890123!5m2!1suk!2sua"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Наше розташування: вул. Миколи Боровського, 28, Одеса"
+                />
+              </div>
+              <div className="p-4 bg-card">
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  <h4 className="font-semibold text-foreground">Наша адреса</h4>
+                </div>
+                <p className="text-foreground mb-1">вул. Миколи Боровського, 28</p>
+                <p className="text-muted-foreground text-sm">м. Одеса, 65041</p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full mt-3"
+                  onClick={() => window.open('https://maps.google.com/?q=вул. Миколи Боровського, 28, Одеса', '_blank')}
+                >
+                  Прокласти маршрут
+                </Button>
+              </div>
             </Card>
           </div>
 
@@ -85,7 +93,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Телефон</h3>
-                  <a href="tel:+3380934236139" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
+                  <a href="tel:+380934236139" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
                     +380 (93) 423-61-39
                   </a>
                   <p className="text-muted-foreground">Пн-Пт: 8:00-18:00, Сб: 9:00-14:00</p>
