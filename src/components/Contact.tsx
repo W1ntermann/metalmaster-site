@@ -55,7 +55,7 @@ const Contact = () => {
             <Card className="p-0 overflow-hidden border-border shadow-card">
               <div className="h-64 w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.316833583287!2d30.6621873!3d46.4853869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632783c000001%3A0x9d3fa63bab8c9b1f!2z0LLRg9C70LjRhtGPINCh0LjQutC40L3QsCDQkdC-0YDQvtGC0YHQutC-0LPQviwgMjgsINCe0LTQtdGB0YHQsCwg0J7QtNC10YHRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNjUwNDE!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.316833583287!2d30.6621873!3d46.4853869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632783c000001%3A0x9d3fa63bab8c9b1f!2z0YPQuy4g0JzQuNC60L7Qu9Cw0Y8g0JHQvtGA0L7RgtGB0LrQvtCz0L4sIDI4LCDQntC00LXRgdGB0LAsINCe0LTQtdGB0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDY1MDAw!5e0!3m2!1sru!2sua!4v1700000000000"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -71,12 +71,12 @@ const Contact = () => {
                   <h4 className="font-semibold text-foreground">Наша адреса</h4>
                 </div>
                 <p className="text-foreground mb-1">вул. Миколи Боровського, 28</p>
-                <p className="text-muted-foreground text-sm">м. Одеса, 65041</p>
+                <p className="text-muted-foreground text-sm">м. Одеса, 65000</p>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="w-full mt-3"
-                  onClick={() => window.open('https://www.google.com/maps/place/%D0%B2%D1%83%D0%BB.+%D0%9C%D0%B8%D0%BA%D0%BE%D0%BB%D0%B8+%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE,+28,+%D0%9E%D0%B4%D0%B5%D1%81%D0%B0,+%D0%9E%D0%B4%D0%B5%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+65041/@46.485387,30.664776,17z/data=!3m1!4b1!4m6!3m5!1s0x40c632783c000001:0x9d3fa63bab8c9b1f!8m2!3d46.485387!4d30.664776!16s%2Fg%2F11c2m5z5_9?entry=ttu', '_blank')}
+                  onClick={() => window.open('https://www.google.com/maps/place/%D1%83%D0%BB.+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%8F+%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE,+28,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+65000/@46.485387,30.664776,17z/data=!3m1!4b1!4m6!3m5!1s0x40c632783c000001:0x9d3fa63bab8c9b1f!8m2!3d46.485387!4d30.664776!16s%2Fg%2F11c2m5z5_9?entry=ttu', '_blank')}
                 >
                   Прокласти маршрут
                 </Button>
@@ -122,7 +122,7 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Адреса</h3>
                   <p className="text-foreground font-medium mb-1">вул. Миколи Боровського, 28</p>
-                  <p className="text-foreground font-medium mb-1">м. Одеса, 65041</p>
+                  <p className="text-foreground font-medium mb-1">м. Одеса, 65000</p>
                   <p className="text-muted-foreground">Зручна транспортна розв'язка</p>
                 </div>
               </div>
