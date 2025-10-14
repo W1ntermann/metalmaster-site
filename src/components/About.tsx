@@ -38,7 +38,7 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Про <span className="bg-gradient-laser bg-clip-text text-transparent">нашу компанію</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Повний спектр послуг з обробки металу: лазерна різка, згинання, лазерне зварювання та фарбування
           </p>
         </div>

@@ -97,7 +97,7 @@ const Clients = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Наші <span className="bg-gradient-laser bg-clip-text text-transparent">клієнти</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Нам довіряють провідні компанії Одеси та України. Від малого бізнесу до великих 
             промислових підприємств - ми забезпечуємо якість на найвищому рівні
           </p>

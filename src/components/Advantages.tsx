@@ -48,7 +48,7 @@ const Advantages = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Чому обирають <span className="bg-gradient-laser bg-clip-text text-transparent">нас</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto">
             Ми працюємо з найсучаснішим обладнанням та матеріалами, 
             гарантуючи найвищу якість і надійність для вашого бізнесу
           </p>
