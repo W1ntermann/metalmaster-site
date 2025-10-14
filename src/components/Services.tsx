@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Zap, RotateCcw, Zap as Welding, Palette, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import laserRazorImage from "@/assets/for-laser-cutting.jpg";
-import spreadPaintImage from "@/assets/spread-paint.jpg";
+import spreadPaintImage from "@/assets/for-painting.jpg";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
