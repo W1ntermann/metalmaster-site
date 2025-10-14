@@ -120,7 +120,7 @@ const LaserCutting = () => {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-foreground mb-3">
-                  TRUMPF TruLaser 3030
+                MT-L3015F
                 </h3>
                 <p className="text-muted-foreground mb-4">
                   Високопродуктивний лазерний комплекс для точної різки металу з мінімальними деформаціями.
@@ -128,7 +128,7 @@ const LaserCutting = () => {
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-muted-foreground">Потужність:</span>
-                    <span className="text-foreground font-medium">12 кВт</span>
+                    <span className="text-foreground font-medium">6 кВт</span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-muted-foreground">Робоча зона:</span>
@@ -136,7 +136,7 @@ const LaserCutting = () => {
                   </div>
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-muted-foreground">Макс. товщина:</span>
-                    <span className="text-foreground font-medium">25 мм</span>
+                    <span className="text-foreground font-medium">20 мм</span>
                   </div>
                 </div>
                 <div className="space-y-2">

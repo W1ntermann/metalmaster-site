@@ -85,8 +85,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Телефон</h3>
-                  <a href="tel:+380488888888" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
-                    +380 (48) 888-88-88
+                  <a href="tel:+3380934236139" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
+                    +380 (93) 423-61-39
                   </a>
                   <p className="text-muted-foreground">Пн-Пт: 8:00-18:00, Сб: 9:00-14:00</p>
                 </div>
@@ -100,7 +100,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
-                  <p className="text-xl font-semibold text-primary mb-1">info@armind.od.ua</p>
+                  <p className="text-xl font-semibold text-primary mb-1">armindind@gmail.com</p>
                   <p className="text-muted-foreground">Відповідаємо протягом 1 години</p>
                 </div>
               </div>

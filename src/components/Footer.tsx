@@ -19,17 +19,17 @@ const Footer = () => {
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
-                  +380 (48) 888-88-88
+                <a href="tel:+380934236139" className="hover:text-primary transition-colors font-medium">
+                  +380 (93) 423-61-39
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4" />
                 <a 
-                  href="mailto:info@armind.od.ua" 
+                  href="mailto:armindind@gmail.com" 
                   className="hover:text-primary transition-colors font-medium"
                 >
-                  info@armind.od.ua
+                  armindind@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
