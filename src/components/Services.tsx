@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Zap, RotateCcw, Zap as Welding, Palette, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import laserRazorImage from "@/assets/for-laser-cutting.jpg";
+import laserRazorImage from "@/assets/for-laser-cutting-two.jpg";
 import spreadPaintImage from "@/assets/for-painting.jpg";
 
 const Services = () => {
