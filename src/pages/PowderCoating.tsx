@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Palette, CheckCircle, Phone, Settings } from "lucide-react";
+import { ArrowLeft, Palette, CheckCircle, Phone, Settings, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import spreadPaintImage from "@/assets/for-painting-two.jpg";
@@ -22,7 +22,7 @@ const PowderCoating = () => {
               Повернутися на головну
             </Link>
             <div className="flex items-center gap-2">
-              <Palette className="h-6 w-6 text-primary" />
+            <Zap className="h-6 w-6 text-primary animate-laser-pulse" />
               <span className="text-lg font-bold text-foreground">Армінд</span>
             </div>
           </div>
