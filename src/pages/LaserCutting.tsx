@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactPopup from "@/components/ContactPopup";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 
@@ -355,14 +356,6 @@ const LaserCutting = () => {
                     <Phone className="h-5 w-5 mr-2" />
                     Порахувати вартість
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="w-full"
-                    onClick={() => window.open('mailto:armindind@gmail.com?subject=Запит прайс-листу', '_self')}
-                  >
-                    Надіслати запит
-                  </Button>
                 </div>
               </Card>
 
@@ -387,14 +380,6 @@ const LaserCutting = () => {
                       <span className="text-muted-foreground">Базова ціна:</span>
                       <span className="text-lg font-bold text-primary">50-150 грн/м.п.</span>
                     </div>
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      className="w-full"
-                      onClick={openPopup}
-                    >
-                      Детальний розрахунок
-                    </Button>
                   </div>
                 </div>
               </Card>
@@ -404,6 +389,7 @@ const LaserCutting = () => {
       </section>
 
       <Footer />
+      <ContactPopup />
     </div>
   );
 };

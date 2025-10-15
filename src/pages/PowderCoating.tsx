@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactPopup from "@/components/ContactPopup";
 import spreadPaintImage from "@/assets/for-painting-two.jpg";
 import backgroundImage from "@/assets/for powder paint.jpg";
 
@@ -523,6 +524,7 @@ const PowderCoating = () => {
       </section>
 
       <Footer />
+      <ContactPopup />
     </div>
   );
 };
