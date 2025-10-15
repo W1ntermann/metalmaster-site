@@ -23,18 +23,24 @@ const ContactPopup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  // Скидаємо форму коли popup відкривається через кнопку
   useEffect(() => {
-    // Перевіряємо чи користувач вже заповнював форму
-    const hasSubmitted = localStorage.getItem('contactFormSubmitted');
+    if (isOpen) {
+      setIsSubmitted(false);
+      setFormData({
+        name: "",
+        phone: "",
+        question: ""
+      });
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    // Перевіряємо коли востаннє показувався popup
     const lastShown = localStorage.getItem('popupLastShown');
     const now = Date.now();
-    
-    if (hasSubmitted) {
-      setIsSubmitted(true);
-      return;
-    }
 
-    // Якщо popup показувався менше ніж 10 хвилин тому, не показувати
+    // Якщо popup показувався менше ніж 10 хвилин тому, не показувати автоматично
     if (lastShown && (now - parseInt(lastShown)) < 600000) { // 10 хвилин
       return;
     }
@@ -103,8 +109,6 @@ const ContactPopup = () => {
         
         // Для тестування показуємо успіх навіть без реального URL
         setIsSubmitted(true);
-        localStorage.setItem('contactFormSubmitted', 'true');
-        localStorage.setItem('contactFormData', JSON.stringify(formData));
         
         toast({
           title: "✅ Тест успішний!",
@@ -112,8 +116,7 @@ const ContactPopup = () => {
         });
         
         setTimeout(() => {
-          setInternalIsOpen(false);
-          closePopup();
+          handleClose(false);
         }, 3000);
         
         return;
@@ -136,10 +139,6 @@ const ContactPopup = () => {
       
       setIsSubmitted(true);
       
-      // Зберігаємо в localStorage, що форма була заповнена
-      localStorage.setItem('contactFormSubmitted', 'true');
-      localStorage.setItem('contactFormData', JSON.stringify(formData));
-      
       toast({
         title: "Успішно відправлено!",
         description: "Наш менеджер зв'яжеться з вами найближчим часом.",
@@ -147,8 +146,7 @@ const ContactPopup = () => {
       
       // Закрити popup через 3 секунди
       setTimeout(() => {
-        setInternalIsOpen(false);
-        closePopup();
+        handleClose(false);
       }, 3000);
       
     } catch (error) {
@@ -181,6 +179,13 @@ const ContactPopup = () => {
       localStorage.setItem('popupLastShown', Date.now().toString());
       setInternalIsOpen(false);
       closePopup();
+      // Скидаємо стан форми при закритті
+      setIsSubmitted(false);
+      setFormData({
+        name: "",
+        phone: "",
+        question: ""
+      });
     } else {
       setInternalIsOpen(true);
     }
