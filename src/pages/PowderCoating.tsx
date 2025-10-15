@@ -218,12 +218,6 @@ const PowderCoating = () => {
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Palette className="h-8 w-8 text-primary-foreground" />
-                    </div>
-                    <p className="text-white font-medium">Полімеризація</p>
-                  </div>
                 </div>
               </div>
               <div className="p-6">
@@ -274,12 +268,6 @@ const PowderCoating = () => {
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                      <CheckCircle className="h-8 w-8 text-primary-foreground" />
-                    </div>
-                    <p className="text-white font-medium">Контроль якості</p>
-                  </div>
                 </div>
               </div>
               <div className="p-6">

@@ -7,6 +7,10 @@ import Footer from "@/components/Footer";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 
+// Імпорт нових картинок для обладнання
+import cuttingBlockImage from "@/assets/for-cutting-block.jpg";
+import cuttingBlockSecondImage from "@/assets/for-cutting-block2.jpg";
+
 const LaserCutting = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,14 +131,16 @@ const LaserCutting = () => {
             Наше обладнання для лазерної різки
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* MT-L3015F */}
+            {/* MT-L3015F з реальною картинкою */}
             <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Zap className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <p className="text-white font-medium">Лазерна різка</p>
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={cuttingBlockImage} 
+                  alt="Лазерний комплекс MT-L3015F"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
                 </div>
               </div>
               <div className="p-6">
@@ -175,14 +181,17 @@ const LaserCutting = () => {
               </div>
             </Card>
 
-            {/* IPG Laser Welding */}
+            {/* IPG Laser Welding з реальною картинкою */}
             <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Zap className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <p className="text-white font-medium">Лазерне зварювання</p>
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={cuttingBlockSecondImage} 
+                  alt="Лазерна система IPG YLS-2000"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                    
                 </div>
               </div>
               <div className="p-6">
