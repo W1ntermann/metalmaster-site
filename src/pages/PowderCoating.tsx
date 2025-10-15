@@ -496,14 +496,6 @@ const PowderCoating = () => {
                 <Phone className="h-5 w-5 mr-2" />
                 Порахувати вартість
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full"
-                onClick={scrollToRalCatalog}
-              >
-                Каталог кольорів RAL
-              </Button>
             </div>
           </div>
         </div>
