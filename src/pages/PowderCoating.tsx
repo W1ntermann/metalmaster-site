@@ -20,6 +20,10 @@ import ralCatalog4 from "@/assets/ral/4.jpg";
 import ralCatalog5 from "@/assets/ral/5.jpg";
 import ralCatalog6 from "@/assets/ral/6.jpg";
 
+// Імпорт нових картинок для обладнання
+import qualityControlImage from "@/assets/quality.jpg"; // Заміни на свою картинку контролю якості
+import polymerizationOvenImage from "@/assets/polymer.jpg"; // Заміни на свою картинку печі полімеризації
+
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
 
@@ -217,13 +221,22 @@ const PowderCoating = () => {
             Обладнання для порошкового фарбування
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Піч полімеризації з реальною картинкою */}
             <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 bg-gradient-to-r from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Palette className="h-8 w-8 text-primary-foreground" />
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={polymerizationOvenImage} 
+                  alt="Конвекційна піч полімерізації"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Palette className="h-8 w-8 text-primary-foreground" />
+                    </div>
+                    <p className="text-white font-medium">Полімеризація</p>
                   </div>
-                  <p className="text-white font-medium">Полімеризація</p>
                 </div>
               </div>
               <div className="p-6">
@@ -264,13 +277,22 @@ const PowderCoating = () => {
               </div>
             </Card>
 
+            {/* Контроль якості з реальною картинкою */}
             <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 bg-gradient-to-r from-green-500/20 to-blue-500/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
-                    <CheckCircle className="h-8 w-8 text-primary-foreground" />
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={qualityControlImage} 
+                  alt="Контроль якості ISO"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle className="h-8 w-8 text-primary-foreground" />
+                    </div>
+                    <p className="text-white font-medium">Контроль якості</p>
                   </div>
-                  <p className="text-white font-medium">Контроль якості</p>
                 </div>
               </div>
               <div className="p-6">
@@ -485,18 +507,6 @@ const PowderCoating = () => {
                 </div>
               </div>
             </Card>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Button 
-                variant="hero" 
-                size="lg" 
-                className="w-full"
-                onClick={() => window.open('tel:+380934236139', '_self')}
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                Порахувати вартість
-              </Button>
-            </div>
           </div>
         </div>
       </section>
@@ -543,6 +553,19 @@ const PowderCoating = () => {
                 </div>
               </Card>
             ))}
+          </div>
+
+          {/* Кнопка "Порахувати вартість" під каталогом */}
+          <div className="text-center">
+            <Button 
+              variant="hero" 
+              size="lg"
+              className="min-w-64 px-8 py-6 text-lg"
+              onClick={() => window.open('tel:+380934236139', '_self')}
+            >
+              <Phone className="h-6 w-6 mr-3" />
+              Порахувати вартість
+            </Button>
           </div>
         </div>
       </section>
