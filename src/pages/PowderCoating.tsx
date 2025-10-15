@@ -22,8 +22,8 @@ import ralCatalog5 from "@/assets/ral/5.jpg";
 import ralCatalog6 from "@/assets/ral/6.jpg";
 
 // Імпорт нових картинок для обладнання
-import qualityControlImage from "@/assets/quality.jpg"; // Заміни на свою картинку контролю якості
-import polymerizationOvenImage from "@/assets/polymer.jpg"; // Заміни на свою картинку печі полімеризації
+import qualityControlImage from "@/assets/quality.jpg";
+import polymerizationOvenImage from "@/assets/polymer.jpg";
 
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
@@ -451,7 +451,7 @@ const PowderCoating = () => {
               <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
                 Ціна залежить від:
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-col-2 gap-3">
                 <div className="flex items-center gap-2 text-sm">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
                   <span className="text-muted-foreground">Конфігурації виробів</span>
@@ -487,27 +487,19 @@ const PowderCoating = () => {
             </p>
           </div>
 
-          {/* Красива сітка з 6 картинками */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {/* Красива сітка з 6 картинками - менші розміри */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {ralCatalogs.map((catalog, index) => (
               <Card 
                 key={index} 
-                className="group overflow-hidden border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-white to-muted/50"
+                className="group overflow-hidden border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-80 overflow-hidden">
                   <img 
                     src={catalog.image}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt={`Каталог RAL ${index + 1}`}
+                    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="bg-black/50 backdrop-blur-sm rounded-lg p-3">
-                    </div>
-                  </div>
-                  <div className="inline-flex items-center justify-center px-3 py-1 bg-primary/10 rounded-full">
-                  </div>
-                </div>
-                <div className="p-6 text-center">
                 </div>
               </Card>
             ))}
