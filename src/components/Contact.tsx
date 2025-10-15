@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -117,6 +117,25 @@ const Contact = () => {
             <Card className="p-6 bg-card border-border shadow-card">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gradient-laser rounded-full flex items-center justify-center">
+                  <Instagram className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Instagram</h3>
+                  <a 
+                    href="https://instagram.com/armind.od" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-xl font-semibold text-primary hover:text-primary/80 transition-colors mb-1"
+                  >
+                    @armind.od
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-card border-border shadow-card">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-laser rounded-full flex items-center justify-center">
                   <MapPin className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <div>
@@ -145,6 +164,8 @@ const Contact = () => {
             </Card>
           </div>
         </div>
+
+        {/* Social Media Links */}
       </div>
     </section>
   );
