@@ -121,29 +121,6 @@ const About = () => {
             </div>
 
             {/* Stats */}
-            <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-              <h4 className="text-lg font-semibold text-white mb-4 text-center">
-                Наші досягнення
-              </h4>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">500+</div>
-                  <div className="text-sm text-white/90">Проектів виконано</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">10+</div>
-                  <div className="text-sm text-white/90">Років досвіду</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">200+</div>
-                  <div className="text-sm text-white/90">Кольорів RAL</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary mb-1">24г</div>
-                  <div className="text-sm text-white/90">Мін. час виконання</div>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
 

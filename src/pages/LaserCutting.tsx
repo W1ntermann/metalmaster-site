@@ -45,16 +45,6 @@ const LaserCutting = () => {
                   <Phone className="h-5 w-5 mr-2" />
                   Дізнатися вартість
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  onClick={() => {
-                    const pricingSection = document.getElementById('pricing');
-                    pricingSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Переглянути ціни
-                </Button>
               </div>
             </div>
             <div className="relative">
