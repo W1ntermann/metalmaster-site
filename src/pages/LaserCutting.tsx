@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Zap, CheckCircle, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Zap, CheckCircle, Phone } from "lucide-react";
 import { useEffect } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 
@@ -13,21 +14,7 @@ const LaserCutting = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b border-border py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-              <ArrowLeft className="h-5 w-5" />
-              Повернутися на головну
-            </Link>
-            <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-primary animate-laser-pulse" />
-              <span className="text-lg font-bold text-foreground">Армінд</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
@@ -413,6 +400,8 @@ const LaserCutting = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

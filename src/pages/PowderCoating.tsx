@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Palette, CheckCircle, Phone, Settings, Zap, Download } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Palette, CheckCircle, Phone, Settings } from "lucide-react";
 import { useEffect, useRef } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import spreadPaintImage from "@/assets/for-painting-two.jpg";
 import backgroundImage from "@/assets/for powder paint.jpg";
 
@@ -99,21 +100,7 @@ const PowderCoating = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b border-border py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-              <ArrowLeft className="h-5 w-5" />
-              Повернутися на головну
-            </Link>
-            <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-primary animate-laser-pulse" />
-              <span className="text-lg font-bold text-foreground">Армінд</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
@@ -569,6 +556,8 @@ const PowderCoating = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
