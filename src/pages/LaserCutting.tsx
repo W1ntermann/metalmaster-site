@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Zap, CheckCircle, Phone } from "lucide-react";
 import { useEffect } from "react";
+import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
@@ -12,6 +13,8 @@ import cuttingBlockImage from "@/assets/for-cutting-block.jpg";
 import cuttingBlockSecondImage from "@/assets/for-cutting-block2.jpg";
 
 const LaserCutting = () => {
+  const { openPopup } = useContactPopup();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -37,7 +40,7 @@ const LaserCutting = () => {
                   variant="hero" 
                   size="lg" 
                   className="group"
-                  onClick={() => window.open('tel:+380934236139', '_self')}
+                  onClick={openPopup}
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Дізнатися вартість
@@ -357,7 +360,7 @@ const LaserCutting = () => {
                     variant="hero" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('tel:+380934236139', '_self')}
+                    onClick={openPopup}
                   >
                     <Phone className="h-5 w-5 mr-2" />
                     Порахувати вартість
@@ -398,7 +401,7 @@ const LaserCutting = () => {
                       variant="outline" 
                       size="lg" 
                       className="w-full"
-                      onClick={() => window.open('tel:+380934236139', '_self')}
+                      onClick={openPopup}
                     >
                       Детальний розрахунок
                     </Button>

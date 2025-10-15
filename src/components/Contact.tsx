@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
+import { useContactPopup } from "@/contexts/ContactPopupContext";
 
 const Contact = () => {
+  const { openPopup } = useContactPopup();
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -33,8 +35,8 @@ const Contact = () => {
                     variant="hero" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('tel:+380934236139', '_self')}
-                    aria-label="Зателефонувати за номером +380 (93) 423-61-39"
+                    onClick={openPopup}
+                    aria-label="Замовити дзвінок"
                   >
                     Замовити дзвінок
                   </Button>

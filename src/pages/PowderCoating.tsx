@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Palette, CheckCircle, Phone, Settings } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import spreadPaintImage from "@/assets/for-painting-two.jpg";
@@ -27,6 +28,7 @@ import polymerizationOvenImage from "@/assets/polymer.jpg";
 
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
+  const { openPopup } = useContactPopup();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -107,7 +109,7 @@ const PowderCoating = () => {
                   variant="hero" 
                   size="lg" 
                   className="group"
-                  onClick={() => window.open('tel:+380934236139', '_self')}
+                  onClick={openPopup}
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Дізнатися вартість
@@ -511,7 +513,7 @@ const PowderCoating = () => {
               variant="hero" 
               size="lg"
               className="min-w-64 px-8 py-6 text-lg"
-              onClick={() => window.open('tel:+380934236139', '_self')}
+              onClick={openPopup}
             >
               <Phone className="h-6 w-6 mr-3" />
               Порахувати вартість

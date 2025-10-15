@@ -4,16 +4,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MessageCircle, X, Phone, User, HelpCircle } from "lucide-react";
+import { MessageCircle, X, Phone, User, HelpCircle, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useContactPopup } from "@/contexts/ContactPopupContext";
+
+// URL вашого Google Apps Script Web App
+const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
 
 const ContactPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, closePopup } = useContactPopup();
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     question: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Перевіряємо чи користувач вже заповнював форму
@@ -35,12 +43,12 @@ const ContactPopup = () => {
     let timeoutId: number;
     
     const handleScroll = () => {
-      if (hasShown || isSubmitted || isOpen) return;
+      if (hasShown || isSubmitted || internalIsOpen || isOpen) return;
       
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
       if (scrollPercent > 40) { // Збільшив поріг до 40%
-        setIsOpen(true);
+        setInternalIsOpen(true);
         hasShown = true;
         localStorage.setItem('popupLastShown', now.toString());
       }
@@ -48,8 +56,8 @@ const ContactPopup = () => {
 
     // Показати popup через 30 секунд (збільшив час)
     timeoutId = setTimeout(() => {
-      if (!hasShown && !isSubmitted && !isOpen) {
-        setIsOpen(true);
+      if (!hasShown && !isSubmitted && !internalIsOpen && !isOpen) {
+        setInternalIsOpen(true);
         hasShown = true;
         localStorage.setItem('popupLastShown', now.toString());
       }
@@ -61,25 +69,68 @@ const ContactPopup = () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isSubmitted, isOpen]);
+  }, [isSubmitted, internalIsOpen, isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Тут можна додати логіку відправки форми
-    console.log('Form submitted:', formData);
-    
-    // Симуляція успішної відправки
-    setIsSubmitted(true);
-    
-    // Зберігаємо в localStorage, що форма була заповнена
-    localStorage.setItem('contactFormSubmitted', 'true');
-    localStorage.setItem('contactFormData', JSON.stringify(formData));
-    
-    // Показати повідомлення про успіх на 3 секунди
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 3000);
+    try {
+      // Підготовка даних для відправки
+      const dataToSend = {
+        name: formData.name,
+        phone: formData.phone,
+        question: formData.question || "Питання не вказано",
+        timestamp: new Date().toLocaleString('uk-UA', { 
+          timeZone: 'Europe/Kiev',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        source: window.location.pathname
+      };
+
+      // Відправка даних у Google Таблицю
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Важливо для Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend)
+      });
+
+      // З mode: 'no-cors' ми не можемо перевірити відповідь,
+      // тому вважаємо що все ок, якщо не було помилки
+      setIsSubmitted(true);
+      
+      // Зберігаємо в localStorage, що форма була заповнена
+      localStorage.setItem('contactFormSubmitted', 'true');
+      localStorage.setItem('contactFormData', JSON.stringify(formData));
+      
+      toast({
+        title: "Успішно відправлено!",
+        description: "Наш менеджер зв'яжеться з вами найближчим часом.",
+      });
+      
+      // Закрити popup через 3 секунди
+      setTimeout(() => {
+        setInternalIsOpen(false);
+        closePopup();
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        variant: "destructive",
+        title: "Помилка відправки",
+        description: "Спробуйте ще раз або зателефонуйте нам безпосередньо.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -93,12 +144,18 @@ const ContactPopup = () => {
     if (!open) {
       // Зберігаємо час закриття popup
       localStorage.setItem('popupLastShown', Date.now().toString());
+      setInternalIsOpen(false);
+      closePopup();
+    } else {
+      setInternalIsOpen(true);
     }
-    setIsOpen(open);
   };
 
+  // Відкриваємо popup якщо контекст каже відкрити або внутрішній стан
+  const shouldBeOpen = isOpen || internalIsOpen;
+
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
+    <Dialog open={shouldBeOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-md mx-auto bg-card border-border shadow-glow">
         <DialogHeader className="text-center space-y-4">
           <div className="mx-auto w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
@@ -169,10 +226,19 @@ const ContactPopup = () => {
                 type="submit" 
                 variant="hero" 
                 className="flex-1"
-                disabled={!formData.name || !formData.phone}
+                disabled={!formData.name || !formData.phone || isLoading}
               >
-                <MessageCircle className="h-4 w-4 mr-2" />
-                Надіслати
+                {isLoading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Відправка...
+                  </>
+                ) : (
+                  <>
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    Надіслати
+                  </>
+                )}
               </Button>
               <Button 
                 type="button" 
@@ -180,6 +246,7 @@ const ContactPopup = () => {
                 onClick={() => handleClose(false)}
                 className="px-4"
                 aria-label="Закрити форму"
+                disabled={isLoading}
               >
                 <X className="h-4 w-4" />
               </Button>
