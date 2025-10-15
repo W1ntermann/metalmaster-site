@@ -92,7 +92,35 @@ const ContactPopup = () => {
         source: window.location.pathname
       };
 
+      // ✅ ТЕСТУВАННЯ: Виводимо дані в консоль
+      console.log('📋 Дані форми для відправки:', dataToSend);
+      console.log('🔗 Google Script URL:', GOOGLE_SCRIPT_URL);
+
+      // Перевірка чи налаштований URL
+      if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+        console.warn('⚠️ УВАГА: Google Script URL не налаштований!');
+        console.log('✅ Форма працює! Дані готові до відправки:', dataToSend);
+        
+        // Для тестування показуємо успіх навіть без реального URL
+        setIsSubmitted(true);
+        localStorage.setItem('contactFormSubmitted', 'true');
+        localStorage.setItem('contactFormData', JSON.stringify(formData));
+        
+        toast({
+          title: "✅ Тест успішний!",
+          description: "Дані готові. Налаштуйте Google Script URL для реальної відправки.",
+        });
+        
+        setTimeout(() => {
+          setInternalIsOpen(false);
+          closePopup();
+        }, 3000);
+        
+        return;
+      }
+
       // Відправка даних у Google Таблицю
+      console.log('📤 Відправка даних...');
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors', // Важливо для Google Apps Script
@@ -104,6 +132,8 @@ const ContactPopup = () => {
 
       // З mode: 'no-cors' ми не можемо перевірити відповідь,
       // тому вважаємо що все ок, якщо не було помилки
+      console.log('✅ Дані успішно відправлено в Google Таблицю!');
+      
       setIsSubmitted(true);
       
       // Зберігаємо в localStorage, що форма була заповнена
@@ -122,7 +152,12 @@ const ContactPopup = () => {
       }, 3000);
       
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('❌ Помилка відправки форми:', error);
+      console.error('Деталі помилки:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      });
+      
       toast({
         variant: "destructive",
         title: "Помилка відправки",
