@@ -98,32 +98,7 @@ const ContactPopup = () => {
         source: window.location.pathname
       };
 
-      // ✅ ТЕСТУВАННЯ: Виводимо дані в консоль
-      console.log('📋 Дані форми для відправки:', dataToSend);
-      console.log('🔗 Google Script URL:', GOOGLE_SCRIPT_URL);
-
-      // Перевірка чи налаштований URL
-      if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec") {
-        console.warn('⚠️ УВАГА: Google Script URL не налаштований!');
-        console.log('✅ Форма працює! Дані готові до відправки:', dataToSend);
-        
-        // Для тестування показуємо успіх навіть без реального URL
-        setIsSubmitted(true);
-        
-        toast({
-          title: "✅ Тест успішний!",
-          description: "Дані готові. Налаштуйте Google Script URL для реальної відправки.",
-        });
-        
-        setTimeout(() => {
-          handleClose(false);
-        }, 3000);
-        
-        return;
-      }
-
       // Відправка даних у Google Таблицю
-      console.log('📤 Відправка даних...');
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors', // Важливо для Google Apps Script
@@ -133,10 +108,6 @@ const ContactPopup = () => {
         body: JSON.stringify(dataToSend)
       });
 
-      // З mode: 'no-cors' ми не можемо перевірити відповідь,
-      // тому вважаємо що все ок, якщо не було помилки
-      console.log('✅ Дані успішно відправлено в Google Таблицю!');
-      
       setIsSubmitted(true);
       
       toast({
@@ -150,12 +121,6 @@ const ContactPopup = () => {
       }, 3000);
       
     } catch (error) {
-      console.error('❌ Помилка відправки форми:', error);
-      console.error('Деталі помилки:', {
-        message: error instanceof Error ? error.message : 'Unknown error',
-        stack: error instanceof Error ? error.stack : undefined
-      });
-      
       toast({
         variant: "destructive",
         title: "Помилка відправки",
