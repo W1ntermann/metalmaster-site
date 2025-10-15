@@ -2,16 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Zap, Phone, Menu } from "lucide-react";
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
   
   const scrollToSection = (sectionId: string) => {
     // Якщо ми не на головній сторінці, спочатку переходимо на неї
-    if (location.pathname !== '/') {
+    if (window.location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -54,39 +53,24 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col gap-6 mt-8" role="navigation" aria-label="Мобільна навігація">
-                  <Link 
-                    to="/"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-left text-lg transition-colors p-2 rounded-md hover:bg-muted ${
-                      location.pathname === '/' 
-                        ? 'text-primary font-semibold bg-muted' 
-                        : 'text-foreground hover:text-primary'
-                    }`}
+                  <button 
+                    onClick={() => scrollToSection('services')}
+                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
-                    Головна
-                  </Link>
-                  <Link 
-                    to="/laser-cutting"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-left text-lg transition-colors p-2 rounded-md hover:bg-muted ${
-                      location.pathname === '/laser-cutting' 
-                        ? 'text-primary font-semibold bg-muted' 
-                        : 'text-foreground hover:text-primary'
-                    }`}
+                    Послуги
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('clients')}
+                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
-                    Лазерна різка
-                  </Link>
-                  <Link 
-                    to="/powder-coating"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-left text-lg transition-colors p-2 rounded-md hover:bg-muted ${
-                      location.pathname === '/powder-coating' 
-                        ? 'text-primary font-semibold bg-muted' 
-                        : 'text-foreground hover:text-primary'
-                    }`}
+                    Клієнти
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('about')}
+                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
-                    Порошкове фарбування
-                  </Link>
+                    Про нас
+                  </button>
                   <button 
                     onClick={() => scrollToSection('contact')}
                     className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
@@ -127,39 +111,27 @@ const Header = () => {
         
         {/* Center - Navigation */}
         <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Головна навігація">
-          <Link 
-            to="/"
-            className={`transition-colors focus:outline-none rounded-sm px-2 py-1 ${
-              location.pathname === '/' 
-                ? 'text-primary font-semibold' 
-                : 'text-foreground hover:text-primary'
-            }`}
-            aria-label="Перейти на головну"
+          <button 
+            onClick={() => scrollToSection('services')}
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
+            aria-label="Перейти до секції послуг"
           >
-            Головна
-          </Link>
-          <Link 
-            to="/laser-cutting"
-            className={`transition-colors focus:outline-none rounded-sm px-2 py-1 ${
-              location.pathname === '/laser-cutting' 
-                ? 'text-primary font-semibold' 
-                : 'text-foreground hover:text-primary'
-            }`}
-            aria-label="Перейти до лазерної різки"
+            Послуги
+          </button>
+          <button 
+            onClick={() => scrollToSection('clients')}
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
+            aria-label="Перейти до секції клієнтів"
           >
-            Лазерна різка
-          </Link>
-          <Link 
-            to="/powder-coating"
-            className={`transition-colors focus:outline-none rounded-sm px-2 py-1 ${
-              location.pathname === '/powder-coating' 
-                ? 'text-primary font-semibold' 
-                : 'text-foreground hover:text-primary'
-            }`}
-            aria-label="Перейти до порошкового фарбування"
+            Клієнти
+          </button>
+          <button 
+            onClick={() => scrollToSection('about')}
+            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
+            aria-label="Перейти до секції про нас"
           >
-            Порошкове фарбування
-          </Link>
+            Про нас
+          </button>
           <button 
             onClick={() => scrollToSection('contact')}
             className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
@@ -170,12 +142,12 @@ const Header = () => {
         </nav>
 
         {/* Right side - Logo */}
-        <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <div className="flex items-center gap-2">
           <div className="relative">
             <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
           </div>
           <span className="text-xl font-bold text-foreground">Армінд</span>
-        </Link>
+        </div>
       </div>
     </header>
     </>
