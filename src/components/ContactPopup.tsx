@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 
 // URL вашого Google Apps Script Web App
-const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec";
 
 const ContactPopup = () => {
   const { isOpen, closePopup } = useContactPopup();
@@ -103,7 +103,7 @@ const ContactPopup = () => {
       console.log('🔗 Google Script URL:', GOOGLE_SCRIPT_URL);
 
       // Перевірка чи налаштований URL
-      if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+      if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec") {
         console.warn('⚠️ УВАГА: Google Script URL не налаштований!');
         console.log('✅ Форма працює! Дані готові до відправки:', dataToSend);
         
