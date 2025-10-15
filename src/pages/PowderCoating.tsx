@@ -68,33 +68,21 @@ const PowderCoating = () => {
   const ralCatalogs = [
     {
       image: ralCatalog1,
-      title: "RAL Classic",
-      description: "Основна палітра класичних кольорів",
     },
     {
       image: ralCatalog2,
-      title: "RAL Design",
-      description: "Сучасна палітра дизайнерських кольорів", 
     },
     {
       image: ralCatalog3,
-      title: "RAL Effect",
-      description: "Металеві та перламутрові ефекти",
     },
     {
       image: ralCatalog4,
-      title: "RAL Plastics",
-      description: "Спеціальні кольори для пластиків",
     },
     {
       image: ralCatalog5,
-      title: "RAL Digital",
-      description: "Цифрові кольори для дизайну",
     },
     {
       image: ralCatalog6,
-      title: "RAL Professional",
-      description: "Професійна палітра для архітектури",
     }
   ];
 
@@ -508,8 +496,7 @@ const PowderCoating = () => {
               >
                 <div className="relative h-64 overflow-hidden">
                   <img 
-                    src={catalog.image} 
-                    alt={catalog.title}
+                    src={catalog.image}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -517,14 +504,10 @@ const PowderCoating = () => {
                     <div className="bg-black/50 backdrop-blur-sm rounded-lg p-3">
                     </div>
                   </div>
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="font-bold text-foreground text-lg mb-2 group-hover:text-primary transition-colors duration-300">
-                    {catalog.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-3">{catalog.description}</p>
                   <div className="inline-flex items-center justify-center px-3 py-1 bg-primary/10 rounded-full">
                   </div>
+                </div>
+                <div className="p-6 text-center">
                 </div>
               </Card>
             ))}
