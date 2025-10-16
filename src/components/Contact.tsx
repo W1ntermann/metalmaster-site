@@ -122,12 +122,12 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Instagram</h3>
                   <a 
-                    href="https://instagram.com/armind.od" 
+                    href="https://www.instagram.com/armind_indastry/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="block text-xl font-semibold text-primary hover:text-primary/80 transition-colors mb-1"
                   >
-                    @armind.od
+                    @armind_indastry
                   </a>
                 </div>
               </div>
