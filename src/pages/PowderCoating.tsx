@@ -26,7 +26,8 @@ import ralCatalog6 from "@/assets/ral/6.jpg";
 // Імпорт нових картинок для обладнання
 import qualityControlImage from "@/assets/quality.jpg";
 import polymerizationOvenImage from "@/assets/polymer.jpg";
-
+import zincImage from "@/assets/grunt.jpg";
+import thermoplastImage from "@/assets/thermoplast.jpg";
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
   const { openPopup } = useContactPopup();
@@ -67,13 +68,13 @@ const PowderCoating = () => {
     },
     // ДОДАНІ НОВІ ВАРІАНТИ
     {
-      image: backgroundImage,
+      image: zincImage,
       title: "Грунт цинковмісний",
       details: "Антикорозійний грунт з вмістом цинку для захисту металу. Забезпечує катодний захист та підвищену адгезію.",
       className: "bg-gradient-to-br from-gray-700 to-blue-900"
     },
     {
-      image: backgroundImage,
+      image: thermoplastImage,
       title: "Термопласт",
       details: "Пластичне покриття з полімерів, що плавиться при нагріванні. Висока стійкість до механічних пошкоджень.",
       className: "bg-gradient-to-br from-red-500 to-orange-700"
