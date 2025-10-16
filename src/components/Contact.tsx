@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
-import { useContactPopup } from "@/contexts/ContactPopupContext";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
-  const { openPopup } = useContactPopup();
+  const navigate = useNavigate();
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -35,7 +35,7 @@ const Contact = () => {
                     variant="hero" 
                     size="lg" 
                     className="w-full"
-                    onClick={openPopup}
+                    onClick={() => navigate('/contact?source=contact-section')}
                     aria-label="Замовити дзвінок"
                   >
                     Замовити дзвінок

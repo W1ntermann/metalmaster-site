@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
-import { useContactPopup } from "@/contexts/ContactPopupContext";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-industrial.jpg";
 const Hero = () => {
-  const { openPopup } = useContactPopup();
+  const navigate = useNavigate();
   const scrollToServices = () => {
     const element = document.getElementById('services');
     element?.scrollIntoView({
@@ -36,7 +36,7 @@ const Hero = () => {
 лазерна різка, згинання, лазерне зварювання та фарбування. Довговічне покриття, понад 200 кольорів RAL, екологічно чисті матеріали.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center">
-            <Button variant="hero" size="lg" onClick={openPopup} className="group">
+            <Button variant="hero" size="lg" onClick={() => navigate('/contact?source=hero')} className="group">
               Замовити прорахунок
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>

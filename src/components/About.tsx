@@ -1,9 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Zap, Users, Settings, Award, Target, Lightbulb } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import aboutBackground from "@/assets/Image-for-about.png"; // Додайте ваш файл з картинкою
 
 const About = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: Users,
@@ -27,10 +29,6 @@ const About = () => {
     }
   ];
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section 
@@ -137,7 +135,7 @@ const About = () => {
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <Button variant="hero" onClick={scrollToContact} className="group">
+                <Button variant="hero" onClick={() => navigate('/contact?source=about')} className="group">
                   <Zap className="h-4 w-4 mr-2 group-hover:animate-laser-pulse" />
                   Обговорити проект
                 </Button>

@@ -1,47 +1,26 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MessageCircle, X, Phone, User, HelpCircle, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
-
-// URL вашого Google Apps Script Web App
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec";
 
 const ContactPopup = () => {
   const { isOpen, closePopup } = useContactPopup();
-  const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    question: ""
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const navigate = useNavigate();
 
-  // Скидаємо форму коли popup відкривається через кнопку
   useEffect(() => {
+    // Якщо контекст намагається відкрити попап, перенаправляємо на сторінку контакту
     if (isOpen) {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        phone: "",
-        question: ""
-      });
+      closePopup();
+      navigate('/contact?source=popup-redirect');
     }
-  }, [isOpen]);
+  }, [isOpen, closePopup, navigate]);
 
   useEffect(() => {
     // Перевіряємо коли востаннє показувався popup
     const lastShown = localStorage.getItem('popupLastShown');
     const now = Date.now();
 
-    // Якщо popup показувався менше ніж 10 хвилин тому, не показувати автоматично
-    if (lastShown && (now - parseInt(lastShown)) < 600000) { // 10 хвилин
+    // Якщо popup показувався менше ніж 30 хвилин тому, не показувати автоматично
+    if (lastShown && (now - parseInt(lastShown)) < 1800000) { // 30 хвилин
       return;
     }
 
@@ -49,25 +28,25 @@ const ContactPopup = () => {
     let timeoutId: number;
     
     const handleScroll = () => {
-      if (hasShown || isSubmitted || internalIsOpen || isOpen) return;
+      if (hasShown) return;
       
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
-      if (scrollPercent > 40) { // Збільшив поріг до 40%
-        setInternalIsOpen(true);
+      if (scrollPercent > 40) { // При прокрутці більше 40%
         hasShown = true;
         localStorage.setItem('popupLastShown', now.toString());
+        navigate('/contact?source=auto-scroll');
       }
     };
 
-    // Показати popup через 30 секунд (збільшив час)
+    // Автоматичне перенаправлення через 45 секунд
     timeoutId = setTimeout(() => {
-      if (!hasShown && !isSubmitted && !internalIsOpen && !isOpen) {
-        setInternalIsOpen(true);
+      if (!hasShown) {
         hasShown = true;
         localStorage.setItem('popupLastShown', now.toString());
+        navigate('/contact?source=auto-timer');
       }
-    }, 30000);
+    }, 45000);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -75,208 +54,10 @@ const ContactPopup = () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isSubmitted, internalIsOpen, isOpen]);
+  }, [navigate]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    try {
-      // Підготовка даних для відправки
-      const dataToSend = {
-        name: formData.name,
-        phone: formData.phone,
-        question: formData.question || "Питання не вказано",
-        timestamp: new Date().toLocaleString('uk-UA', { 
-          timeZone: 'Europe/Kiev',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit'
-        }),
-        source: window.location.pathname
-      };
-
-      // Відправка даних у Google Таблицю
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Важливо для Google Apps Script
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend)
-      });
-
-      setIsSubmitted(true);
-      
-      toast({
-        title: "Успішно відправлено!",
-        description: "Наш менеджер зв'яжеться з вами найближчим часом.",
-      });
-      
-      // Закрити popup через 3 секунди
-      setTimeout(() => {
-        handleClose(false);
-      }, 3000);
-      
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Помилка відправки",
-        description: "Спробуйте ще раз або зателефонуйте нам безпосередньо.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  const handleClose = (open: boolean) => {
-    if (!open) {
-      // Зберігаємо час закриття popup
-      localStorage.setItem('popupLastShown', Date.now().toString());
-      setInternalIsOpen(false);
-      closePopup();
-      // Скидаємо стан форми при закритті
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        phone: "",
-        question: ""
-      });
-    } else {
-      setInternalIsOpen(true);
-    }
-  };
-
-  // Відкриваємо popup якщо контекст каже відкрити або внутрішній стан
-  const shouldBeOpen = isOpen || internalIsOpen;
-
-  return (
-    <Dialog open={shouldBeOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-md mx-auto bg-card border-border shadow-glow">
-        <DialogHeader className="text-center space-y-4">
-          <div className="mx-auto w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center">
-            <HelpCircle className="h-8 w-8 text-primary-foreground" />
-          </div>
-          <DialogTitle className="text-2xl font-bold text-foreground">
-            Виникли питання?
-          </DialogTitle>
-          <p className="text-muted-foreground">
-            Залишіть заявку і наш менеджер зв'яжеться з вами протягом 15 хвилин
-          </p>
-        </DialogHeader>
-
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-6 mt-6">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-foreground font-medium">
-                Ваше ім'я *
-              </Label>
-              <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Введіть ваше ім'я"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  className="pl-10 bg-background border-border focus:ring-primary"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone" className="text-foreground font-medium">
-                Номер телефону *
-              </Label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="+380 (XX) XXX-XX-XX"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className="pl-10 bg-background border-border focus:ring-primary"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="question" className="text-foreground font-medium">
-                Ваше питання
-              </Label>
-              <Textarea
-                id="question"
-                placeholder="Опишіть що вас цікавить..."
-                value={formData.question}
-                onChange={(e) => handleInputChange('question', e.target.value)}
-                className="bg-background border-border focus:ring-primary min-h-[100px] resize-none"
-                rows={4}
-              />
-            </div>
-
-            <div className="flex gap-3">
-              <Button 
-                type="submit" 
-                variant="hero" 
-                className="flex-1"
-                disabled={!formData.name || !formData.phone || isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Відправка...
-                  </>
-                ) : (
-                  <>
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    Надіслати
-                  </>
-                )}
-              </Button>
-              <Button 
-                type="button" 
-                variant="outline" 
-                onClick={() => handleClose(false)}
-                className="px-4"
-                aria-label="Закрити форму"
-                disabled={isLoading}
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <p className="text-xs text-muted-foreground text-center">
-              Натискаючи "Надіслати", ви погоджуєтесь з обробкою персональних даних
-            </p>
-          </form>
-        ) : (
-          <div className="text-center space-y-4 py-8">
-            <div className="mx-auto w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center">
-              <MessageCircle className="h-8 w-8 text-green-500" />
-            </div>
-            <h3 className="text-xl font-semibold text-foreground">
-              Дякуємо за заявку!
-            </h3>
-            <p className="text-muted-foreground">
-              Наш менеджер зв'яжеться з вами найближчим часом
-            </p>
-          </div>
-        )}
-      </DialogContent>
-    </Dialog>
-  );
+  // Компонент не рендерить нічого
+  return null;
 };
 
 export default ContactPopup;

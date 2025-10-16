@@ -3,12 +3,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Zap, Phone, Menu } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContactPopup } from "@/contexts/ContactPopupContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const { openPopup } = useContactPopup();
   
   const scrollToSection = (sectionId: string) => {
     // Якщо ми не на головній сторінці, спочатку переходимо на неї
@@ -92,7 +90,7 @@ const Header = () => {
                       className="w-full"
                       onClick={() => {
                         setIsOpen(false);
-                        openPopup();
+                        navigate('/contact?source=header-mobile');
                       }}
                     >
                       Прорахунок
@@ -106,7 +104,7 @@ const Header = () => {
           <Button 
             variant="hero" 
             size="sm"
-            onClick={openPopup}
+            onClick={() => navigate('/contact?source=header-desktop')}
             aria-label="Замовити безкоштовну консультацію"
             className="hidden md:inline-flex"
           >
