@@ -135,17 +135,19 @@ const ContactForm = () => {
               Назад
             </Button>
 
-            <div className="text-center space-y-4 mb-8">
-              <div className="mx-auto w-20 h-20 bg-gradient-laser rounded-full flex items-center justify-center">
-                <HelpCircle className="h-10 w-10 text-primary-foreground" />
+            {!isSubmitted && (
+              <div className="text-center space-y-4 mb-8">
+                <div className="mx-auto w-20 h-20 bg-gradient-laser rounded-full flex items-center justify-center">
+                  <HelpCircle className="h-10 w-10 text-primary-foreground" />
+                </div>
+                <h1 className="text-3xl font-bold text-foreground">
+                  Виникли питання?
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-md mx-auto">
+                  Залишіть заявку і наш менеджер зв'яжеться з вами протягом 15 хвилин
+                </p>
               </div>
-              <h1 className="text-3xl font-bold text-foreground">
-                Виникли питання?
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-md mx-auto">
-                Залишіть заявку і наш менеджер зв'яжеться з вами протягом 15 хвилин
-              </p>
-            </div>
+            )}
 
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
