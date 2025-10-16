@@ -39,7 +39,7 @@ const PowderCoating = () => {
     ralCatalogRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Дані для кольорових варіантів
+  // Дані для кольорових варіантів - ДОДАНО ГРУНТ І ТЕРМОПЛАСТ
   const colorOptions = [
     {
       image: glossyImage,
@@ -64,6 +64,19 @@ const PowderCoating = () => {
       title: "Структурні",
       details: "Дрібнозернистий шорсткий тип поверхні, схожий на наждаку. По мірі блиску наближений до глибокого мату.",
       className: "bg-gradient-to-br from-gray-400 to-gray-600"
+    },
+    // ДОДАНІ НОВІ ВАРІАНТИ
+    {
+      image: backgroundImage,
+      title: "Грунт цинковмісний",
+      details: "Антикорозійний грунт з вмістом цинку для захисту металу. Забезпечує катодний захист та підвищену адгезію.",
+      className: "bg-gradient-to-br from-gray-700 to-blue-900"
+    },
+    {
+      image: backgroundImage,
+      title: "Термопласт",
+      details: "Пластичне покриття з полімерів, що плавиться при нагріванні. Висока стійкість до механічних пошкоджень.",
+      className: "bg-gradient-to-br from-red-500 to-orange-700"
     }
   ];
 
@@ -302,7 +315,7 @@ const PowderCoating = () => {
         </div>
       </section>
 
-      {/* Color Options with Background Image */}
+      {/* Color Options with Background Image - ОНОВЛЕНА СІТКА */}
       <section className="py-20 relative">
         <div 
           className="absolute inset-0 z-0"
@@ -321,7 +334,8 @@ const PowderCoating = () => {
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Варіанти покриття
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* ЗМІНЕНО: тепер grid-cols-3 для 6 елементів */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {colorOptions.map((color, index) => (
               <Card key={index} className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 group hover:scale-105 transition-transform duration-300">
                 <div className="relative h-48 overflow-hidden">
