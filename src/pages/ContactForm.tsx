@@ -8,6 +8,7 @@ import { MessageCircle, Phone, User, HelpCircle, Loader2, ArrowLeft } from "luci
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { makeWebhookService } from "@/services/makeWebhook";
 
 // URL вашого Google Apps Script Web App
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec";
@@ -68,15 +69,40 @@ const ContactForm = () => {
         page_url: window.location.href
       };
 
-      // Відправка даних у Google Таблицю
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend)
-      });
+      // Відправка даних паралельно в Google Таблицю та Make
+      const promises = [];
+      
+      // 1. Відправка в Google Таблицю
+      promises.push(
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend)
+        }).catch(error => {
+          console.error('Помилка відправки в Google Sheets:', error);
+          return null;
+        })
+      );
+
+      // 2. Відправка в Make webhook
+      promises.push(
+        makeWebhookService.sendToMake(dataToSend).catch(error => {
+          console.error('Помилка відправки в Make:', error);
+          return { success: false, error: error.message };
+        })
+      );
+
+      // Чекаємо виконання всіх запитів
+      const results = await Promise.allSettled(promises);
+      
+      // Перевіряємо результати Make webhook
+      const makeResult = results[1];
+      if (makeResult.status === 'fulfilled' && makeResult.value && !makeResult.value.success) {
+        console.warn('Make webhook помилка:', makeResult.value.error);
+      }
 
       // Відправляємо подію конверсії
       if (typeof window !== 'undefined' && window.gtag) {
@@ -89,9 +115,19 @@ const ContactForm = () => {
 
       setIsSubmitted(true);
       
+      // Показуємо успішне повідомлення з інформацією про статус відправки
+      let description = "Наш менеджер зв'яжеться з вами найближчим часом.";
+      
+      if (makeWebhookService.isConfigured()) {
+        const makeResult = results[1];
+        if (makeResult.status === 'fulfilled' && makeResult.value?.success) {
+          description += " Дані також відправлені в систему автоматизації.";
+        }
+      }
+      
       toast({
         title: "Успішно відправлено!",
-        description: "Наш менеджер зв'яжеться з вами найближчим часом.",
+        description: description,
       });
       
       // Перенаправлення на головну через 3 секунди
