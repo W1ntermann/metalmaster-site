@@ -60,12 +60,6 @@ const Header = () => {
                     Послуги
                   </button>
                   <button 
-                    onClick={() => scrollToSection('clients')}
-                    className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
-                  >
-                    Клієнти
-                  </button>
-                  <button 
                     onClick={() => scrollToSection('about')}
                     className="text-left text-lg text-foreground hover:text-primary transition-colors p-2 rounded-md hover:bg-muted"
                   >
