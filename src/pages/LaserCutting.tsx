@@ -333,60 +333,7 @@ const LaserCutting = () => {
       </section>
 
       {/* Pricing - стандартний фон */}
-      <section id="pricing" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Вартість послуг</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Pricing Card */}
-              <Card className="p-8 bg-gradient-metal border-border">
-                <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-primary mb-4">від 50 грн/м.п.</div>
-                  <p className="text-muted-foreground">
-                    Остаточна вартість залежить від товщини металу, складності контуру та обсягу замовлення
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <Button 
-                    variant="hero" 
-                    size="lg" 
-                    className="w-full"
-                    onClick={openPopup}
-                  >
-                    <Phone className="h-5 w-5 mr-2" />
-                    Порахувати вартість
-                  </Button>
-                </div>
-              </Card>
-
-              {/* Quick Calculator */}
-              <Card className="p-8 bg-card border-border">
-                <h3 className="text-xl font-bold text-foreground mb-6 text-center">
-                  Швидкий розрахунок
-                </h3>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm text-muted-foreground block mb-2">Товщина (мм)</label>
-                      <div className="text-lg font-semibold text-foreground p-2 bg-muted rounded">1-25</div>
-                    </div>
-                    <div>
-                      <label className="text-sm text-muted-foreground block mb-2">Матеріал</label>
-                      <div className="text-lg font-semibold text-foreground p-2 bg-muted rounded">Сталь</div>
-                    </div>
-                  </div>
-                  <div className="border-t pt-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-muted-foreground">Базова ціна:</span>
-                      <span className="text-lg font-bold text-primary">50-150 грн/м.п.</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       <Footer />
       <ContactPopup />
