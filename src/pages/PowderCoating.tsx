@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Palette, CheckCircle, Phone, Settings } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { Palette, CheckCircle, Phone, Settings, ArrowDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -28,19 +28,30 @@ import qualityControlImage from "@/assets/quality.jpg";
 import polymerizationOvenImage from "@/assets/polymer.jpg";
 import zincImage from "@/assets/grunt.jpg";
 import thermoplastImage from "@/assets/thermoplast.jpg";
+
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
   const { openPopup } = useContactPopup();
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const scrollToRalCatalog = () => {
-    ralCatalogRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (isScrolling) return;
+    
+    setIsScrolling(true);
+    ralCatalogRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+    
+    // Дозволяємо новий скрол після завершення
+    setTimeout(() => setIsScrolling(false), 1000);
   };
 
-  // Дані для кольорових варіантів - ДОДАНО ГРУНТ І ТЕРМОПЛАСТ
+  // Дані для кольорових варіантів
   const colorOptions = [
     {
       image: glossyImage,
@@ -51,22 +62,21 @@ const PowderCoating = () => {
     {
       image: matteImage,
       title: "Мат",
-      details: "Гладке покриття, що містить від 28 до 40% блиску.Глибокий мат до 10% блиску.",
+      details: "Гладке покриття, що містить від 28 до 40% блиску. Глибокий мат до 10% блиску.",
       className: "bg-gradient-to-br from-gray-600 to-gray-800"
     },
     {
       image: shargenImage,
       title: "Шагрінь",
-      details: "Текстурний тип поверхні. Зернистість (хвиля) буває дрібнішою, буває більшою. Ступінь блиску близько 50%.",
+      details: "Текстурний тип поверхні. Зернистість буває дрібнішою або більшою. Ступінь блиску близько 50%.",
       className: "bg-gradient-to-br from-yellow-400 to-orange-500"
     },
     {
       image: texturedImage,
       title: "Структурні",
-      details: "Дрібнозернистий шорсткий тип поверхні, схожий на наждаку. По мірі блиску наближений до глибокого мату.",
+      details: "Дрібнозернистий шорсткий тип поверхні, схожий на наждак. По мірі блиску наближений до глибокого мату.",
       className: "bg-gradient-to-br from-gray-400 to-gray-600"
     },
-    // ДОДАНІ НОВІ ВАРІАНТИ
     {
       image: zincImage,
       title: "Грунт цинковмісний",
@@ -81,27 +91,92 @@ const PowderCoating = () => {
     }
   ];
 
-  // Дані для каталогу RAL - тепер 6 картинок
+  // Дані для каталогу RAL
   const ralCatalogs = [
+    { image: ralCatalog1 },
+    { image: ralCatalog2 },
+    { image: ralCatalog3 },
+    { image: ralCatalog4 },
+    { image: ralCatalog5 },
+    { image: ralCatalog6 }
+  ];
+
+  // Технічні характеристики
+  const specifications = [
     {
-      image: ralCatalog1,
+      value: "6×1.2×2 м",
+      title: "Розмір камери",
+      description: "Максимальні габарити"
     },
     {
-      image: ralCatalog2,
+      value: "Норм",
+      title: "Якість покриття",
+      description: "Європейські стандарти"
     },
     {
-      image: ralCatalog3,
+      value: "40-150 мкм",
+      title: "Товщина покриття",
+      description: "Регульована товщина"
     },
     {
-      image: ralCatalog4,
-    },
-    {
-      image: ralCatalog5,
-    },
-    {
-      image: ralCatalog6,
+      value: "300+",
+      title: "Кольори",
+      description: "Широка палітра RAL"
     }
   ];
+
+  // Переваги
+  const advantages = [
+    "Корозійна стійкість до 25 років",
+    "Екологічно чисті матеріали",
+    "Стійкість до ультрафіолету",
+    "Механічна міцність покриття",
+    "Широка температурна стійкість"
+  ];
+
+  // Сфери застосування
+  const applications = [
+    "Фасадні системи та архітектура",
+    "Меблеві та інтер'єрні конструкції", 
+    "Огорожі, ворота та перила",
+    "Садово-паркові форми",
+    "Промислове обладнання"
+  ];
+
+  // Особливості обладнання
+  const equipmentFeatures = {
+    oven: [
+      "Електростатичне обладнання Gema",
+      "Контроль товщини покриття",
+      "Рівномірна полімеризація"
+    ],
+    quality: [
+      "Перевірка товщини покриття",
+      "Контроль адгезії",
+      "Візуальна інспекція"
+    ]
+  };
+
+  // Компонент для секцій з фоном
+  const SectionWithBackground = ({ children, className = "" }) => (
+    <section className={`relative ${className}`}>
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+      </div>
+      <div className="relative z-10">
+        {children}
+      </div>
+    </section>
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -111,30 +186,37 @@ const PowderCoating = () => {
       <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                <span className="bg-gradient-laser bg-clip-text text-transparent">Порошкове фарбування</span> металу
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+                <span className="bg-gradient-laser bg-clip-text text-transparent">
+                  Порошкове фарбування
+                </span>{" "}
+                металу
               </h1>
-              <p className="text-white text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 Стійке покриття з широкою палітрою кольорів та фактур. Використовуємо італійське 
                 обладнання та сертифіковані порошкові фарби для довговічного результату.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
                   variant="hero" 
                   size="lg" 
-                  className="group"
+                  className="group flex items-center gap-2"
                   onClick={openPopup}
                 >
-                  <Phone className="h-5 w-5 mr-2" />
+                  <Phone className="h-5 w-5" />
                   Дізнатися вартість
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
+                  className="flex items-center gap-2"
                   onClick={scrollToRalCatalog}
+                  disabled={isScrolling}
                 >
+                  <Palette className="h-5 w-5" />
                   Каталог кольорів RAL
+                  <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
                 </Button>
               </div>
             </div>
@@ -142,79 +224,49 @@ const PowderCoating = () => {
               <img 
                 src={spreadPaintImage} 
                 alt="Порошкове фарбування металу"
-                className="w-full h-auto rounded-lg shadow-2xl shadow-black/50"
+                className="w-full h-auto rounded-lg shadow-2xl shadow-black/50 transform hover:scale-105 transition-transform duration-300"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Technical Specifications with Background Image */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Technical Specifications */}
+      <SectionWithBackground className="py-20">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Технічні можливості
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">6×1.2×2 м</div>
-              <div className="text-white font-medium mb-1">Розмір камери</div>
-              <div className="text-sm text-white/70">Максимальні габарити</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">Норм</div>
-              <div className="text-white font-medium mb-1">Якість покриття</div>
-              <div className="text-sm text-white/70">Європейські стандарти</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">40-150 мкм</div>
-              <div className="text-white font-medium mb-1">Товщина покриття</div>
-              <div className="text-sm text-white/70">Регульована товщина</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">300+</div>
-              <div className="text-white font-medium mb-1">Кольори</div>
-              <div className="text-sm text-white/70">Широка палітра RAL</div>
-            </Card>
+            {specifications.map((spec, index) => (
+              <Card 
+                key={index}
+                className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-colors"
+              >
+                <div className="text-2xl font-bold text-primary mb-2">
+                  {spec.value}
+                </div>
+                <div className="text-white font-medium mb-1">
+                  {spec.title}
+                </div>
+                <div className="text-sm text-white/70">
+                  {spec.description}
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
-      </section>
+      </SectionWithBackground>
 
-      {/* Equipment Section with Background Image */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Equipment Section */}
+      <SectionWithBackground className="py-20">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Обладнання для порошкового фарбування
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Піч полімеризації з реальною картинкою */}
-            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
+            {/* Піч полімеризації */}
+            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl hover:shadow-3xl transition-all">
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={polymerizationOvenImage} 
@@ -222,8 +274,6 @@ const PowderCoating = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-3">
@@ -233,38 +283,20 @@ const PowderCoating = () => {
                   Сучасна конвекційна піч для якісної полімеризації порошкового покриття з рівномірним прогрівом.
                 </p>
                 <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Потужність:</span>
-                    <span className="text-white font-medium">80 кВт</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Робоча зона:</span>
-                    <span className="text-white font-medium">6000×1200×2000 мм</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Товщина покриття:</span>
-                    <span className="text-white font-medium">40-150 мкм</span>
-                  </div>
+                  <SpecItem label="Потужність:" value="80 кВт" />
+                  <SpecItem label="Робоча зона:" value="6000×1200×2000 мм" />
+                  <SpecItem label="Товщина покриття:" value="40-150 мкм" />
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-white flex items-center gap-1">
-                    <Settings className="h-4 w-4 text-primary" />
-                    Особливості:
-                  </h4>
-                  <div className="space-y-1">
-                    {["Електростатичне обладнання Gema", "Контроль товщини покриття", "Рівномірна полімеризація"].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <span className="text-white/70">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <FeatureList 
+                  title="Особливості:"
+                  icon={<Settings className="h-4 w-4 text-primary" />}
+                  features={equipmentFeatures.oven}
+                />
               </div>
             </Card>
 
-            {/* Контроль якості з реальною картинкою */}
-            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
+            {/* Контроль якості */}
+            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl hover:shadow-3xl transition-all">
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={qualityControlImage} 
@@ -272,8 +304,6 @@ const PowderCoating = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-3">
@@ -283,62 +313,33 @@ const PowderCoating = () => {
                   Кваліфікований технолог проводить перевірку якості покриття згідно міжнародних ISO стандартів.
                 </p>
                 <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Стандарти:</span>
-                    <span className="text-white font-medium">ISO</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Контроль товщини:</span>
-                    <span className="text-white font-medium">Так</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Технолог:</span>
-                    <span className="text-white font-medium">Кваліфікований</span>
-                  </div>
+                  <SpecItem label="Стандарти:" value="ISO" />
+                  <SpecItem label="Контроль товщини:" value="Так" />
+                  <SpecItem label="Технолог:" value="Кваліфікований" />
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-white flex items-center gap-1">
-                    <Settings className="h-4 w-4 text-primary" />
-                    Особливості:
-                  </h4>
-                  <div className="space-y-1">
-                    {["Перевірка товщини покриття", "Контроль адгезії", "Візуальна інспекція"].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <span className="text-white/70">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <FeatureList 
+                  title="Особливості:"
+                  icon={<Settings className="h-4 w-4 text-primary" />}
+                  features={equipmentFeatures.quality}
+                />
               </div>
             </Card>
           </div>
         </div>
-      </section>
+      </SectionWithBackground>
 
-      {/* Color Options with Background Image - ОНОВЛЕНА СІТКА */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Color Options */}
+      <SectionWithBackground className="py-20">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Варіанти покриття
           </h2>
-          {/* ЗМІНЕНО: тепер grid-cols-3 для 6 елементів */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {colorOptions.map((color, index) => (
-              <Card key={index} className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 group hover:scale-105 transition-transform duration-300">
+              <Card 
+                key={index}
+                className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 group hover:scale-105 transition-all duration-300"
+              >
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={color.image} 
@@ -348,78 +349,65 @@ const PowderCoating = () => {
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="font-semibold text-white mb-2 text-lg">{color.title}</h3>
-                  <p className="text-sm text-white/70">{color.details}</p>
+                  <h3 className="font-semibold text-white mb-2 text-lg">
+                    {color.title}
+                  </h3>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    {color.details}
+                  </p>
                 </div>
               </Card>
             ))}
           </div>
         </div>
-      </section>
+      </SectionWithBackground>
 
-      {/* Applications with Background Image */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Applications & Advantages */}
+      <SectionWithBackground className="py-20">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Переваги */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <CheckCircle className="h-6 w-6 text-primary" />
-                Переваги порошкового фарбування
-              </h3>
+              <SectionTitle 
+                icon={<CheckCircle className="h-6 w-6 text-primary" />}
+                title="Переваги порошкового фарбування"
+              />
               <div className="space-y-4">
-                {[
-                  "Корозійна стійкість до 25 років",
-                  "Екологічно чисті матеріали",
-                  "Стійкість до ультрафіолету",
-                  "Механічна міцність покриття",
-                  "Широка температурна стійкість"
-                ].map((advantage, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-white">{advantage}</span>
-                  </div>
+                {advantages.map((advantage, idx) => (
+                  <FeatureCard key={idx} icon={<CheckCircle className="h-5 w-5 text-primary" />}>
+                    {advantage}
+                  </FeatureCard>
                 ))}
               </div>
             </div>
+
+            {/* Сфери застосування */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <CheckCircle className="h-6 w-6 text-primary" />
-                Сфери застосування
-              </h3>
+              <SectionTitle 
+                icon={<CheckCircle className="h-6 w-6 text-primary" />}
+                title="Сфери застосування"
+              />
               <div className="space-y-3">
-                {[
-                  "Фасадні системи та архітектура",
-                  "Меблеві та інтер'єрні конструкції", 
-                  "Огорожі, ворота та перила",
-                  "Садово-паркові форми",
-                  "Промислове обладнання"
-                ].map((application, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-white">{application}</span>
-                  </div>
+                {applications.map((application, idx) => (
+                  <FeatureCard 
+                    key={idx} 
+                    icon={<div className="w-2 h-2 bg-primary rounded-full" />}
+                    compact
+                  >
+                    {application}
+                  </FeatureCard>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </SectionWithBackground>
 
       {/* RAL Catalog Section */}
-      <section ref={ralCatalogRef} className="py-20 bg-gradient-to-b from-background to-muted/20">
+      <section 
+        ref={ralCatalogRef}
+        className="py-20 bg-gradient-to-b from-background to-muted/20 scroll-mt-20"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -431,7 +419,6 @@ const PowderCoating = () => {
             </p>
           </div>
 
-          {/* Красива сітка з 6 картинками - менші розміри */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {ralCatalogs.map((catalog, index) => (
               <Card 
@@ -449,15 +436,14 @@ const PowderCoating = () => {
             ))}
           </div>
 
-          {/* Кнопка "Порахувати вартість" під каталогом */}
           <div className="text-center">
             <Button 
               variant="hero" 
               size="lg"
-              className="min-w-64 px-8 py-6 text-lg"
+              className="min-w-64 px-8 py-6 text-lg flex items-center gap-2 mx-auto"
               onClick={openPopup}
             >
-              <Phone className="h-6 w-6 mr-3" />
+              <Phone className="h-6 w-6" />
               Порахувати вартість
             </Button>
           </div>
@@ -469,5 +455,46 @@ const PowderCoating = () => {
     </div>
   );
 };
+
+// Допоміжні компоненти
+const SpecItem = ({ label, value }) => (
+  <div className="flex justify-between items-center text-sm">
+    <span className="text-white/70">{label}</span>
+    <span className="text-white font-medium">{value}</span>
+  </div>
+);
+
+const FeatureList = ({ title, icon, features }) => (
+  <div className="space-y-2">
+    <h4 className="text-sm font-semibold text-white flex items-center gap-1">
+      {icon}
+      {title}
+    </h4>
+    <div className="space-y-1">
+      {features.map((feature, idx) => (
+        <div key={idx} className="flex items-center gap-2 text-xs">
+          <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
+          <span className="text-white/70">{feature}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const SectionTitle = ({ icon, title }) => (
+  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+    {icon}
+    {title}
+  </h3>
+);
+
+const FeatureCard = ({ icon, children, compact = false }) => (
+  <div className={`flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg ${
+    compact ? 'p-3' : 'p-4'
+  }`}>
+    {icon}
+    <span className="text-white">{children}</span>
+  </div>
+);
 
 export default PowderCoating;
