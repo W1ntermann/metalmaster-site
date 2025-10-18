@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 
 const ContactPopup = () => {
   const { isOpen, closePopup } = useContactPopup();
   const navigate = useNavigate();
+  const isManualRedirectRef = useRef(false);
 
   useEffect(() => {
     // Якщо контекст намагається відкрити попап, перенаправляємо на сторінку контакту
     if (isOpen) {
+      isManualRedirectRef.current = true; // Позначаємо, що це ручне перенаправлення
       closePopup();
       navigate('/contact?source=popup-redirect');
     }
@@ -28,7 +30,8 @@ const ContactPopup = () => {
     let timeoutId: number;
     
     const handleScroll = () => {
-      if (hasShown) return;
+      // Не показуємо автоматичний popup якщо користувач вже перейшов вручну
+      if (hasShown || isManualRedirectRef.current) return;
       
       const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       
@@ -41,7 +44,8 @@ const ContactPopup = () => {
 
     // Автоматичне перенаправлення через 45 секунд
     timeoutId = setTimeout(() => {
-      if (!hasShown) {
+      // Не показуємо автоматичний popup якщо користувач вже перейшов вручну
+      if (!hasShown && !isManualRedirectRef.current) {
         hasShown = true;
         localStorage.setItem('popupLastShown', now.toString());
         navigate('/contact?source=auto-timer');

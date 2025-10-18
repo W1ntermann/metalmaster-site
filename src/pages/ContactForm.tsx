@@ -31,8 +31,11 @@ const ContactForm = () => {
   const utm_medium = searchParams.get('utm_medium') || '';
   const utm_campaign = searchParams.get('utm_campaign') || '';
 
-  // Відстеження перегляду сторінки
+  // Відстеження перегляду сторінки та скрол до верху
   useEffect(() => {
+    // Скролимо до верху сторінки при відкритті форми контакту
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     // Відправляємо подію для Google Analytics або інших систем аналітики
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'page_view', {
