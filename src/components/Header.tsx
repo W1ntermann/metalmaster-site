@@ -116,13 +116,6 @@ const Header = () => {
             Послуги
           </button>
           <button 
-            onClick={() => scrollToSection('clients')}
-            className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
-            aria-label="Перейти до секції клієнтів"
-          >
-            Клієнти
-          </button>
-          <button 
             onClick={() => scrollToSection('about')}
             className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
             aria-label="Перейти до секції про нас"
