@@ -501,7 +501,7 @@ const PowderCoating = () => {
               onClick={openPopup}
             >
               <Phone className="h-6 w-6 mr-3" />
-              Порахувати вартість
+              Виникли питання?
             </Button>
           </div>
         </div>
