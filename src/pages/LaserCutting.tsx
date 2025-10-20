@@ -30,7 +30,7 @@ const LaserCutting = () => {
       <div className="fixed top-20 left-4 z-40">
         <button 
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-laser text-primary-foreground font-semibold rounded-lg shadow-glow hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+          className="flex items-center gap-2 px-4 py-2 bg-gray-600/70 backdrop-blur-sm text-white font-semibold rounded-lg shadow-lg hover:bg-gradient-laser hover:text-primary-foreground hover:shadow-glow transition-all duration-300 hover:-translate-y-1 hover:scale-105"
         >
           <ArrowLeft className="h-4 w-4" />
           <span className="hidden sm:inline">Повернутись назад</span>
@@ -343,9 +343,21 @@ const LaserCutting = () => {
               <p className="text-muted-foreground text-sm">Кріплення, шассі, теплообмінники</p>
             </Card>
           </div>
+          
+          {/* Кнопка "Виникли питання?" */}
+          <div className="text-center mt-12">
+            <Button 
+              variant="hero" 
+              size="lg"
+              className="px-8 py-4 text-lg"
+              onClick={openPopup}
+            >
+              <Phone className="h-5 w-5 mr-2" />
+              Виникли питання?
+            </Button>
+          </div>
         </div>
       </section>
-      
 
       <Footer />
       <ContactPopup />
