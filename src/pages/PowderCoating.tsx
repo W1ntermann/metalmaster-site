@@ -122,14 +122,15 @@ const PowderCoating = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Back Button */}
-      <div className="container mx-auto px-4 pt-20 pb-8">
+      {/* Floating Back Button */}
+      <div className="fixed top-20 left-4 z-40">
         <button 
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-laser text-primary-foreground font-semibold rounded-lg shadow-glow hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-laser text-primary-foreground font-semibold rounded-lg shadow-glow hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
         >
-          <ArrowLeft className="h-5 w-5" />
-          Повернутись назад
+          <ArrowLeft className="h-4 w-4" />
+          <span className="hidden sm:inline">Повернутись назад</span>
+          <span className="sm:hidden">Назад</span>
         </button>
       </div>
 
