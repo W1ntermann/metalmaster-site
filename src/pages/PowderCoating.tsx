@@ -55,6 +55,15 @@ const PowderCoating = () => {
     ralCatalogRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const goBackToServices = () => {
+    // Переходимо на головну сторінку та скролимо до секції послуг
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('services');
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   // Дані для кольорових варіантів - ДОДАНО ГРУНТ І ТЕРМОПЛАСТ
   const colorOptions = [
     {
@@ -125,7 +134,7 @@ const PowderCoating = () => {
       {/* Floating Back Button */}
       <div className="fixed top-20 left-4 z-40">
         <button 
-          onClick={() => navigate(-1)}
+          onClick={goBackToServices}
           className="flex items-center gap-2 px-4 py-2 bg-gray-600/70 backdrop-blur-sm text-white font-semibold rounded-lg shadow-lg hover:bg-gradient-laser hover:text-primary-foreground hover:shadow-glow transition-all duration-300 hover:-translate-y-1 hover:scale-105"
         >
           <ArrowLeft className="h-4 w-4" />
