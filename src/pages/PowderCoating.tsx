@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Palette, CheckCircle, Phone, Settings } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { CheckCircle, Phone, Settings, ArrowLeft } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactPopup from "@/components/ContactPopup";
-import spreadPaintImage from "@/assets/for-painting-two.jpg";
+import spreadPaintImage from "@/assets/powder.jpg";
 import backgroundImage from "@/assets/for powder paint.jpg";
 
 // Імпорт картинок для кольорів
@@ -23,332 +24,186 @@ import ralCatalog4 from "@/assets/ral/4.jpg";
 import ralCatalog5 from "@/assets/ral/5.jpg";
 import ralCatalog6 from "@/assets/ral/6.jpg";
 
-// Імпорт нових картинок для обладнання
+// Нові картинки
 import qualityControlImage from "@/assets/quality.jpg";
 import polymerizationOvenImage from "@/assets/polymer.jpg";
 import zincImage from "@/assets/grunt.jpg";
 import thermoplastImage from "@/assets/thermoplast.jpg";
+
 const PowderCoating = () => {
   const ralCatalogRef = useRef(null);
   const { openPopup } = useContactPopup();
+  const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const scrollToRalCatalog = () => {
-    ralCatalogRef.current?.scrollIntoView({ behavior: 'smooth' });
+    ralCatalogRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Дані для кольорових варіантів - ДОДАНО ГРУНТ І ТЕРМОПЛАСТ
   const colorOptions = [
     {
       image: glossyImage,
       title: "Глянець",
       details: "Гладке покриття, що містить 85-100% блиску.",
-      className: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
       image: matteImage,
       title: "Мат",
-      details: "Гладке покриття, що містить від 28 до 40% блиску.Глибокий мат до 10% блиску.",
-      className: "bg-gradient-to-br from-gray-600 to-gray-800"
+      details:
+        "Гладке покриття, що містить від 28 до 40% блиску. Глибокий мат до 10%.",
     },
     {
       image: shargenImage,
       title: "Шагрінь",
-      details: "Текстурний тип поверхні. Зернистість (хвиля) буває дрібнішою, буває більшою. Ступінь блиску близько 50%.",
-      className: "bg-gradient-to-br from-yellow-400 to-orange-500"
+      details:
+        "Текстурний тип поверхні. Зернистість може бути різною. Ступінь блиску близько 50%.",
     },
     {
       image: texturedImage,
       title: "Структурні",
-      details: "Дрібнозернистий шорсткий тип поверхні, схожий на наждаку. По мірі блиску наближений до глибокого мату.",
-      className: "bg-gradient-to-br from-gray-400 to-gray-600"
+      details:
+        "Дрібнозернистий шорсткий тип поверхні, схожий на наждак. Близький до глибокого мату.",
     },
-    // ДОДАНІ НОВІ ВАРІАНТИ
     {
       image: zincImage,
       title: "Грунт цинковмісний",
-      details: "Антикорозійний грунт з вмістом цинку для захисту металу. Забезпечує катодний захист та підвищену адгезію.",
-      className: "bg-gradient-to-br from-gray-700 to-blue-900"
+      details:
+        "Антикорозійний грунт із вмістом цинку для захисту металу. Підвищує адгезію.",
     },
     {
       image: thermoplastImage,
       title: "Термопласт",
-      details: "Пластичне покриття з полімерів, що плавиться при нагріванні. Висока стійкість до механічних пошкоджень.",
-      className: "bg-gradient-to-br from-red-500 to-orange-700"
-    }
+      details:
+        "Пластичне покриття з полімерів, що плавиться при нагріванні. Стійке до подряпин.",
+    },
   ];
 
-  // Дані для каталогу RAL - тепер 6 картинок
   const ralCatalogs = [
-    {
-      image: ralCatalog1,
-    },
-    {
-      image: ralCatalog2,
-    },
-    {
-      image: ralCatalog3,
-    },
-    {
-      image: ralCatalog4,
-    },
-    {
-      image: ralCatalog5,
-    },
-    {
-      image: ralCatalog6,
-    }
+    { image: ralCatalog1 },
+    { image: ralCatalog2 },
+    { image: ralCatalog3 },
+    { image: ralCatalog4 },
+    { image: ralCatalog5 },
+    { image: ralCatalog6 },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
+      {/* Back Button */}
+      <div className="container mx-auto px-4 pt-20 pb-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-laser text-primary-foreground font-semibold rounded-lg shadow-glow hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Повернутись назад
+        </button>
+      </div>
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                <span className="bg-gradient-laser bg-clip-text text-transparent">Порошкове фарбування</span> металу
-              </h1>
-              <p className="text-white text-xl text-muted-foreground mb-8 leading-relaxed">
-                Стійке покриття з широкою палітрою кольорів та фактур. Використовуємо італійське 
-                обладнання та сертифіковані порошкові фарби для довговічного результату.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  className="group"
-                  onClick={openPopup}
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  Дізнатися вартість
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  onClick={scrollToRalCatalog}
-                >
-                  Каталог кольорів RAL
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <img 
-                src={spreadPaintImage} 
-                alt="Порошкове фарбування металу"
-                className="w-full h-auto rounded-lg shadow-2xl shadow-black/50"
-              />
+        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-5xl font-bold text-foreground mb-6">
+              <span className="bg-gradient-laser bg-clip-text text-transparent">
+                Порошкове фарбування
+              </span>{" "}
+              металу
+            </h1>
+            <p className="text-white text-xl mb-8 leading-relaxed">
+              Використовуємо італійське обладнання та сертифіковані фарби для
+              довговічного результату.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button variant="hero" size="lg" onClick={openPopup}>
+                <Phone className="h-5 w-5 mr-2" />
+                Дізнатися вартість
+              </Button>
+              <Button variant="outline" size="lg" onClick={scrollToRalCatalog}>
+                Каталог RAL
+              </Button>
             </div>
           </div>
+          <img
+            src={spreadPaintImage}
+            alt="Порошкове фарбування металу"
+            className="w-full h-auto rounded-lg shadow-2xl shadow-black/50"
+          />
         </div>
       </section>
 
-      {/* Technical Specifications with Background Image */}
+      {/* Technical Specifications */}
       <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
         >
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Технічні можливості
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">6×1.2×2 м</div>
-              <div className="text-white font-medium mb-1">Розмір камери</div>
-              <div className="text-sm text-white/70">Максимальні габарити</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">Норм</div>
-              <div className="text-white font-medium mb-1">Якість покриття</div>
-              <div className="text-sm text-white/70">Європейські стандарти</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">40-150 мкм</div>
-              <div className="text-white font-medium mb-1">Товщина покриття</div>
-              <div className="text-sm text-white/70">Регульована товщина</div>
-            </Card>
-            <Card className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20">
-              <div className="text-2xl font-bold text-primary mb-2">300+</div>
-              <div className="text-white font-medium mb-1">Кольори</div>
-              <div className="text-sm text-white/70">Широка палітра RAL</div>
-            </Card>
+            {[
+              ["6×1.2×2 м", "Розмір камери", "Максимальні габарити"],
+              ["ISO 9001", "Система контролю якості", "Міжнародні стандарти"],
+              ["40-150 мкм", "Товщина покриття", "Регульована товщина"],
+              ["300+", "Кольори", "Широка палітра RAL"],
+            ].map(([title, subtitle, desc], idx) => (
+              <Card
+                key={idx}
+                className="p-6 text-center bg-white/10 backdrop-blur-sm border-white/20"
+              >
+                <div className="text-2xl font-bold text-primary mb-2">
+                  {title}
+                </div>
+                <div className="text-white font-medium mb-1">{subtitle}</div>
+                <div className="text-sm text-white/70">{desc}</div>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Equipment Section with Background Image */}
+      {/* Color Options */}
       <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
         >
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">
-            Обладнання для порошкового фарбування
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Піч полімеризації з реальною картинкою */}
-            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={polymerizationOvenImage} 
-                  alt="Конвекційна піч полімерізації"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Конвекційна піч полімерізації
-                </h3>
-                <p className="text-white/80 mb-4">
-                  Сучасна конвекційна піч для якісної полімеризації порошкового покриття з рівномірним прогрівом.
-                </p>
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Потужність:</span>
-                    <span className="text-white font-medium">80 кВт</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Робоча зона:</span>
-                    <span className="text-white font-medium">6000×1200×2000 мм</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Товщина покриття:</span>
-                    <span className="text-white font-medium">40-150 мкм</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-white flex items-center gap-1">
-                    <Settings className="h-4 w-4 text-primary" />
-                    Особливості:
-                  </h4>
-                  <div className="space-y-1">
-                    {["Електростатичне обладнання Gema", "Контроль товщини покриття", "Рівномірна полімеризація"].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <span className="text-white/70">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Card>
 
-            {/* Контроль якості з реальною картинкою */}
-            <Card className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={qualityControlImage} 
-                  alt="Контроль якості ISO"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Контроль якості ISO
-                </h3>
-                <p className="text-white/80 mb-4">
-                  Кваліфікований технолог проводить перевірку якості покриття згідно міжнародних ISO стандартів.
-                </p>
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Стандарти:</span>
-                    <span className="text-white font-medium">ISO</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Контроль товщини:</span>
-                    <span className="text-white font-medium">Так</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/70">Технолог:</span>
-                    <span className="text-white font-medium">Кваліфікований</span>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-white flex items-center gap-1">
-                    <Settings className="h-4 w-4 text-primary" />
-                    Особливості:
-                  </h4>
-                  <div className="space-y-1">
-                    {["Перевірка товщини покриття", "Контроль адгезії", "Візуальна інспекція"].map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <span className="text-white/70">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Color Options with Background Image - ОНОВЛЕНА СІТКА */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Варіанти покриття
           </h2>
-          {/* ЗМІНЕНО: тепер grid-cols-3 для 6 елементів */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {colorOptions.map((color, index) => (
-              <Card key={index} className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 group hover:scale-105 transition-transform duration-300">
+              <Card
+                key={index}
+                onClick={() => setSelectedImage(color.image)}
+                className="overflow-hidden bg-white/10 backdrop-blur-sm border-white/20 group hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={color.image} 
+                  <img
+                    src={color.image}
                     alt={color.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="font-semibold text-white mb-2 text-lg">{color.title}</h3>
+                  <h3 className="font-semibold text-white mb-2 text-lg">
+                    {color.title}
+                  </h3>
                   <p className="text-sm text-white/70">{color.details}</p>
                 </div>
               </Card>
@@ -357,89 +212,30 @@ const PowderCoating = () => {
         </div>
       </section>
 
-      {/* Applications with Background Image */}
-      <section className="py-20 relative">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <CheckCircle className="h-6 w-6 text-primary" />
-                Переваги порошкового фарбування
-              </h3>
-              <div className="space-y-4">
-                {[
-                  "Корозійна стійкість до 25 років",
-                  "Екологічно чисті матеріали",
-                  "Стійкість до ультрафіолету",
-                  "Механічна міцність покриття",
-                  "Широка температурна стійкість"
-                ].map((advantage, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-white">{advantage}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <CheckCircle className="h-6 w-6 text-primary" />
-                Сфери застосування
-              </h3>
-              <div className="space-y-3">
-                {[
-                  "Фасадні системи та архітектура",
-                  "Меблеві та інтер'єрні конструкції", 
-                  "Огорожі, ворота та перила",
-                  "Садово-паркові форми",
-                  "Промислове обладнання"
-                ].map((application, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-white">{application}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* RAL Catalog Section */}
-      <section ref={ralCatalogRef} className="py-20 bg-gradient-to-b from-background to-muted/20">
+      {/* RAL Catalog */}
+      <section
+        ref={ralCatalogRef}
+        className="py-20 bg-gradient-to-b from-background to-muted/20"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Каталог кольорів RAL
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Широка палітра кольорів RAL для порошкового фарбування. 
               Виберіть ідеальний відтінок для вашого проекту.
             </p>
           </div>
 
-          {/* Красива сітка з 6 картинками - менші розміри */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {ralCatalogs.map((catalog, index) => (
-              <Card 
-                key={index} 
-                className="group overflow-hidden border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              <Card
+                key={index}
+                onClick={() => setSelectedImage(catalog.image)}
+                className="group overflow-hidden border-border hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
               >
                 <div className="relative h-80 overflow-hidden">
-                  <img 
+                  <img
                     src={catalog.image}
                     alt={`Каталог RAL ${index + 1}`}
                     className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
@@ -449,20 +245,28 @@ const PowderCoating = () => {
             ))}
           </div>
 
-          {/* Кнопка "Порахувати вартість" під каталогом */}
           <div className="text-center">
-            <Button 
-              variant="hero" 
-              size="lg"
-              className="min-w-64 px-8 py-6 text-lg"
-              onClick={openPopup}
-            >
+            <Button variant="hero" size="lg" onClick={openPopup}>
               <Phone className="h-6 w-6 mr-3" />
               Порахувати вартість
             </Button>
           </div>
         </div>
       </section>
+
+      {/* Modal Image Viewer */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center cursor-zoom-out"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Перегляд зображення"
+            className="max-w-[90%] max-h-[90%] rounded-lg shadow-2xl"
+          />
+        </div>
+      )}
 
       <Footer />
       <ContactPopup />

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Zap, CheckCircle, Phone } from "lucide-react";
+import { Zap, CheckCircle, Phone, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,6 +16,7 @@ import cuttingBlockSecondImage from "@/assets/for-cutting-block2.jpg";
 
 const LaserCutting = () => {
   const { openPopup } = useContactPopup();
+  const navigate = useNavigate();
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,6 +25,17 @@ const LaserCutting = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      
+      {/* Back Button */}
+      <div className="container mx-auto px-4 pt-20 pb-8">
+        <button 
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-laser text-primary-foreground font-semibold rounded-lg shadow-glow hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          Повернутись назад
+        </button>
+      </div>
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-muted/20 to-background">
