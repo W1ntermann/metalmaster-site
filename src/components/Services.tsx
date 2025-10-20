@@ -61,7 +61,7 @@ const Services = () => {
             Наші <span className="bg-gradient-laser bg-clip-text text-transparent">послуги</span>
           </h2>
           <p className="text-white text-xl text-muted-foreground max-w-3xl mx-auto">
-            Повний цикл обробки металу на сучасному європейському обладнанні
+            Повний цикл обробки металу на сучасному обладнанні
           </p>
         </div>
 
