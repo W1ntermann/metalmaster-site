@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import { makeWebhookService } from "@/services/makeWebhook";
 
 // URL вашого Google Apps Script Web App
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB8at0EZEMNHs7pgtV0kKzN_NzcHIZunPJwss7g6MBv2XkkD3TMxffjvA18bjdXMpI/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyBYVfh9EpY49WF3ROqQQs88RoWjvCUhWckOZ6GKn87x8eJLiAU2QmpxKN1gt4nS9YcQ/exec";
 
 const ContactForm = () => {
   const [searchParams] = useSearchParams();
