@@ -344,8 +344,6 @@ const LaserCutting = () => {
           </div>
         </div>
       </section>
-
-      {/* Pricing - стандартний фон */}
       
 
       <Footer />
