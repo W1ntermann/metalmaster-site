@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import LaserCutting from "./pages/LaserCutting";
 import PowderCoating from "./pages/PowderCoating";
 import ContactForm from "./pages/ContactForm";
+import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/laser-cutting" element={<LaserCutting />} />
             <Route path="/powder-coating" element={<PowderCoating />} />
             <Route path="/contact" element={<ContactForm />} />
+            <Route path="/thanks" element={<Thanks />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -21,7 +21,6 @@ const ContactForm = () => {
     phone: "",
     question: ""
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -107,36 +106,23 @@ const ContactForm = () => {
         console.warn('Make webhook помилка:', makeResult.value.error);
       }
 
-      // Відправляємо подію конверсії
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL', // Замініть на ваші ID
-          'value': 1.0,
-          'currency': 'UAH'
-        });
-      }
-
-      setIsSubmitted(true);
-      
-      // Показуємо успішне повідомлення з інформацією про статус відправки
-      let description = "Наш менеджер зв'яжеться з вами найближчим часом.";
-      
-      if (makeWebhookService.isConfigured()) {
-        const makeResult = results[1];
-        if (makeResult.status === 'fulfilled' && makeResult.value?.success) {
-          description += " Дані також відправлені в систему автоматизації.";
-        }
-      }
-      
+      // Показуємо успішне повідомлення
       toast({
         title: "Успішно відправлено!",
-        description: description,
+        description: "Перенаправляємо на сторінку подяки...",
       });
       
-      // Перенаправлення на головну через 3 секунди
+      // Формуємо URL для сторінки подяки з усіма параметрами
+      const thanksUrl = new URL('/thanks', window.location.origin);
+      thanksUrl.searchParams.set('source', source);
+      if (utm_source) thanksUrl.searchParams.set('utm_source', utm_source);
+      if (utm_medium) thanksUrl.searchParams.set('utm_medium', utm_medium);
+      if (utm_campaign) thanksUrl.searchParams.set('utm_campaign', utm_campaign);
+      
+      // Перенаправлення на сторінку подяки через 1 секунду
       setTimeout(() => {
-        navigate('/');
-      }, 3000);
+        navigate(thanksUrl.pathname + thanksUrl.search);
+      }, 1000);
       
     } catch (error) {
       toast({
@@ -174,21 +160,19 @@ const ContactForm = () => {
               Назад
             </Button>
 
-            {!isSubmitted && (
-              <div className="text-center space-y-4 mb-8">
-                <div className="mx-auto w-20 h-20 bg-gradient-laser rounded-full flex items-center justify-center">
-                  <HelpCircle className="h-10 w-10 text-primary-foreground" />
-                </div>
-                <h1 className="text-3xl font-bold text-foreground">
-                  Виникли питання?
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-md mx-auto">
-                  Залишіть заявку і наш менеджер зв'яжеться з вами протягом 15 хвилин
-                </p>
+            <div className="text-center space-y-4 mb-8">
+              <div className="mx-auto w-20 h-20 bg-gradient-laser rounded-full flex items-center justify-center">
+                <HelpCircle className="h-10 w-10 text-primary-foreground" />
               </div>
-            )}
+              <h1 className="text-3xl font-bold text-foreground">
+                Виникли питання?
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-md mx-auto">
+                Залишіть заявку і наш менеджер зв'яжеться з вами протягом 15 хвилин
+              </p>
+            </div>
 
-            {!isSubmitted ? (
+            <div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-foreground font-medium">
@@ -264,19 +248,7 @@ const ContactForm = () => {
                   Натискаючи "Надіслати заявку", ви погоджуєтесь з обробкою персональних даних
                 </p>
               </form>
-            ) : (
-              <div className="text-center space-y-4 py-12">
-                <div className="mx-auto w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <MessageCircle className="h-10 w-10 text-green-500" />
-                </div>
-                <h2 className="text-2xl font-semibold text-foreground">
-                  Дякуємо за заявку!
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  Ви будете перенаправлені на головну сторінку...
-                </p>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </section>

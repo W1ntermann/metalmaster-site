@@ -22,6 +22,14 @@ declare global {
       event: string,
       parameters?: any
     ) => void;
+    // Yandex.Metrica
+    ym?: (
+      counterId: number,
+      method: 'reachGoal' | 'hit' | 'params',
+      goal?: string,
+      params?: any
+    ) => void;
+    YANDEX_METRICA_ID?: number;
   }
 }
 
