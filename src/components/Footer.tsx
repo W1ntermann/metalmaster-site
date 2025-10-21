@@ -35,12 +35,12 @@ const Footer = () => {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Instagram className="h-4 w-4" />
                 <a 
-                  href="https://www.instagram.com/armind_indastry/" 
+                  href="https://www.instagram.com/armind_industry/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors font-medium"
                 >
-                  @armind_indastry
+                  @armind_industry
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -94,7 +94,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-foreground mb-4">Соцмережі</h4>
             <div className="flex gap-3">
               <a 
-                href="https://www.instagram.com/armind_indastry/" 
+                href="https://www.instagram.com/armind_industry/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
