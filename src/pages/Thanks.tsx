@@ -60,7 +60,7 @@ const Thanks = () => {
     }
 
     // Відправляємо подію для Yandex.Metrica (якщо налаштована)
-    if (typeof window !== 'undefined' && window.ym) {
+    if (typeof window !== 'undefined' && window.ym && window.YANDEX_METRICA_ID) {
       window.ym(window.YANDEX_METRICA_ID, 'reachGoal', 'CONTACT_FORM_SUCCESS', {
         source: source,
         utm_source: utm_source,
@@ -122,12 +122,12 @@ const Thanks = () => {
                 <h3 className="font-semibold text-foreground mb-3">Або зателефонуйте нам прямо зараз</h3>
                 <div className="flex items-center justify-center space-x-2 text-lg font-semibold text-primary">
                   <Phone className="h-5 w-5" />
-                  <a href="tel:+380123456789" className="hover:underline">
-                    +38 (012) 345-67-89
+                  <a href="tel:+380934236139" className="hover:underline">
+                    +380 (93) 423-61-39
                   </a>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Працюємо: Пн-Пт 9:00-18:00, Сб 9:00-15:00
+                  Працюємо: Пн-Пт 8:00-18:00, Сб 9:00-14:00
                 </p>
               </div>
 
