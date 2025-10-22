@@ -8,7 +8,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
-Disallow: /*.xml$
 
 # Дозволяємо доступ до важливих файлів
 Allow: /sitemap.xml
