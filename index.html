@@ -10,10 +10,24 @@
     <meta name="description" content="Армада Індастрі - професійна лазерна обробка металу в Одесі: різка до 25мм, згинання, зварювання, порошкове фарбування. Від 24 годин, 200+ кольорів RAL, екологічні матеріали." />
     <meta name="author" content="Армада Індастрі (Армінд)" />
     <meta name="keywords" content="лазерна різка Одеса, обробка металу Одеса, лазерне зварювання, порошкове фарбування, згинання металу, металообробка, RAL фарбування, Армада Індастрі, Армінд" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="language" content="Ukrainian" />
+    <meta name="geo.region" content="UA-51" />
+    <meta name="geo.placename" content="Одеса" />
+    <meta name="geo.position" content="46.485387;30.664776" />
+    <meta name="ICBM" content="46.485387, 30.664776" />
     <meta name="facebook-domain-verification" content="nf3pyzd566cxazmrwdtuvsgpp0wqa6" />
     <link rel="canonical" href="https://armind.com.ua" />
+    
+    <!-- Preload критичних ресурсів -->
+    <link rel="preload" href="/src/assets/hero-industrial.jpg" as="image" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" as="style" />
+    
+    <!-- DNS prefetch для зовнішніх ресурсів -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="dns-prefetch" href="//connect.facebook.net" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -21,15 +35,29 @@
     <meta property="og:title" content="Армада Індастрі - Лазерна обробка металу в Одесі" />
     <meta property="og:description" content="Професійні послуги лазерної обробки металу: різка, зварювання, фарбування. Сучасне обладнання, швидкі терміни, гарантія якості." />
     <meta property="og:image" content="https://armind.com.ua/src/assets/hero-industrial.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Армада Індастрі - Лазерна обробка металу в Одесі" />
     <meta property="og:locale" content="uk_UA" />
+    <meta property="og:locale:alternate" content="ru_UA" />
     <meta property="og:site_name" content="Армада Індастрі" />
+    <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://armind.com.ua" />
-    <meta property="twitter:title" content="Армада Індастрі - Лазерна обробка металу в Одесі" />
-    <meta property="twitter:description" content="Професійні послуги лазерної обробки металу: різка, зварювання, фарбування. Сучасне обладнання, швидкі терміни, гарантія якості." />
-    <meta property="twitter:image" content="https://armind.com.ua/src/assets/hero-industrial.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@armadaindustry" />
+    <meta name="twitter:creator" content="@armadaindustry" />
+    <meta name="twitter:url" content="https://armind.com.ua" />
+    <meta name="twitter:title" content="Армада Індастрі - Лазерна обробка металу в Одесі" />
+    <meta name="twitter:description" content="Професійні послуги лазерної обробки металу: різка, зварювання, фарбування. Сучасне обладнання, швидкі терміни, гарантія якості." />
+    <meta name="twitter:image" content="https://armind.com.ua/src/assets/hero-industrial.jpg" />
+    <meta name="twitter:image:alt" content="Армада Індастрі - Лазерна обробка металу в Одесі" />
+
+    <!-- LinkedIn -->
+    <meta property="og:image:secure_url" content="https://armind.com.ua/src/assets/hero-industrial.jpg" />
+    
+    <!-- Telegram -->
+    <meta name="telegram:channel" content="@armadaindustry" />
 
     <!-- Business Schema -->
     <script type="application/ld+json">
@@ -102,6 +130,75 @@
       }
     }
     </script>
+
+    <!-- Додаткові структуровані дані для організації -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Армада Індастрі",
+      "alternateName": "Армінд",
+      "url": "https://armind.com.ua",
+      "logo": "https://armind.com.ua/src/assets/hero-industrial.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+380934236139",
+        "contactType": "customer service",
+        "availableLanguage": ["Ukrainian", "Russian"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/armadaindustry",
+        "https://www.instagram.com/armadaindustry"
+      ]
+    }
+    </script>
+
+    <!-- Структуровані дані для веб-сайту -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Армада Індастрі",
+      "url": "https://armind.com.ua",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://armind.com.ua/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Структуровані дані для хлібних крихт -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Головна",
+          "item": "https://armind.com.ua/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Лазерна різка",
+          "item": "https://armind.com.ua/laser-cutting"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Порошкове фарбування",
+          "item": "https://armind.com.ua/powder-coating"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Search Console Verification -->
+    <!-- ВАЖЛИВО: Замініть на ваш реальний код верифікації -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
 
     <!-- Google Analytics -->
     <!-- ВАЖЛИВО: Замініть GA_MEASUREMENT_ID на ваш реальний Google Analytics ID -->

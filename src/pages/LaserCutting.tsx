@@ -7,6 +7,8 @@ import { useContactPopup } from "@/contexts/ContactPopupContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactPopup from "@/components/ContactPopup";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/utils/seo";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 
@@ -33,6 +35,7 @@ const LaserCutting = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead seoData={seoPages.laserCutting} />
       <Header />
       
       {/* Floating Back Button */}

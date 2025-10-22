@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { makeWebhookService } from "@/services/makeWebhook";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/utils/seo";
 
 // URL вашого Google Apps Script Web App
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyBYVfh9EpY49WF3ROqQQs88RoWjvCUhWckOZ6GKn87x8eJLiAU2QmpxKN1gt4nS9YcQ/exec";
@@ -144,6 +146,7 @@ const ContactForm = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEOHead seoData={seoPages.contact} />
       <Header />
       
       <section className="py-20 px-4">

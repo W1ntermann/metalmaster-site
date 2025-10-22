@@ -1,14 +1,40 @@
-User-agent: Googlebot
+# Robots.txt для Армада Індастрі (armind.com.ua)
+# Дозволяємо індексацію всім пошуковим системам
+
+User-agent: *
 Allow: /
 
+# Заборонені директорії (якщо є)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Дозволяємо доступ до важливих файлів
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Спеціальні правила для основних ботів
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
 User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
-User-agent: facebookexternalhit
-Allow: /
+# Посилання на sitemap
+Sitemap: https://armind.com.ua/sitemap.xml
 
-User-agent: *
-Allow: /
+# Основна сторінка сайту
+# Host: armind.com.ua

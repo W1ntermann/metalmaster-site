@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowLeft, Home, Phone } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/utils/seo";
 
 const Thanks = () => {
   const [searchParams] = useSearchParams();
@@ -72,6 +74,7 @@ const Thanks = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEOHead seoData={seoPages.thanks} />
       <Header />
       
       <section className="py-20 px-4">
