@@ -11,6 +11,20 @@ export interface SEOData {
 }
 
 export const updatePageSEO = (seoData: SEOData) => {
+  // Перевіряємо чи є параметри в URL, які не повинні індексуватися
+  const urlParams = new URLSearchParams(window.location.search);
+  const hasBlockedParams = urlParams.has('q') || urlParams.has('utm_source') || 
+                          urlParams.has('utm_medium') || urlParams.has('utm_campaign') ||
+                          urlParams.has('fbclid') || urlParams.has('gclid');
+  
+  // Якщо є заборонені параметри, додаємо noindex
+  if (hasBlockedParams) {
+    const robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement;
+    if (robotsMeta) {
+      robotsMeta.setAttribute('content', 'noindex, nofollow');
+    }
+  }
+
   // Оновлюємо title
   document.title = seoData.title;
 
@@ -53,15 +67,16 @@ export const updatePageSEO = (seoData: SEOData) => {
   }
 
   // Оновлюємо canonical URL
-  if (seoData.canonicalUrl) {
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', seoData.canonicalUrl);
+  let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
   }
+  
+  // Використовуємо поточний URL без параметрів як canonical, якщо не вказано інше
+  const canonicalUrl = seoData.canonicalUrl || window.location.origin + window.location.pathname;
+  canonical.setAttribute('href', canonicalUrl);
 
   // Додаємо структуровані дані
   if (seoData.structuredData) {
