@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Армада Індастрі (Армінд) - Лазерна обробка металу в Одесі | Різка, зварювання, фарбування</title>
     
-    <!-- Favicon - порядок важливий для кращого розпізнавання -->
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Favicon - з cache busting для примусового оновлення -->
+    <link rel="shortcut icon" href="/favicon.ico?v=2024">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2024">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2024">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2024">
+    <link rel="icon" type="image/png" href="/armind-icon-v2.png">
+    <link rel="icon" type="image/svg+xml" href="/armind-logo-contrast.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2024">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2024">
     <meta name="msapplication-TileImage" content="/favicon-armada.png">
     <meta name="msapplication-TileColor" content="#1a1a1a">
     <meta name="msapplication-config" content="/browserconfig.xml">
@@ -21,8 +23,13 @@
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Additional favicon formats for better compatibility -->
-    <link rel="icon" type="image/png" href="/favicon-armada.png">
-    <link rel="mask-icon" href="/favicon-armada.png" color="#FF8C42">
+    <link rel="icon" type="image/png" href="/armind-icon-v2.png">
+    <link rel="mask-icon" href="/armind-icon-v2.png" color="#FF8C42">
+    
+    <!-- Force browser and search engine favicon refresh -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     
     <!-- Preload favicon for faster loading -->
     <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon">
@@ -45,6 +52,10 @@
     <meta name="referrer" content="origin-when-cross-origin">
     <meta name="color-scheme" content="dark light">
     <meta name="supported-color-schemes" content="dark light">
+    
+    <!-- Google specific favicon meta -->
+    <meta name="google" content="notranslate">
+    <meta name="google-site-verification" content="favicon-refresh-2024">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,7 +192,7 @@
       "name": "Армада Індастрі",
       "alternateName": "Армінд",
       "url": "https://armind.com.ua",
-      "logo": "https://armind.com.ua/favicon-armada.png",
+      "logo": "https://armind.com.ua/armind-icon-v2.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+380934236139",
