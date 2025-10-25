@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Zap, Phone, Menu } from "lucide-react";
+import { Zap, Phone, Menu, MessageCircle, Phone as PhoneIcon, Send, Instagram } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -75,10 +75,51 @@ const Header = () => {
                   <div className="pt-4 border-t border-border">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                       <Phone className="h-4 w-4" />
-                      <a href="tel:+380488888888" className="hover:text-primary transition-colors font-medium">
-                        +380 (48) 888-88-88
+                      <a href="tel:+380934236139" className="hover:text-primary transition-colors font-medium">
+                        +380 (93) 423-61-39
                       </a>
                     </div>
+                    
+                    {/* Mobile Social Media Icons */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <a 
+                        href="https://www.instagram.com/armind_industry/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                        aria-label="Instagram"
+                      >
+                        <Instagram className="h-4 w-4" />
+                      </a>
+                      <a 
+                        href="https://wa.me/380934236139" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                        aria-label="WhatsApp"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                      </a>
+                      <a 
+                        href="viber://chat?number=380934236139" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                        aria-label="Viber"
+                      >
+                        <PhoneIcon className="h-4 w-4" />
+                      </a>
+                      <a 
+                        href="https://t.me/+380934236139" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                        aria-label="Telegram"
+                      >
+                        <Send className="h-4 w-4" />
+                      </a>
+                    </div>
+                    
                     <Button 
                       variant="hero" 
                       className="w-full"
@@ -104,6 +145,46 @@ const Header = () => {
           >
             Прорахунок
           </Button>
+        </div>
+
+        {/* Social Media Icons */}
+        <div className="hidden lg:flex items-center gap-2">
+          <a 
+            href="https://www.instagram.com/armind_industry/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+            aria-label="Instagram"
+          >
+            <Instagram className="h-4 w-4" />
+          </a>
+          <a 
+            href="https://wa.me/380934236139" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4" />
+          </a>
+          <a 
+            href="viber://chat?number=380934236139" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+            aria-label="Viber"
+          >
+            <PhoneIcon className="h-4 w-4" />
+          </a>
+          <a 
+            href="https://t.me/+380934236139" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+            aria-label="Telegram"
+          >
+            <Send className="h-4 w-4" />
+          </a>
         </div>
         
         {/* Center - Navigation */}
