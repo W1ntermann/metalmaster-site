@@ -97,7 +97,7 @@ const Footer = () => {
                 href="https://www.instagram.com/armind_industry/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -106,7 +106,7 @@ const Footer = () => {
                 href="https://wa.me/380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="h-5 w-5" />
@@ -115,7 +115,7 @@ const Footer = () => {
                 href="viber://chat?number=380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Viber"
               >
                 <PhoneIcon className="h-5 w-5" />
@@ -124,7 +124,7 @@ const Footer = () => {
                 href="https://t.me/+380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Telegram"
               >
                 <Send className="h-5 w-5" />
