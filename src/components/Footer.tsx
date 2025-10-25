@@ -1,4 +1,4 @@
-import { Zap, Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Zap, Phone, Mail, MapPin, Instagram, MessageCircle, Phone as PhoneIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -101,6 +101,24 @@ const Footer = () => {
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://wa.me/380934236139" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
+              <a 
+                href="viber://chat?number=380934236139" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
+                aria-label="Viber"
+              >
+                <PhoneIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
