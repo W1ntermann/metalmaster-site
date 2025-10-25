@@ -46,7 +46,7 @@ const Contact = () => {
                     aria-label="Написати в Telegram"
                   >
                     Написати в Telegram
-                  </Button>Ашчу
+                  </Button>
                 </div>
               </div>
             </Card>
