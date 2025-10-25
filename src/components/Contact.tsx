@@ -42,7 +42,7 @@ const Contact = () => {
                     variant="outline" 
                     size="lg" 
                     className="w-full"
-                    onClick={() => window.open('https://t.me/armind_od', '_blank')}
+                    onClick={() => window.open('https://t.me/+380934236139', '_blank')}
                     aria-label="Написати в Telegram"
                   >
                     Написати в Telegram
