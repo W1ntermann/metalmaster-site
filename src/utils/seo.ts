@@ -8,6 +8,7 @@ export interface SEOData {
   ogImage?: string;
   canonicalUrl?: string;
   structuredData?: object;
+  noIndex?: boolean;
 }
 
 export const updatePageSEO = (seoData: SEOData) => {
@@ -17,11 +18,23 @@ export const updatePageSEO = (seoData: SEOData) => {
                           urlParams.has('utm_medium') || urlParams.has('utm_campaign') ||
                           urlParams.has('fbclid') || urlParams.has('gclid');
   
-  // Якщо є заборонені параметри, додаємо noindex
-  if (hasBlockedParams) {
+  // Якщо є заборонені параметри або вказано noIndex, додаємо noindex
+  if (hasBlockedParams || seoData.noIndex) {
     const robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement;
     if (robotsMeta) {
-      robotsMeta.setAttribute('content', 'noindex, nofollow');
+      robotsMeta.setAttribute('content', 'noindex, follow');
+    } else {
+      // Створюємо meta тег robots якщо його немає
+      const newRobotsMeta = document.createElement('meta');
+      newRobotsMeta.setAttribute('name', 'robots');
+      newRobotsMeta.setAttribute('content', 'noindex, follow');
+      document.head.appendChild(newRobotsMeta);
+    }
+  } else {
+    // Якщо не потрібен noindex, встановлюємо звичайні налаштування
+    const robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement;
+    if (robotsMeta) {
+      robotsMeta.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
     }
   }
 
@@ -247,13 +260,15 @@ export const seoPages = {
     keywords: "контакти Армада Індастрі, замовити лазерну різку Одеса, телефон металообробка, адреса лазерна різка Одеса, консультація металообробка",
     ogTitle: "Контакти Армада Індастрі - Замовити послуги",
     ogDescription: "Зв'яжіться з нами для замовлення послуг лазерної обробки металу. Безкоштовна консультація, швидкий розрахунок вартості.",
-    canonicalUrl: "https://armind.com.ua/contact"
+    canonicalUrl: "https://armind.com.ua/",
+    noIndex: true
   },
 
   thanks: {
     title: "Дякуємо за заявку! - Армада Індастрі | Менеджер зв'яжеться протягом 15 хвилин",
     description: "Дякуємо за вашу заявку! Наш менеджер зв'яжеться з вами протягом 15 хвилин для обговорення деталей проекту та розрахунку вартості послуг.",
     keywords: "заявка відправлена, дякуємо за заявку, Армада Індастрі менеджер, консультація металообробка",
-    canonicalUrl: "https://armind.com.ua/thanks"
+    canonicalUrl: "https://armind.com.ua/",
+    noIndex: true
   }
 };
