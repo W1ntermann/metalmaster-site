@@ -4,15 +4,12 @@
 User-agent: *
 Allow: /
 
-# Заборонені директорії та параметри
+# Заборонені директорії
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
-Disallow: /*?q=*
-Disallow: /*?utm_*
-Disallow: /*?source=*
-Disallow: /*?fbclid=*
-Disallow: /*?gclid=*
+Disallow: /contact
+Disallow: /thanks
 
 # Дозволяємо доступ до важливих файлів
 Allow: /sitemap.xml
