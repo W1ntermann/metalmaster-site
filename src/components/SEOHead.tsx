@@ -1,106 +1,133 @@
-import { Helmet } from 'react-helmet-async';
-import { SEOData } from '@/utils/seo';
+// components/SEOHead.tsx
+import { SEOData } from "@/utils/seo";
 
 interface SEOHeadProps {
   seoData: SEOData;
 }
 
 const SEOHead = ({ seoData }: SEOHeadProps) => {
+  // Функція для гарантованого HTTPS в URL
+  const ensureHttpsUrl = (url: string): string => {
+    if (!url) return '';
+    
+    // Якщо URL вже починається з https:// - повертаємо як є
+    if (url.startsWith('https://')) {
+      return url;
+    }
+    
+    // Якщо URL починається з http:// - замінюємо на https://
+    if (url.startsWith('http://')) {
+      return url.replace('http://', 'https://');
+    }
+    
+    // Якщо URL без протоколу - додаємо https://
+    if (url.startsWith('//')) {
+      return `https:${url}`;
+    }
+    
+    // Для відносних шляхів - повертаємо повний HTTPS URL
+    if (url.startsWith('/')) {
+      return `https://armind.com.ua${url}`;
+    }
+    
+    // Для інших випадків - додаємо https://
+    return `https://${url}`;
+  };
+
+  // Обробка всіх URL
+  const canonicalUrl = ensureHttpsUrl(seoData.canonical);
+  const ogImageUrl = seoData.ogImage ? ensureHttpsUrl(seoData.ogImage) : '';
+  const ogTitle = seoData.ogTitle || seoData.title;
+  const ogDescription = seoData.ogDescription || seoData.description;
+
   return (
-    <Helmet>
-      {/* Основні meta теги */}
+    <>
+      {/* Основні мета-теги */}
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
-      <link rel="canonical" href={seoData.canonical} />
       
+      {/* Keywords - додаємо тільки якщо вони є */}
       {seoData.keywords && (
         <meta name="keywords" content={seoData.keywords} />
       )}
-
-      {/* Open Graph / Facebook */}
+      
+      {/* Канонічний тег - ГАРАНТОВАНО HTTPS */}
+      <link rel="canonical" href={canonicalUrl} />
+      
+      {/* Open Graph мета-теги */}
+      <meta property="og:title" content={ogTitle} />
+      <meta property="og:description" content={ogDescription} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={seoData.canonical} />
-      <meta property="og:title" content={seoData.ogTitle || seoData.title} />
-      <meta property="og:description" content={seoData.ogDescription || seoData.description} />
-      {seoData.ogImage && (
-        <>
-          <meta property="og:image" content={seoData.ogImage} />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta property="og:image:alt" content={seoData.ogTitle || seoData.title} />
-        </>
-      )}
-      <meta property="og:locale" content="uk_UA" />
       <meta property="og:site_name" content="Армада Індастрі" />
-
+      
+      {/* OG Image - тільки якщо вказано */}
+      {ogImageUrl && (
+        <meta property="og:image" content={ogImageUrl} />
+      )}
+      
+      {/* Додаткові мета-теги для кращої індексації */}
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="googlebot" content="index, follow" />
+      <meta name="bingbot" content="index, follow" />
+      
+      {/* Додаткові OG теги для кращого відображення в соцмережах */}
+      <meta property="og:locale" content="uk_UA" />
+      <meta property="og:image:alt" content={ogTitle} />
+      
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={seoData.canonical} />
-      <meta name="twitter:title" content={seoData.ogTitle || seoData.title} />
-      <meta name="twitter:description" content={seoData.ogDescription || seoData.description} />
-      {seoData.ogImage && (
-        <>
-          <meta name="twitter:image" content={seoData.ogImage} />
-          <meta name="twitter:image:alt" content={seoData.ogTitle || seoData.title} />
-        </>
+      <meta name="twitter:title" content={ogTitle} />
+      <meta name="twitter:description" content={ogDescription} />
+      {ogImageUrl && (
+        <meta name="twitter:image" content={ogImageUrl} />
       )}
-    </Helmet>
+      
+      {/* Structured Data для кращого SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Армада Індастрі",
+          "url": "https://armind.com.ua/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://armind.com.ua/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        })}
+      </script>
+      
+      {/* Додаткові структуровані дані для головної сторінки */}
+      {seoData.canonical === 'https://armind.com.ua/' && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Армада Індастрі",
+            "alternateName": "Армінд",
+            "url": "https://armind.com.ua/",
+            "logo": "https://armind.com.ua/logo.png",
+            "description": "Професійна лазерна обробка металу в Одесі: різка, зварювання, фарбування",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "вул. Миколи Боровського, 28",
+              "addressLocality": "Одеса",
+              "addressCountry": "UA"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+380-93-423-61-39",
+              "contactType": "customer service",
+              "email": "armindind@gmail.com",
+              "availableLanguage": ["Ukrainian", "Russian"]
+            },
+            "sameAs": []
+          })}
+        </script>
+      )}
+    </>
   );
 };
 
 export default SEOHead;
-
-
-const baseUrl = 'https://armind.com.ua';
-
-export const seoPages = {
-  home: {
-    title: 'Армада Індастрі (Армінд) - Лазерна обробка металу в Одесі | Різка, зварювання, фарбування',
-    description: 'Армада Індастрі - професійна лазерна обробка металу в Одесі: різка до 25мм, згинання, зварювання, порошкове фарбування. Від 24 годин, 200+ кольорів RAL, екологічні матеріали.',
-    canonical: `${baseUrl}/`,
-    keywords: 'лазерна різка Одеса, обробка металу Одеса, лазерне зварювання, порошкове фарбування, згинання металу, металообробка, RAL фарбування, Армада Індастрі, Армінд',
-    ogTitle: 'Армада Індастрі - Лазерна обробка металу в Одесі',
-    ogDescription: 'Професійні послуги лазерної обробки металу: різка, зварювання, фарбування. Сучасне обладнання, швидкі терміни, гарантія якості.',
-    ogImage: `${baseUrl}/og-image.png`
-  },
-  
-  laserCutting: {
-    title: 'Лазерна різка металу в Одесі - Армада Індастрі | Точність до 0.1мм',
-    description: 'Професійна лазерна різка металу до 25мм в Одесі. Високоточна обробка, швидкі терміни виконання від 24 годин. Сталь, нержавіюча сталь, алюміній. Безкоштовна консультація.',
-    canonical: `${baseUrl}/laser-cutting`,
-    keywords: 'лазерна різка Одеса, різка металу лазером, лазерна різка сталі, різка нержавіючої сталі, різка алюмінію, металообробка Одеса',
-    ogTitle: 'Лазерна різка металу - Армада Індастрі',
-    ogDescription: 'Високоточна лазерна різка металу до 25мм. Сталь, нержавіюча сталь, алюміній.',
-    ogImage: `${baseUrl}/og-laser-cutting.png`
-  },
-  
-  powderCoating: {
-    title: 'Порошкове фарбування металу в Одесі - Армада Індастрі | 200+ кольорів RAL',
-    description: 'Порошкове фарбування металу в Одесі. 200+ кольорів RAL, екологічні матеріали, стійке покриття. Термін виконання від 3 днів. Підготовка поверхні включена.',
-    canonical: `${baseUrl}/powder-coating`,
-    keywords: 'порошкове фарбування Одеса, фарбування металу, RAL фарбування, покриття металу, захист від корозії, декоративне покриття',
-    ogTitle: 'Порошкове фарбування металу - Армада Індастрі',
-    ogDescription: '200+ кольорів RAL, екологічні матеріали, стійке покриття. Термін від 3 днів.',
-    ogImage: `${baseUrl}/og-powder-coating.png`
-  },
-  
-  contact: {
-    title: 'Контакти - Армада Індастрі | Одеса, вул. Миколи Боровського, 28',
-    description: 'Зв\'яжіться з Армада Індастрі в Одесі: +380 (93) 423-61-39, armindind@gmail.com, вул. Миколи Боровського, 28. Безкоштовна консультація з лазерної різки та обробки металу.',
-    canonical: `${baseUrl}/contact`,
-    keywords: 'контакти Армада Індастрі, лазерна різка контакти Одеса, обробка металу телефон, металообробка адреса',
-    ogTitle: 'Контакти - Армада Індастрі',
-    ogDescription: 'Зв\'яжіться з нами для обговорення вашого проекту. Безкоштовна консультація.',
-    ogImage: `${baseUrl}/og-contact.png`
-  },
-  
-  thanks: {
-    title: 'Дякуємо за звернення - Армада Індастрі',
-    description: 'Дякуємо за вашу заявку! Наш менеджер зв\'яжеться з вами найближчим часом.',
-    canonical: `${baseUrl}/thanks`,
-    keywords: 'дякуємо, заявка відправлена',
-    ogTitle: 'Дякуємо за звернення - Армада Індастрі',
-    ogDescription: 'Ваша заявка прийнята. Наш менеджер зв\'яжеться з вами найближчим часом.',
-    ogImage: `${baseUrl}/og-image.png`
-  }
-};
