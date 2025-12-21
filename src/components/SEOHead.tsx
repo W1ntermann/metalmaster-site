@@ -1,4 +1,4 @@
-// components/SEOHead.tsx
+import { Helmet } from "react-helmet-async";
 import { SEOData } from "@/utils/seo";
 
 interface SEOHeadProps {
@@ -6,52 +6,49 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({ seoData }: SEOHeadProps) => {
-  // Функція для гарантованого HTTPS в URL
-  const ensureHttpsUrl = (url: string): string => {
-    if (!url) return '';
+  // Функція для гарантованого HTTPS та www в URL
+  const ensureCanonicalUrl = (url: string): string => {
+    if (!url) return 'https://www.armind.com.ua/';
     
-    // Якщо URL вже починається з https:// - повертаємо як є
-    if (url.startsWith('https://')) {
-      return url;
+    // Видаляємо http:// або https://
+    let cleanUrl = url
+      .replace(/^https?:\/\//, '')
+      .replace(/^\/\//, '');
+    
+    // Видаляємо www, щоб потім додати в стандартному форматі
+    if (cleanUrl.startsWith('www.')) {
+      cleanUrl = cleanUrl.substring(4);
     }
     
-    // Якщо URL починається з http:// - замінюємо на https://
-    if (url.startsWith('http://')) {
-      return url.replace('http://', 'https://');
+    // Якщо це просто домен без шляху
+    if (cleanUrl === 'armind.com.ua') {
+      return 'https://www.armind.com.ua/';
     }
     
-    // Якщо URL без протоколу - додаємо https://
-    if (url.startsWith('//')) {
-      return `https:${url}`;
-    }
-    
-    // Для відносних шляхів - повертаємо повний HTTPS URL
-    if (url.startsWith('/')) {
-      return `https://armind.com.ua${url}`;
-    }
-    
-    // Для інших випадків - додаємо https://
-    return `https://${url}`;
+    // Додаємо www та https
+    return `https://www.armind.com.ua${cleanUrl.startsWith('/') ? cleanUrl : `/${cleanUrl}`}`;
   };
 
-  // Обробка всіх URL
-  const canonicalUrl = ensureHttpsUrl(seoData.canonical);
-  const ogImageUrl = seoData.ogImage ? ensureHttpsUrl(seoData.ogImage) : '';
+  const canonicalUrl = ensureCanonicalUrl(seoData.canonical);
+  const ogImageUrl = seoData.ogImage 
+    ? ensureCanonicalUrl(seoData.ogImage)
+    : 'https://www.armind.com.ua/og-image.png';
+  
   const ogTitle = seoData.ogTitle || seoData.title;
   const ogDescription = seoData.ogDescription || seoData.description;
 
   return (
-    <>
+    <Helmet>
       {/* Основні мета-теги */}
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       
-      {/* Keywords - додаємо тільки якщо вони є */}
+      {/* Keywords */}
       {seoData.keywords && (
         <meta name="keywords" content={seoData.keywords} />
       )}
       
-      {/* Канонічний тег - ГАРАНТОВАНО HTTPS */}
+      {/* КРИТИЧНО: Канонічний тег для Google */}
       <link rel="canonical" href={canonicalUrl} />
       
       {/* Open Graph мета-теги */}
@@ -60,54 +57,52 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Армада Індастрі" />
+      <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:locale" content="uk_UA" />
+      <meta property="og:image:alt" content={ogTitle} />
       
-      {/* OG Image - тільки якщо вказано */}
-      {ogImageUrl && (
-        <meta property="og:image" content={ogImageUrl} />
-      )}
-      
-      {/* Додаткові мета-теги для кращої індексації */}
+      {/* Robots мета-теги */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
-      
-      {/* Додаткові OG теги для кращого відображення в соцмережах */}
-      <meta property="og:locale" content="uk_UA" />
-      <meta property="og:image:alt" content={ogTitle} />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={ogTitle} />
       <meta name="twitter:description" content={ogDescription} />
-      {ogImageUrl && (
-        <meta name="twitter:image" content={ogImageUrl} />
-      )}
+      <meta name="twitter:image" content={ogImageUrl} />
       
-      {/* Structured Data для кращого SEO */}
+      {/* Viewport та charset */}
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      {/* Structured Data - WebSite */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Армада Індастрі",
-          "url": "https://armind.com.ua/",
+          "url": "https://www.armind.com.ua/",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://armind.com.ua/?q={search_term_string}",
+            "target": "https://www.armind.com.ua/?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         })}
       </script>
       
-      {/* Додаткові структуровані дані для головної сторінки */}
-      {seoData.canonical === 'https://armind.com.ua/' && (
+      {/* Structured Data - Organization (тільки для головної сторінки) */}
+      {(seoData.canonical === 'https://armind.com.ua/' || 
+        seoData.canonical === 'https://www.armind.com.ua/' ||
+        seoData.canonical === '/') && (
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Армада Індастрі",
             "alternateName": "Армінд",
-            "url": "https://armind.com.ua/",
-            "logo": "https://armind.com.ua/logo.png",
+            "url": "https://www.armind.com.ua/",
+            "logo": "https://www.armind.com.ua/logo.png",
             "description": "Професійна лазерна обробка металу в Одесі: різка, зварювання, фарбування",
             "address": {
               "@type": "PostalAddress",
@@ -126,7 +121,7 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
           })}
         </script>
       )}
-    </>
+    </Helmet>
   );
 };
 

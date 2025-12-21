@@ -31,18 +31,14 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-User-agent: Yandex
-Allow: /
-Crawl-delay: 1
-
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
-# Посилання на sitemap
-Sitemap: https://armind.com.ua/sitemap.xml
+# Посилання на sitemap - КОРЕКТНЕ ПОСИЛАННЯ З www.
+Sitemap: https://www.armind.com.ua/sitemap.xml
 
 # Основна сторінка сайту
-# Host: armind.com.ua
+Host: www.armind.com.ua

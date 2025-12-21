@@ -28,7 +28,6 @@ const App = () => (
               <Route path="/powder-coating" element={<PowderCoating />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/thanks" element={<Thanks />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
