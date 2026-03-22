@@ -5,13 +5,21 @@
 export interface MakeWebhookData {
   name: string;
   phone: string;
+  email?: string;
   question?: string;
+  service_type?: string; // 🔥 ДОДАНО
   timestamp: string;
   source?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
   page_url?: string;
+  // Нові поля для файлів
+  file?: File;
+  file_name?: string;
+  file_size?: number;
+  file_type?: string;
+  file_content?: string;
 }
 
 export interface MakeWebhookResponse {
@@ -24,8 +32,22 @@ class MakeWebhookService {
   private webhookUrl: string;
 
   constructor() {
-    // URL вашого Make webhook - замініть на ваш реальний URL
     this.webhookUrl = 'https://hook.eu2.make.com/pqcy9d5is7ocwm8xrtk5u2rykivg4fne';
+  }
+
+  /**
+   * Конвертує файл у base64 для відправки
+   */
+  private async fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = (reader.result as string).split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
 
   /**
@@ -33,6 +55,13 @@ class MakeWebhookService {
    */
   async sendToMake(data: MakeWebhookData): Promise<MakeWebhookResponse> {
     try {
+      console.log('🔧 Make Webhook: початок відправки', {
+        name: data.name,
+        phone: data.phone,
+        service_type: data.service_type,
+        hasFile: !!data.file
+      });
+
       if (!this.webhookUrl || this.webhookUrl === 'YOUR_MAKE_WEBHOOK_URL_HERE') {
         console.warn('Make webhook URL не налаштований');
         return {
@@ -41,25 +70,65 @@ class MakeWebhookService {
         };
       }
 
+      // Підготовка даних для відправки
+      let body: any = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email || '',
+        question: data.question || '',
+        service_type: data.service_type || '', // 🔥 ДОДАНО
+        timestamp: data.timestamp,
+        source: data.source || '',
+        utm_source: data.utm_source || '',
+        utm_medium: data.utm_medium || '',
+        utm_campaign: data.utm_campaign || '',
+        page_url: data.page_url || ''
+      };
+
+      // Якщо є файл, додаємо його дані
+      if (data.file) {
+        try {
+          console.log('📎 Конвертація файлу:', data.file.name);
+          const base64Content = await this.fileToBase64(data.file);
+          body.file = {
+            name: data.file.name,
+            size: data.file.size,
+            type: data.file.type,
+            content: base64Content
+          };
+          console.log('✅ Файл сконвертовано успішно');
+        } catch (fileError) {
+          console.error('Помилка конвертації файлу:', fileError);
+          return {
+            success: false,
+            error: 'Помилка обробки файлу'
+          };
+        }
+      }
+
+      console.log('📤 Відправка в Make:', JSON.stringify(body, null, 2));
+
       const response = await fetch(this.webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(body),
       });
+
+      console.log('📥 Статус відповіді Make:', response.status);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Make зазвичай повертає JSON відповідь
       let responseData;
       try {
         responseData = await response.json();
+        console.log('✅ Відповідь Make:', responseData);
       } catch {
-        // Якщо відповідь не JSON, вважаємо успішною якщо статус OK
         responseData = { success: true };
+        console.log('✅ Make відповів (не JSON)');
       }
 
       return {
@@ -68,7 +137,7 @@ class MakeWebhookService {
       };
 
     } catch (error) {
-      console.error('Помилка відправки в Make:', error);
+      console.error('❌ Помилка відправки в Make:', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Невідома помилка'

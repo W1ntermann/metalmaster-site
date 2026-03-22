@@ -1,4 +1,7 @@
 /* stylelint-disable at-rule-no-unknown */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Unbounded:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +11,8 @@
 
 @layer base {
   :root {
+    font-family: 'Inter', system-ui, sans-serif;
+    
     /* Industrial color palette */
     --background: 210 11% 15%;
     --foreground: 210 8% 92%;
@@ -115,12 +120,21 @@
 @layer base {
   * {
     @apply border-border;
-    font-family: 'Montserrat', sans-serif !important;
   }
 
   html,
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Safari / WebKit: make gradient text visible by forcing transparent fill */
+  .bg-clip-text.text-transparent {
+    -webkit-text-fill-color: transparent;
   }
 
   /* Accessibility improvements */

@@ -9,28 +9,28 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon-armada.png",
+      "src": "/favicon-16x16.png?v=2026",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/favicon-armada.png",
+      "src": "/favicon-32x32.png?v=2026",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/favicon-armada.png",
+      "src": "/apple-touch-icon.png?v=2026",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "/favicon-armada.png",
+      "src": "/armind-icon-v2.png?v=2026",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/favicon-armada.png",
+      "src": "/favicon-armada.png?v=2026",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"

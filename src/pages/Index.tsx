@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import ContactPopup from "@/components/ContactPopup";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/utils/seo";
+import TaskList from "@/components/TaskList";
+import Gallery from "@/components/Gallery";
 
 const Index = () => {
   return (
@@ -18,13 +20,13 @@ const Index = () => {
       <Header />
       <Hero />
       <Services />
+      <TaskList/>
       <Advantages />
       <HowToOrder />
+      <Gallery />
       <Contact />
-      <About />
       <FAQ />
       <Footer />
-      <ContactPopup />
     </main>
   );
 };

@@ -1,100 +1,120 @@
 import { Card } from "@/components/ui/card";
-import { Shield, Clock, Palette, Zap, DollarSign, Award } from "lucide-react";
-import advantagesBackground from "@/assets/for-advantages.png"; // Додайте ваш файл з картинкою
+import { Factory, Settings, Ruler, FileText, Package, Zap } from "lucide-react";
+import aboutBackground from "@/assets/bg-for-about.jpg"; // Додайте ваш файл з картинкою
 
 const Advantages = () => {
+  const targetClients = [
+    "Виробничі підприємства",
+    "Меблеві виробництва",
+    "Будівельні компанії",
+    "Архітектори та дизайнери",
+    "Інженерні компанії",
+    "Підприємства, яким потрібні нестандартні металеві деталі"
+  ];
+
   const advantages = [
     {
-      icon: Shield,
-      title: "Стійкість покриття",
-      description: "Захист від корозії, ультрафіолету та механічних пошкоджень на роки",
-      highlight: "До 25 років"
+      icon: Factory,
+      title: "Власне виробництво",
+      description: "Усі роботи виконуються на нашому обладнанні без посередників."
     },
     {
-      icon: DollarSign,
-      title: "Економія коштів",
-      description: "Довговічне покриття без потреби в частих ремонтах чи перефарбовуванні",
-      highlight: "До 70% економії"
+      icon: Settings,
+      title: "Повний цикл виробництва",
+      description: "Можемо виконати всі етапи: різка, згинання, зварювання та фарбування."
     },
     {
-      icon: Palette,
-      title: "Естетика + бренд",
-      description: "Понад 200 кольорів RAL і різні фактури: глянець, мат, шорсткість, металік",
-      highlight: "200+ кольорів"
+      icon: Ruler,
+      title: "Точність і повторюваність",
+      description: "Сучасне обладнання дозволяє отримувати однакову якість у кожній партії."
     },
     {
-      icon: Zap,
-      title: "Гнучкість виробництва",
-      description: "Фарбуємо як одиничні вироби, так і серійні партії будь-якого обсягу",
-      highlight: "Від 1 штуки"
+      icon: FileText,
+      title: "Робота з кресленнями та без",
+      description: "Можемо виготовити деталь навіть за ескізом або фото."
     },
     {
-      icon: Clock,
-      title: "Швидкість виконання",
-      description: "Експрес-обробка металу від 24 годин залежно від складності та обсягів",
-      highlight: "Від 24 годин"
-    },
-    {
-      icon: Award,
-      title: "Гарантія якості",
-      description: "Контроль на всіх етапах виробництва, екологічно чисті матеріали",
-      highlight: "100% контроль"
+      icon: Package,
+      title: "Працюємо з різними обсягами",
+      description: "Від одиничних деталей до серійного виробництва."
     }
   ];
 
   return (
     <section 
-      id="advantages" 
-      className="py-20 relative overflow-hidden"
+      id="about" 
+      className="relative py-24 overflow-hidden"
       style={{
-        backgroundImage: `url(${advantagesBackground})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${aboutBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
       }}
     >
-      {/* Темний оверлей для кращої читабельності тексту */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Чому обирають <span className="bg-gradient-to-r from-white to-orange-200 bg-clip-text text-transparent">нас</span>
-          </h2>
-          <p className="text-white text-xl max-w-3xl mx-auto">
-            Ми працюємо з найсучаснішим обладнанням та матеріалами, 
-            гарантуючи найвищу якість і надійність для вашого бізнесу
-          </p>
+      <div className="container relative z-10 mx-auto px-4">
+        {/* Заголовок секції */}
+
+
+        {/* Клієнти та переваги */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          {/* Клієнти - ліва колонка */}
+          <div>
+            <Card className="p-8 bg-white/5 backdrop-blur-md border-white/10 h-full">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center bg-gradient-laser bg-clip-text text-transparent">
+                ДЛЯ КОГО МИ ПРАЦЮЄМО
+              </h3>
+              <div className="space-y-4">
+                {targetClients.map((client, index) => (
+                  <div 
+                    key={index} 
+                    className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <div className="w-2 h-2 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
+                    <span className="text-white text-lg">{client}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          {/* Переваги - права колонка */}
+          <div>
+            <Card className="p-8 bg-white/5 backdrop-blur-md border-white/10 h-full">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center bg-gradient-laser bg-clip-text text-transparent">
+                ЧОГО ОБИРАЮТЬ АРМІНД
+              </h3>
+              <div className="space-y-6">
+                {advantages.map((advantage, index) => {
+                  const Icon = advantage.icon;
+                  return (
+                    <div key={index} className="flex gap-4 group">
+                      <div className="relative flex-shrink-0">
+                        <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:bg-primary/30 transition-all"></div>
+                        <div className="relative p-3 bg-gradient-laser rounded-xl">
+                          <Icon className="h-5 w-5 text-white" />
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-lg font-semibold text-white mb-1">
+                          {advantage.title}
+                        </h4>
+                        <p className="text-white/70 text-sm leading-relaxed">
+                          {advantage.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((advantage, index) => {
-            const Icon = advantage.icon;
-            return (
-              <Card key={index} className="p-6 bg-white/10 backdrop-blur-sm border-white/20 shadow-card hover:shadow-white/20 hover:bg-white/15 transition-all duration-300 group text-white">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-gradient-laser rounded-full flex items-center justify-center mb-4 group-hover:animate-laser-pulse">
-                    <Icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  
-                  <div className="text-2xl font-bold text-primary mb-2">
-                    {advantage.highlight}
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {advantage.title}
-                  </h3>
-                  
-                  <p className="text-white/90 leading-relaxed">
-                    {advantage.description}
-                  </p>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-
-        <div className="mt-16 text-center">
+        {/* Додатковий заклик до дії */}
+        <div className="text-center">
           <div className="inline-flex items-center gap-4 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white">
             <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
             <div className="text-left">

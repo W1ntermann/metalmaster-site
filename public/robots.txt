@@ -7,6 +7,8 @@ Allow: /
 # Заборонені директорії та параметри
 Disallow: /admin/
 Disallow: /private/
+Disallow: /contact-form
+Disallow: /not-found
 Disallow: /*.json$
 Disallow: /*?q=*
 Disallow: /*?utm_*

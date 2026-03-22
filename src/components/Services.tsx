@@ -2,56 +2,167 @@ import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Zap, Palette, CheckCircle, ArrowRight } from "lucide-react";
+import { 
+  Zap, 
+  Palette, 
+  Ruler, 
+  Wrench, 
+  CheckCircle,
+  Box,
+  Flame,
+  Paintbrush,
+  Move,
+  Building2,
+  Sparkles,
+  Workflow,
+  ArrowRight,
+  Gauge,
+  Shield,
+  Users,
+  Cpu,
+  Hammer,
+  Droplets,
+  FileText,
+  LucideIcon
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import laserRazorImage from "@/assets/for-laser-cutting-three.jpg";
-import spreadPaintImage from "@/assets/powder.jpg";
+import spreadPaintImage from "@/assets/for-paint-first.jpg";
+import weldingImage from "@/assets/for-welding-first.jpg";
+import bendingImage from "@/assets/for-bending-first.jpg";
+import metalPartsImage from "@/assets/metal-parts.jpg";
 
-const Services = () => {
+// Типи для даних послуг
+interface DetailedInfo {
+  overview: string;
+  capabilities: string[];
+  materials: string[];
+  applications: string[];
+  pricing: string;
+}
+
+interface Service {
+  title: string;
+  description: string;
+  features: string[];
+  image: string;
+  url: string;
+  icon: LucideIcon;
+  detailedInfo: DetailedInfo;
+}
+
+export const serviceData: Service[] = [
+  {
+    title: "Лазерна різка",
+    description: "Високоточна різка металу товщиною до 20 мм. Мінімальні деформації, ідеальна якість кромки.",
+    features: ["Точність ±0.1 мм", "Інженерна підтримка", "Різні типи металу", "Серійне виробництво"],
+    image: laserRazorImage,
+    url: "/laser-cutting",
+    icon: Flame,
+    detailedInfo: {
+      overview:
+        "Наша лазерна різка забезпечує найвищу точність обробки металевих деталей. Використовуємо волоконні лазери потужністю до 12 кВт для швидкої та якісної обробки.",
+      capabilities: [
+        "Товщина металу: до 20 мм (сталь), до 15 мм (нержавіюча сталь), до 10 мм (алюміній)",
+        "Розмір листа: до 3000x1500 мм",
+        "Точність позиціонування: ±0.05 мм",
+        "Швидкість різки: до 40 м/хв (залежно від товщини)"
+      ],
+      materials: ["Конструкційна сталь", "Нержавіюча сталь", "Алюміній та його сплави", "Латунь", "Мідь"],
+      applications: ["Деталі машинобудування", "Архітектурні елементи", "Рекламні конструкції", "Декоративні вироби"],
+      pricing: "від 50 грн/м.п."
+    }
+  },
+  {
+    title: "Порошкове фарбування",
+    description: "Стійке покриття з широкою палітрою кольорів та фактур.",
+    features: ["200+ кольорів RAL", "Різні фактури", "Корозійна стійкість", "Екологічність"],
+    image: spreadPaintImage,
+    url: "/powder-coating",
+    icon: Paintbrush,
+    detailedInfo: {
+      overview:
+        "Порошкове фарбування забезпечує довговічне і красиве покриття виробів. Використовуємо італійське обладнання та сертифіковані порошкові фарби.",
+      capabilities: [
+        "Розмір камери: 6x3x2.5 м",
+        "Максимальна вага виробу: до 500 кг",
+        "Товщина покриття: 60-120 мкм",
+        "Температура полімеризації: 180-200°C"
+      ],
+      materials: ["Більше 200 кольорів RAL", "Структурні покриття", "Металік ефекти", "Антик фактури"],
+      applications: ["Фасадні системи", "Меблеві конструкції", "Огорожі та ворота", "Садово-паркові форми"],
+      pricing: "від 120 грн/м²"
+    }
+  },
+  {
+    title: "Точне згинання листового металу",
+    description: "Професійне згинання листового металу з точністю до ±1 мм на гідравлічних пресах.",
+    features: ["Точність ±1 мм", "CNC управління", "Крупні розміри", "Всі матеріали"],
+    image: bendingImage,
+    url: "/precise-bending",
+    icon: Move,
+    detailedInfo: {
+      overview:
+        "Точне згинання листового металу з використанням сучасних гідравлічних пресів з CNC управлінням. Виготовляємо конструкції будь-якої складності.",
+      capabilities: [
+        "Точність згинання: ±1 мм",
+        "Товщина матеріалу: до 3 мм",
+        "Довжина складки: до 4000 мм",
+        "Кут згинання: до 180°"
+      ],
+      materials: ["Конструкційна сталь", "Нержавіюча сталь", "Алюміній та його сплави", "Мідь", "Латунь"],
+      applications: ["Машинобудування", "Архітектурні елементи", "Вентиляційні системи", "Металеві меблі"],
+      pricing: "від 150 грн/м лінійно"
+    }
+  },
+  {
+    title: "Зварювання металевих деталей",
+    description: "Високоякісне зварювання методами MIG/MAG, TIG та лазерного зварювання.",
+    features: ["3 методи зварювання", "Точність ±0.5 мм", "Сертифіковано", "Надійні з'єднання"],
+    image: weldingImage,
+    url: "/metal-welding",
+    icon: Zap,
+    detailedInfo: {
+      overview:
+        "Високоякісне зварювання металевих деталей сертифікованими фахівцями. Використовуємо сучасне обладнання для забезпечення максимальної надійності.",
+      capabilities: [
+        "Товщина матеріалу: до 20 мм",
+        "Точність шву: ±0.5 мм",
+        "Методи: MIG/MAG, TIG, Лазер",
+        "Сертифікація якості шву"
+      ],
+      materials: ["Конструкційна сталь", "Нержавіюча сталь", "Алюміній", "Мідь та латунь", "Титан"],
+      applications: ["Машинобудування", "Суднобудування", "Нафтогазова індустрія", "Енергетика"],
+      pricing: "від 200 грн/м шву"
+    }
+  },
+  {
+    title: "Комплексне виготовлення металевих деталей",
+    description: "Повний цикл розробки та виробництва від проектування до фінальної обробки.",
+    features: ["Проектування", "Виробництво", "Обробка", "Гарантія якості"],
+    image: metalPartsImage,
+    url: "/complex-manufacturing",
+    icon: Workflow,
+    detailedInfo: {
+      overview:
+        "Комплексний сервіс для виготовлення складних металевих конструкцій. Займаємося всіма етапами від розробки креслень до фінальної обробки та збірки.",
+      capabilities: [
+        "Максимальні розміри: 3000x1500 мм",
+        "Максимальна вага: до 500 кг",
+        "Точність: ±0.5 мм",
+        "Всі роботи виконуються на одному місці"
+      ],
+      materials: ["Сталь", "Нержавіюча сталь", "Алюміній", "Мідь", "Титан"],
+      applications: ["Машинобудування", "Архітектура", "Харчова промисловість", "Меблева індустрія"],
+      pricing: "розраховується індивідуально"
+    }
+  }
+];
+
+const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
-  const services = [
-    {
-      icon: Zap,
-      title: "Лазерна різка",
-      description: "Високоточна різка металу товщиною до 20 мм. Мінімальні деформації, ідеальна якість кромки.",
-      features: ["Точність ±0.1 мм", "Інженерна підтримка", "Різні типи металу", "Серійне виробництво"],
-      image: laserRazorImage,
-      detailedInfo: {
-        overview:
-          "Наша лазерна різка забезпечує найвищу точність обробки металевих деталей. Використовуємо волоконні лазери потужністю до 12 кВт для швидкої та якісної обробки.",
-        capabilities: [
-          "Товщина металу: до 20 мм (сталь), до 15 мм (нержавіюча сталь), до 10 мм (алюміній)",
-          "Розмір листа: до 3000x1500 мм",
-          "Точність позиціонування: ±0.05 мм",
-          "Швидкість різки: до 40 м/хв (залежно від товщини)"
-        ],
-        materials: ["Конструкційна сталь", "Нержавіюча сталь", "Алюміній та його сплави", "Латунь", "Мідь"],
-        applications: ["Деталі машинобудування", "Архітектурні елементи", "Рекламні конструкції", "Декоративні вироби"],
-        pricing: "від 50 грн/м.п."
-      }
-    },
-    {
-      icon: Palette,
-      title: "Порошкове фарбування",
-      description: "Стійке покриття з широкою палітрою кольорів та фактур.",
-      features: ["200+ кольорів RAL", "Різні фактури", "Корозійна стійкість", "Екологічність"],
-      image: spreadPaintImage,
-      detailedInfo: {
-        overview:
-          "Порошкове фарбування забезпечує довговічне і красиве покриття виробів. Використовуємо італійське обладнання та сертифіковані порошкові фарби.",
-        capabilities: [
-          "Розмір камери: 6x3x2.5 м",
-          "Максимальна вага виробу: до 500 кг",
-          "Товщина покриття: 60-120 мкм",
-          "Температура полімеризації: 180-200°C"
-        ],
-        materials: ["Більше 200 кольорів RAL", "Структурні покриття", "Металік ефекти", "Антик фактури"],
-        applications: ["Фасадні системи", "Меблеві конструкції", "Огорожі та ворота", "Садово-паркові форми"],
-        pricing: "від 120 грн/м²"
-      }
-    }
-  ];
+  const services: Service[] = serviceData;
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-background to-muted/20">
@@ -65,7 +176,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -104,7 +215,7 @@ const Services = () => {
                     </div>
                   </div>
 
-                  <Link to={service.title === "Лазерна різка" ? "/laser-cutting" : "/powder-coating"}>
+                  <Link to={service.url}>
                     <Button
                       variant="hero"
                       size="lg"

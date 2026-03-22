@@ -1,5 +1,6 @@
-import { Zap, Phone, Mail, MapPin, Instagram, MessageCircle, Phone as PhoneIcon, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, MessageCircle, Phone as PhoneIcon, Send } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoImage from "@/assets/3D logo.png";
 
 const Footer = () => {
   return (
@@ -9,12 +10,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Zap className="h-8 w-8 text-primary animate-laser-pulse" />
-              <span className="text-xl font-bold text-foreground">Армінд</span>
+              <img src={logoImage} alt="Логотип Армінд" className="h-8 w-8" />
+              <span className="text-xl font-bold text-foreground">ARMIND</span>
             </div>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Армада Індастрі - професійна обробка металу в Одесі. Лазерні технології 
-              для промисловості з гарантією якості та екологічно чистими матеріалами.
+              Armada Industry - це Повний цикл обробки металу. Виробництво, інженерний підхід, відповідальність за результат. Від проєктування до порошкового фарбування - все в одному виробництві
             </p>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -70,6 +70,30 @@ const Footer = () => {
                   Порошкове фарбування
                 </Link>
               </li>
+              <li>
+                <Link 
+                  to="/metal-welding" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Зварювання
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/precise-bending" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Згинання
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/complex-manufacturing" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Комплексне виробництво
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -83,11 +107,11 @@ const Footer = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Субота:</span>
-                <span className="text-foreground font-medium">9:00 - 14:00</span>
+                <span className="text-muted-foreground font-medium">Вихідний</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Неділя:</span>
-                <span className="text-muted-foreground">Вихідний</span>
+                <span className="text-muted-foreground font-medium">Вихідний</span>
               </div>
             </div>
 
@@ -97,7 +121,7 @@ const Footer = () => {
                 href="https://www.instagram.com/armind_industry/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -106,7 +130,7 @@ const Footer = () => {
                 href="https://wa.me/380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="h-5 w-5" />
@@ -115,7 +139,7 @@ const Footer = () => {
                 href="viber://chat?number=380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Viber"
               >
                 <PhoneIcon className="h-5 w-5" />
@@ -124,7 +148,7 @@ const Footer = () => {
                 href="https://t.me/+380934236139" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                className="w-10 h-10 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
                 aria-label="Telegram"
               >
                 <Send className="h-5 w-5" />

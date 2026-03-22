@@ -8,6 +8,9 @@ import { ContactPopupProvider } from "@/contexts/ContactPopupContext";
 import Index from "./pages/Index";
 import LaserCutting from "./pages/LaserCutting";
 import PowderCoating from "./pages/PowderCoating";
+import PreciseBending from "./pages/PreciseBending";
+import MetalWelding from "./pages/MetalWelding";
+import ComplexManufacturing from "./pages/ComplexManufacturing";
 import ContactForm from "./pages/ContactForm";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
@@ -26,6 +29,9 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/laser-cutting" element={<LaserCutting />} />
               <Route path="/powder-coating" element={<PowderCoating />} />
+              <Route path="/precise-bending" element={<PreciseBending />} />
+              <Route path="/metal-welding" element={<MetalWelding />} />
+              <Route path="/complex-manufacturing" element={<ComplexManufacturing />} />
               <Route path="/contact" element={<ContactForm />} />
               <Route path="/thanks" element={<Thanks />} />
               <Route path="*" element={<NotFound />} />
