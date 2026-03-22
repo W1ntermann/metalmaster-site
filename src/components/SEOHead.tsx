@@ -6,27 +6,16 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({ seoData }: SEOHeadProps) => {
-  // Функція для гарантованого HTTPS та www в URL
   const ensureCanonicalUrl = (url: string): string => {
     if (!url) return 'https://www.armind.com.ua/';
-    
-    // Видаляємо http:// або https://
-    let cleanUrl = url
-      .replace(/^https?:\/\//, '')
-      .replace(/^\/\//, '');
-    
-    // Видаляємо www, щоб потім додати в стандартному форматі
-    if (cleanUrl.startsWith('www.')) {
-      cleanUrl = cleanUrl.substring(4);
-    }
-    
-    // Якщо це просто домен без шляху
-    if (cleanUrl === 'armind.com.ua') {
-      return 'https://www.armind.com.ua/';
-    }
-    
-    // Додаємо www та https
-    return `https://www.armind.com.ua${cleanUrl.startsWith('/') ? cleanUrl : `/${cleanUrl}`}`;
+    // Already fully-qualified with www — return as-is
+    if (url.startsWith('https://www.armind.com.ua')) return url;
+    // Relative path — prepend base
+    if (url.startsWith('/')) return `https://www.armind.com.ua${url}`;
+    // Non-www https — add www
+    if (url.startsWith('https://armind.com.ua')) return url.replace('https://armind.com.ua', 'https://www.armind.com.ua');
+    // Bare domain
+    return 'https://www.armind.com.ua/';
   };
 
   const canonicalUrl = ensureCanonicalUrl(seoData.canonical);
