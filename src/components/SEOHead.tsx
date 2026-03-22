@@ -36,6 +36,8 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
   
   const ogTitle = seoData.ogTitle || seoData.title;
   const ogDescription = seoData.ogDescription || seoData.description;
+  const robotsContent = seoData.robots || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+  const isHomePage = canonicalUrl === 'https://www.armind.com.ua/';
 
   return (
     <Helmet>
@@ -62,9 +64,9 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
       <meta property="og:image:alt" content={ogTitle} />
       
       {/* Robots мета-теги */}
-      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta name="googlebot" content="index, follow" />
-      <meta name="bingbot" content="index, follow" />
+      <meta name="robots" content={robotsContent} />
+      <meta name="googlebot" content={robotsContent} />
+      <meta name="bingbot" content={robotsContent} />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -82,19 +84,12 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Армада Індастрі",
-          "url": "https://www.armind.com.ua/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.armind.com.ua/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
+          "url": "https://www.armind.com.ua/"
         })}
       </script>
       
       {/* Structured Data - Organization (тільки для головної сторінки) */}
-      {(seoData.canonical === 'https://armind.com.ua/' || 
-        seoData.canonical === 'https://www.armind.com.ua/' ||
-        seoData.canonical === '/') && (
+      {isHomePage && (
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
