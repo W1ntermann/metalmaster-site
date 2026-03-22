@@ -1,3 +1,23 @@
+# Canonical host: redirect non-www and http to https://www
+[[redirects]]
+  from = "https://armind.com.ua/*"
+  to = "https://www.armind.com.ua/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://armind.com.ua/*"
+  to = "https://www.armind.com.ua/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.armind.com.ua/*"
+  to = "https://www.armind.com.ua/:splat"
+  status = 301
+  force = true
+
+# SPA fallback — must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"
