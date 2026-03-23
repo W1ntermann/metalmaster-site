@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Instagram, MessageCircle, Phone as PhoneIcon, Send } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoImage from "@/assets/3D logo.png";
+import logoImage from "@/assets/Logo Armind_white.png";
 
 const Footer = () => {
   return (

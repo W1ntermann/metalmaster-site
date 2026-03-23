@@ -37,7 +37,66 @@ const Header = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          {/* Left side - Contact and CTA */}
+          {/* Left side - Logo (clickable) */}
+          <div 
+            onClick={navigateToHome}
+            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                navigateToHome();
+              }
+            }}
+            aria-label="Перейти на головну сторінку"
+          >
+            <div className="relative">
+              <img src={logoImage} alt="Логотип Армінд" className="h-8 w-8" />
+            </div>
+            <span className="text-xl font-bold text-foreground">ARMIND</span>
+          </div>
+
+          {/* Center - Navigation */}
+          <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Головна навігація">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger onClick={() => scrollToSection('services')}>Послуги</NavigationMenuTrigger>
+                  <NavigationMenuContent className="w-[220px]">
+                    <div className="flex flex-col p-2">
+                      {serviceData.map(s => (
+                        <NavigationMenuLink key={s.url} asChild>
+                          <Link
+                            to={s.url}
+                            className="block px-3 py-2 text-foreground hover:bg-muted rounded"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {s.title}
+                          </Link>
+                        </NavigationMenuLink>
+                      ))}
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
+              aria-label="Перейти до секції про нас"
+            >
+              Про нас
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
+              aria-label="Перейти до секції контактів"
+            >
+              Контакти
+            </button>
+          </nav>
+
+          {/* Right side - Contact and CTA */}
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
               <Phone className="h-4 w-4" />
@@ -194,65 +253,6 @@ const Header = () => {
             >
               <Send className="h-4 w-4" />
             </a>
-          </div>
-          
-          {/* Center - Navigation */}
-          <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Головна навігація">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger onClick={() => scrollToSection('services')}>Послуги</NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[220px]">
-                    <div className="flex flex-col p-2">
-                      {serviceData.map(s => (
-                        <NavigationMenuLink key={s.url} asChild>
-                          <Link
-                            to={s.url}
-                            className="block px-3 py-2 text-foreground hover:bg-muted rounded"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {s.title}
-                          </Link>
-                        </NavigationMenuLink>
-                      ))}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
-              aria-label="Перейти до секції про нас"
-            >
-              Про нас
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="text-foreground hover:text-primary transition-colors focus:outline-none rounded-sm px-2 py-1"
-              aria-label="Перейти до секції контактів"
-            >
-              Контакти
-            </button>
-          </nav>
-
-          {/* Right side - Logo (clickable) */}
-          <div 
-            onClick={navigateToHome}
-            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                navigateToHome();
-              }
-            }}
-            aria-label="Перейти на головну сторінку"
-          >
-            <div className="relative">
-              <img src={logoImage} alt="Логотип Армінд" className="h-8 w-8" />
-            </div>
-            <span className="text-xl font-bold text-foreground">ARMIND</span>
           </div>
         </div>
       </header>
