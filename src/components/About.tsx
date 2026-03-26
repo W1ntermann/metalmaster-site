@@ -161,7 +161,7 @@ const About = () => {
                 
                 <Button 
                   variant="hero" 
-                  onClick={() => navigate('/contact?source=about')}
+                  onClick={() => navigate('/contact', { state: { contactSource: 'about' } })}
                   className="group whitespace-nowrap"
                 >
                   Обговорити проект

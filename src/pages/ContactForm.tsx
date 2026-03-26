@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,11 +11,13 @@ import Footer from "@/components/Footer";
 import { makeWebhookService } from "@/services/makeWebhook";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/utils/seo";
+import { getStoredAttribution, hasTrackingParams, persistAttribution, readTrackingParams } from "@/utils/attribution";
 
 // URL вашого Google Apps Script Web App
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyBYVfh9EpY49WF3ROqQQs88RoWjvCUhWckOZ6GKn87x8eJLiAU2QmpxKN1gt4nS9YcQ/exec";
 
 const ContactForm = () => {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -26,14 +28,28 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Отримуємо джерело переходу з URL параметрів
-  const source = searchParams.get('source') || 'direct';
-  const utm_source = searchParams.get('utm_source') || '';
-  const utm_medium = searchParams.get('utm_medium') || '';
-  const utm_campaign = searchParams.get('utm_campaign') || '';
+  const navigationState = (location.state as { contactSource?: string } | null) ?? null;
+  const storedAttribution = getStoredAttribution();
+  const trackingParams = readTrackingParams(searchParams);
+  const source = navigationState?.contactSource || trackingParams.source || storedAttribution.source || 'direct';
+  const utm_source = trackingParams.utm_source || storedAttribution.utm_source;
+  const utm_medium = trackingParams.utm_medium || storedAttribution.utm_medium;
+  const utm_campaign = trackingParams.utm_campaign || storedAttribution.utm_campaign;
+  const hasLegacyTracking = hasTrackingParams(searchParams);
 
   // Відстеження перегляду сторінки та скрол до верху
   useEffect(() => {
+    if (hasLegacyTracking) {
+      persistAttribution({ source, utm_source, utm_medium, utm_campaign });
+      navigate('/contact', {
+        replace: true,
+        state: source === 'direct' ? undefined : { contactSource: source },
+      });
+      return;
+    }
+
+    persistAttribution({ source, utm_source, utm_medium, utm_campaign });
+
     // Скролимо до верху сторінки при відкритті форми контакту
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -46,7 +62,7 @@ const ContactForm = () => {
         source: source
       });
     }
-  }, [source]);
+  }, [hasLegacyTracking, navigate, source, utm_campaign, utm_medium, utm_source]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,17 +129,12 @@ const ContactForm = () => {
         title: "Успішно відправлено!",
         description: "Перенаправляємо на сторінку подяки...",
       });
-      
-      // Формуємо URL для сторінки подяки з усіма параметрами
-      const thanksUrl = new URL('/thanks', window.location.origin);
-      thanksUrl.searchParams.set('source', source);
-      if (utm_source) thanksUrl.searchParams.set('utm_source', utm_source);
-      if (utm_medium) thanksUrl.searchParams.set('utm_medium', utm_medium);
-      if (utm_campaign) thanksUrl.searchParams.set('utm_campaign', utm_campaign);
+
+      persistAttribution({ source, utm_source, utm_medium, utm_campaign });
       
       // Перенаправлення на сторінку подяки через 1 секунду
       setTimeout(() => {
-        navigate(thanksUrl.pathname + thanksUrl.search);
+        navigate('/thanks');
       }, 1000);
       
     } catch (error) {

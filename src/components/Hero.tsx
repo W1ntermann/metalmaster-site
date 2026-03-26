@@ -73,7 +73,7 @@ const Hero = () => {
             <Button 
               variant="hero" 
               size="default" 
-              onClick={() => navigate('/contact?source=hero')} 
+              onClick={() => navigate('/contact', { state: { contactSource: 'hero' } })} 
               className="group text-sm sm:text-base py-5 sm:py-6 w-full sm:w-auto"
             >
               Замовити прорахунок

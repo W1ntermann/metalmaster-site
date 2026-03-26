@@ -6,18 +6,29 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/utils/seo";
+import { getStoredAttribution, hasTrackingParams, persistAttribution, readTrackingParams } from "@/utils/attribution";
 
 const Thanks = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // Отримуємо параметри з URL
-  const source = searchParams.get('source') || 'direct';
-  const utm_source = searchParams.get('utm_source') || '';
-  const utm_medium = searchParams.get('utm_medium') || '';
-  const utm_campaign = searchParams.get('utm_campaign') || '';
+  const trackingParams = readTrackingParams(searchParams);
+  const storedAttribution = getStoredAttribution();
+  const source = trackingParams.source || storedAttribution.source || 'direct';
+  const utm_source = trackingParams.utm_source || storedAttribution.utm_source;
+  const utm_medium = trackingParams.utm_medium || storedAttribution.utm_medium;
+  const utm_campaign = trackingParams.utm_campaign || storedAttribution.utm_campaign;
+  const hasLegacyTracking = hasTrackingParams(searchParams);
 
   useEffect(() => {
+    if (hasLegacyTracking) {
+      persistAttribution({ source, utm_source, utm_medium, utm_campaign });
+      navigate('/thanks', { replace: true });
+      return;
+    }
+
+    persistAttribution({ source, utm_source, utm_medium, utm_campaign });
+
     // Скролимо до верху сторінки
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -70,7 +81,7 @@ const Thanks = () => {
         utm_campaign: utm_campaign
       });
     }
-  }, [source, utm_source, utm_medium, utm_campaign]);
+  }, [hasLegacyTracking, navigate, source, utm_campaign, utm_medium, utm_source]);
 
   return (
     <main className="min-h-screen bg-background">

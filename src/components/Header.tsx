@@ -6,14 +6,21 @@ import { useNavigate, Link } from "react-router-dom";
 import logoImage from "@/assets/Logo Armind_white.png";
 
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { serviceData } from "@/components/Services";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   
-  const scrollToSection = (sectionId: string) => {
+  // Короткий список послуг
+  const servicesList = [
+    { title: "Лазерна різка", url: "/laser-cutting" },
+    { title: "Порошкове фарбування", url: "/powder-coating" },
+    { title: "Зварювання", url: "/metal-welding" },
+    { title: "Згинання", url: "/precise-bending" },
+    { title: "Комплексне виробництво", url: "/complex-manufacturing" }
+  ];
   
+  const scrollToSection = (sectionId: string) => {
     if (window.location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -62,9 +69,9 @@ const Header = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger onClick={() => scrollToSection('services')}>Послуги</NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[220px]">
+                  <NavigationMenuContent className="w-[200px]">
                     <div className="flex flex-col p-2">
-                      {serviceData.map(s => (
+                      {servicesList.map(s => (
                         <NavigationMenuLink key={s.url} asChild>
                           <Link
                             to={s.url}
@@ -115,7 +122,7 @@ const Header = () => {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                   <nav className="flex flex-col gap-6 mt-8" role="navigation" aria-label="Мобільна навігація">
-                    {serviceData.map(s => (
+                    {servicesList.map(s => (
                       <button
                         key={s.url}
                         onClick={() => {
@@ -193,7 +200,7 @@ const Header = () => {
                         className="w-full"
                         onClick={() => {
                           setIsOpen(false);
-                          navigate('/contact?source=header-mobile');
+                          navigate('/contact', { state: { contactSource: 'header-mobile' } });
                         }}
                       >
                         Прорахунок
@@ -207,7 +214,7 @@ const Header = () => {
             <Button 
               variant="hero" 
               size="sm"
-              onClick={() => navigate('/contact?source=header-desktop')}
+              onClick={() => navigate('/contact', { state: { contactSource: 'header-desktop' } })}
               aria-label="Замовити безкоштовну консультацію"
               className="hidden md:inline-flex"
             >

@@ -16,6 +16,7 @@ import SEOHead from "@/components/SEOHead";
 import BackButton from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { seoPages } from "@/utils/seo";
+import { persistAttribution, readTrackingParams } from "@/utils/attribution";
 import laserImg from "@/assets/for-laser-cutting.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 import { makeWebhookService } from "@/services/makeWebhook";
@@ -203,10 +204,7 @@ const LaserCutting = () => {
     setSubmitStatus('idle');
     
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmSource = urlParams.get('utm_source') || '';
-      const utmMedium = urlParams.get('utm_medium') || '';
-      const utmCampaign = urlParams.get('utm_campaign') || '';
+      const { utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign } = readTrackingParams(new URLSearchParams(window.location.search));
       
       const dataToSend = {
         name: formData.name,
@@ -283,14 +281,10 @@ const LaserCutting = () => {
         description: "Заявку на лазерну різку передано в обробку. Перенаправляємо на сторінку подяки...",
       });
 
-      const thanksUrl = new URL('/thanks', window.location.origin);
-      thanksUrl.searchParams.set('source', 'laser_cutting');
-      if (utmSource) thanksUrl.searchParams.set('utm_source', utmSource);
-      if (utmMedium) thanksUrl.searchParams.set('utm_medium', utmMedium);
-      if (utmCampaign) thanksUrl.searchParams.set('utm_campaign', utmCampaign);
+      persistAttribution({ source: 'laser_cutting', utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign });
 
       setTimeout(() => {
-        navigate(thanksUrl.pathname + thanksUrl.search);
+        navigate('/thanks');
       }, 1000);
       
     } catch (error) {

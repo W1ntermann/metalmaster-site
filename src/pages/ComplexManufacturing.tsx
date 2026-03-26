@@ -19,6 +19,7 @@ import SEOHead from "@/components/SEOHead";
 import BackButton from "@/components/BackButton";
 import { useToast } from "@/hooks/use-toast";
 import { seoPages } from "@/utils/seo";
+import { persistAttribution, readTrackingParams } from "@/utils/attribution";
 import complexImage from "@/assets/metal-parts.jpg";
 import backgroundImage from "@/assets/for-cutting-page.jpg";
 import { makeWebhookService } from "@/services/makeWebhook";
@@ -215,10 +216,7 @@ const ComplexManufacturing = () => {
     setSubmitStatus('idle');
     
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmSource = urlParams.get('utm_source') || '';
-      const utmMedium = urlParams.get('utm_medium') || '';
-      const utmCampaign = urlParams.get('utm_campaign') || '';
+      const { utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign } = readTrackingParams(new URLSearchParams(window.location.search));
 
       const dataToSend = {
         name: formData.name,
@@ -295,14 +293,10 @@ const ComplexManufacturing = () => {
         description: "Заявку на комплексне виготовлення передано в обробку. Перенаправляємо на сторінку подяки...",
       });
 
-      const thanksUrl = new URL('/thanks', window.location.origin);
-      thanksUrl.searchParams.set('source', 'complex_manufacturing');
-      if (utmSource) thanksUrl.searchParams.set('utm_source', utmSource);
-      if (utmMedium) thanksUrl.searchParams.set('utm_medium', utmMedium);
-      if (utmCampaign) thanksUrl.searchParams.set('utm_campaign', utmCampaign);
+      persistAttribution({ source: 'complex_manufacturing', utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign });
 
       setTimeout(() => {
-        navigate(thanksUrl.pathname + thanksUrl.search);
+        navigate('/thanks');
       }, 1000);
       
     } catch (error) {
@@ -370,7 +364,7 @@ const ComplexManufacturing = () => {
               </h1>
               <div className="space-y-4 mb-8">
                 <p className="text-white text-lg text-muted-foreground">
-                  Повний цикл розробки та виробництва металевих конструкцій від проектування до фінальної обробки.
+                  Повний цикл розробки та виробництва металевих конструкцій від проєктування до фінальної обробки.
                 </p>
                 <p className="text-white text-lg text-muted-foreground">
                   Оптимізуємо витрати та забезпечуємо найвищу якість виробів для промисловості, архітектури та індивідуальних замовлень.
