@@ -55,14 +55,14 @@ const Contact = () => {
             <Card className="p-0 overflow-hidden border-border shadow-card">
               <div className="h-64 w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.3!2d30.66366!3d46.48554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632783c000001%3A0x1!2z0LLRg9C7LiDQnNC40LrQvtC70Lgg0JHQvtGA0L7QstGB0YzQutC-0LPQviwgMjgsINCe0LTQtdGB0LAsIDY1MDc1!5e0!3m2!1suk!2sua!4v1"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.383304082739!2d30.66120047665749!3d46.48539197107169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c632783c000001%3A0x9d3fa63bab8c9b1f!2zRk1QNys1WCwg0J7QtNC10YHQsCwg0J7QtNC10YHRjNC60LAg0L7QsdC70LDRgdGC0Yw!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Наше розташування: вул. Миколи Боровського, 28, Одеса"
+                  title="Наше розташування: FMP7+5X, Одеса, Одеська область"
                 />
               </div>
               <div className="p-4 bg-card">
@@ -70,13 +70,13 @@ const Contact = () => {
                   <MapPin className="h-4 w-4 text-primary" />
                   <h4 className="font-semibold text-foreground">Наша адреса</h4>
                 </div>
-                <p className="text-foreground mb-1">вул. Миколи Боровського, 28</p>
-                <p className="text-muted-foreground text-sm">м. Одеса, 65000</p>
+                <p className="text-foreground mb-1">Миколи Боровського 28, Одеса</p>
+                <p className="text-muted-foreground text-sm">Одеська область, Україна</p>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   className="w-full mt-3"
-                  onClick={() => window.open('https://www.google.com/maps/place/%D1%83%D0%BB.+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D1%8F+%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE,+28,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0,+%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,+65000/@46.485387,30.664776,17z/data=!3m1!4b1!4m6!3m5!1s0x40c632783c000001:0x9d3fa63bab8c9b1f!8m2!3d46.485387!4d30.664776!16s%2Fg%2F11c2m5z5_9?entry=ttu', '_blank')}
+                  onClick={() => window.open('https://www.google.com/maps/place/FMP7%2B5X,+%D0%9E%D0%B4%D0%B5%D1%81%D0%B0,+%D0%9E%D0%B4%D0%B5%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C/@46.485387,30.664776,17z/data=!3m1!4b1!4m6!3m5!1s0x40c632783c000001:0x9d3fa63bab8c9b1f!8m2!3d46.485387!4d30.664776!16s%2Fg%2F11c2m5z5_9?entry=ttu', '_blank')}
                 >
                   Прокласти маршрут
                 </Button>
@@ -140,8 +140,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Адреса</h3>
-                  <p className="text-foreground font-medium mb-1">вул. Миколи Боровського, 28</p>
-                  <p className="text-foreground font-medium mb-1">м. Одеса, 65000</p>
+                  <p className="text-foreground font-medium mb-1">Миколи Боровського 28, Одеса</p>
+                  <p className="text-foreground font-medium mb-1">Одеська область</p>
                   <p className="text-muted-foreground">Зручна транспортна розв'язка</p>
                 </div>
               </div>
