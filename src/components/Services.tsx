@@ -139,7 +139,7 @@ export const serviceData: Service[] = [
   {
     title: "Комплексне виготовлення металевих деталей",
     description: "Повний цикл розробки та виробництва від проєктування до фінальної обробки.",
-    features: ["Проектування", "Виробництво", "Обробка", "Гарантія якості"],
+    features: ["Проєктування", "Виробництво", "Обробка", "Гарантія якості"],
     image: metalPartsImage,
     url: "/complex-manufacturing",
     icon: Workflow,
