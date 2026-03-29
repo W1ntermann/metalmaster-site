@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /thanks
+Disallow: /*?
 
 Sitemap: https://www.armind.com.ua/sitemap.xml

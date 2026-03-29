@@ -22,7 +22,7 @@ const sitemapEntries = routes.map(({ path: routePath, changefreq, priority }) =>
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
 
-const robots = `User-agent: *\nAllow: /\nDisallow: /thanks\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
+const robots = `User-agent: *\nAllow: /\nDisallow: /thanks\nDisallow: /*?\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
 
 await mkdir(publicDir, { recursive: true });
 await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap, 'utf8');
