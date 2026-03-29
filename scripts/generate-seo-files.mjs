@@ -10,7 +10,8 @@ const routes = [
   { path: '/metal-welding', changefreq: 'monthly', priority: '0.9' },
   { path: '/powder-coating', changefreq: 'monthly', priority: '0.9' },
   { path: '/complex-manufacturing', changefreq: 'monthly', priority: '0.9' },
-  { path: '/contact', changefreq: 'monthly', priority: '0.8' }
+  { path: '/contact', changefreq: 'monthly', priority: '0.8' },
+  { path: '/thanks', changefreq: 'yearly', priority: '0.3' }
 ];
 
 const __filename = fileURLToPath(import.meta.url);
