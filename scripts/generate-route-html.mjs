@@ -80,6 +80,7 @@ const routes = [
     title: 'Дякуємо за звернення - Армада Індастрі',
     description: 'Дякуємо за вашу заявку! Наш менеджер зв\'яжеться з вами найближчим часом.',
     keywords: 'дякуємо, заявка відправлена, спасибо, заявка отправлена',
+    robots: 'noindex, follow, noarchive',
     ogTitle: 'Дякуємо за звернення - Армада Індастрі',
     ogDescription: 'Ваша заявка прийнята. Наш менеджер зв\'яжеться з вами найближчим часом.',
     ogImage: `${siteUrl}/og-image.png`,
@@ -123,6 +124,9 @@ for (const route of routes) {
   html = replaceTagContent(html, /<title>[\s\S]*?<\/title>/, `<title>${route.title}</title>`);
   html = replaceTagContent(html, /<meta name="description" content="[\s\S]*?"\s*\/>/, `<meta name="description" content="${route.description}" />`);
   html = replaceTagContent(html, /<meta name="keywords" content="[\s\S]*?"\s*\/>/, `<meta name="keywords" content="${route.keywords}" />`);
+  if (route.robots) {
+    html = replaceTagContent(html, /<meta name="robots" content="[\s\S]*?"\s*\/>/, `<meta name="robots" content="${route.robots}" />`);
+  }
   html = replaceTagContent(html, /<link rel="canonical" href="[\s\S]*?"\s*\/>/, `<link rel="canonical" href="${canonicalUrl}" />`);
   html = replaceTagContent(html, /<meta property="og:title" content="[\s\S]*?"\s*\/>/, `<meta property="og:title" content="${route.ogTitle}" />`);
   html = replaceTagContent(html, /<meta property="og:description" content="[\s\S]*?"\s*\/>/, `<meta property="og:description" content="${route.ogDescription}" />`);
