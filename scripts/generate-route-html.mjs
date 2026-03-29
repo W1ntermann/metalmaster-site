@@ -85,12 +85,21 @@ const replaceTagContent = (html, regex, value) => {
   return html.replace(regex, value);
 };
 
+const buildBreadcrumbJson = ({ ogTitle, canonicalUrl }) => JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Головна", "item": `${siteUrl}/` },
+    { "@type": "ListItem", "position": 2, "name": ogTitle, "item": canonicalUrl }
+  ]
+});
+
 const buildNoscript = ({ heading, intro, canonicalUrl }) => `
     <noscript>
       <main>
         <h1>${heading}</h1>
         <p>${intro}</p>
-        <p><a href="${canonicalUrl}">${canonicalUrl}</a></p>
+        <nav><a href="${siteUrl}/">Головна</a> → <a href="${canonicalUrl}">${heading}</a></nav>
       </main>
     </noscript>`;
 
@@ -114,6 +123,8 @@ for (const route of routes) {
   html = replaceTagContent(html, /<meta name="twitter:url" content="[\s\S]*?"\s*\/>/, `<meta name="twitter:url" content="${canonicalUrl}" />`);
   html = replaceTagContent(html, /<meta name="twitter:image" content="[\s\S]*?"\s*\/>/, `<meta name="twitter:image" content="${route.ogImage}" />`);
   html = replaceTagContent(html, /<meta name="twitter:image:alt" content="[\s\S]*?"\s*\/>/, `<meta name="twitter:image:alt" content="${route.ogTitle}" />`);
+  // Inject breadcrumb structured data before </head>
+  html = html.replace('</head>', `  <script type="application/ld+json">${buildBreadcrumbJson({ ogTitle: route.ogTitle, canonicalUrl })}</script>\n  </head>`);
   html = replaceTagContent(html, /<body>/, `<body>${buildNoscript({ heading: route.heading, intro: route.intro, canonicalUrl })}`);
 
   const routeDir = path.join(distDir, route.path);

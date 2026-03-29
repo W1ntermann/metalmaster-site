@@ -94,6 +94,14 @@ const Footer = () => {
                   Комплексне виробництво
                 </Link>
               </li>
+              <li>
+                <Link 
+                  to="/contact" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Зв'язатися з нами
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 
 const Contact = () => {
@@ -47,6 +48,12 @@ const Contact = () => {
                   >
                     Написати в Telegram
                   </Button>
+                  <Link
+                    to="/contact"
+                    className="block w-full text-center text-sm text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+                  >
+                    Або заповніть форму звернення →
+                  </Link>
                 </div>
               </div>
             </Card>
@@ -164,8 +171,6 @@ const Contact = () => {
             </Card>
           </div>
         </div>
-
-        {/* Social Media Links */}
       </div>
     </section>
   );

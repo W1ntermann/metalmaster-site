@@ -105,6 +105,30 @@ const SEOHead = ({ seoData }: SEOHeadProps) => {
           })}
         </script>
       )}
+
+      {/* Structured Data - BreadcrumbList (для всіх сторінок крім головної) */}
+      {!isHomePage && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Головна",
+                "item": "https://www.armind.com.ua/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": ogTitle,
+                "item": canonicalUrl
+              }
+            ]
+          })}
+        </script>
+      )}
     </Helmet>
   );
 };
