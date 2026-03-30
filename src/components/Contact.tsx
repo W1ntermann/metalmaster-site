@@ -101,9 +101,9 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Телефон</h3>
                   <a href="tel:+380934236139" className="block text-2xl font-bold text-primary hover:text-primary/80 transition-colors mb-2">
-                    +380 (93) 423-61-39
+                    +380 67 352 7350
                   </a>
-                  <p className="text-muted-foreground">Пн-Пт: 8:00-18:00, Сб: 9:00-14:00</p>
+                  <p className="text-muted-foreground">Пн-Пт: 8:00-18:00</p>
                 </div>
               </div>
             </Card>

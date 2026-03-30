@@ -107,8 +107,8 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
               <Phone className="h-4 w-4" />
-              <a href="tel:+380934236139" className="hover:text-primary transition-colors font-medium">
-                +380 (93) 423-61-39
+              <a href="tel:+380673527350" className="hover:text-primary transition-colors font-medium">
+                +380 67 352 7350
               </a>
             </div>
             
@@ -150,8 +150,8 @@ const Header = () => {
                     <div className="pt-4 border-t border-border">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                         <Phone className="h-4 w-4" />
-                        <a href="tel:+380934236139" className="hover:text-primary transition-colors font-medium">
-                          +380 (93) 423-61-39
+                        <a href="tel:+380673527350" className="hover:text-primary transition-colors font-medium">
+                          +380 67 352 7350
                         </a>
                       </div>
                       
@@ -167,7 +167,7 @@ const Header = () => {
                           <Instagram className="h-4 w-4" />
                         </a>
                         <a 
-                          href="https://wa.me/380934236139" 
+                          href="https://wa.me/+380673527350" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -176,7 +176,7 @@ const Header = () => {
                           <MessageCircle className="h-4 w-4" />
                         </a>
                         <a 
-                          href="viber://chat?number=380934236139" 
+                          href="viber://chat?number=380673527350" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -185,7 +185,7 @@ const Header = () => {
                           <PhoneIcon className="h-4 w-4" />
                         </a>
                         <a 
-                          href="https://t.me/+380934236139" 
+                          href="https://t.me/+380673527350" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -234,7 +234,7 @@ const Header = () => {
               <Instagram className="h-4 w-4" />
             </a>
             <a 
-              href="https://wa.me/380934236139" 
+              href="https://wa.me/+380673527350" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -243,7 +243,7 @@ const Header = () => {
               <MessageCircle className="h-4 w-4" />
             </a>
             <a 
-              href="viber://chat?number=380934236139" 
+              href="viber://chat?number=380673527350" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
@@ -252,7 +252,7 @@ const Header = () => {
               <PhoneIcon className="h-4 w-4" />
             </a>
             <a 
-              href="https://t.me/+380934236139" 
+              href="https://t.me/+380673527350" 
               target="_blank" 
               rel="noopener noreferrer"
               className="w-8 h-8 bg-gradient-laser rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
