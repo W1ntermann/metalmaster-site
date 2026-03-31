@@ -14,6 +14,7 @@ import ComplexManufacturing from "./pages/ComplexManufacturing";
 import ContactForm from "./pages/ContactForm";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
+import ForCustomers from "./pages/ForCustomers";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/laser-cutting" element={<LaserCutting />} />
+              <Route path="/for-customers" element={<ForCustomers />} />
               <Route path="/powder-coating" element={<PowderCoating />} />
               <Route path="/precise-bending" element={<PreciseBending />} />
               <Route path="/metal-welding" element={<MetalWelding />} />

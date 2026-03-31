@@ -18,13 +18,19 @@ const BackButton: React.FC<BackButtonProps> = ({ targetId = 'services' }) => {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      aria-label="Повернутись назад"
-      className="fixed top-14 left-6 z-50 flex items-center justify-center w-8 h-8 bg-gradient-to-br from-primary to-secondary text-white rounded-full shadow-md hover:scale-105 transform-gpu transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-    >
-      <ArrowLeft className="w-4 h-4" />
-    </button>
+    <div className="relative z-10 container mx-auto px-4 pt-24 pb-2 md:pt-28">
+      <button
+        type="button"
+        onClick={handleClick}
+        aria-label="Повернутись назад до послуг"
+        className="group inline-flex items-center gap-3 rounded-full border border-border/70 bg-background/90 px-4 py-2.5 text-sm font-medium text-foreground shadow-sm backdrop-blur transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      >
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+          <ArrowLeft className="h-4 w-4" />
+        </span>
+        <span>Назад до послуг</span>
+      </button>
+    </div>
   );
 };
 

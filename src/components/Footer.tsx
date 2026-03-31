@@ -96,12 +96,13 @@ const Footer = () => {
               </li>
               <li>
                 <Link 
-                  to="/contact" 
+                  to="/for-customers" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Зв'язатися з нами
+                  Для Замовників
                 </Link>
               </li>
+
             </ul>
           </div>
 
