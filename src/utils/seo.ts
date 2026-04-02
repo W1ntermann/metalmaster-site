@@ -97,6 +97,7 @@ export const seoPages = {
     description: 'Дякуємо за вашу заявку! Наш менеджер зв\'яжеться з вами найближчим часом.',
     canonical: `${baseUrl}/thanks`,
     keywords: 'дякуємо, заявка відправлена, спасибо, заявка отправлена',
+    robots: 'noindex, nofollow',
     ogTitle: 'Дякуємо за звернення - Армада Індастрі',
     ogDescription: 'Ваша заявка прийнята. Наш менеджер зв\'яжеться з вами найближчим часом.',
     ogImage: `${baseUrl}/og-image.png`

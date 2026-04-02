@@ -10,8 +10,7 @@ const routes = [
   { path: '/metal-welding', changefreq: 'monthly', priority: '0.9' },
   { path: '/powder-coating', changefreq: 'monthly', priority: '0.9' },
   { path: '/complex-manufacturing', changefreq: 'monthly', priority: '0.9' },
-  { path: '/contact', changefreq: 'monthly', priority: '0.8' },
-  { path: '/thanks', changefreq: 'yearly', priority: '0.3' }
+  { path: '/contact', changefreq: 'monthly', priority: '0.8' }
 ];
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,7 +22,7 @@ const sitemapEntries = routes.map(({ path: routePath, changefreq, priority }) =>
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`;
 
-const robots = `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
+const robots = `User-agent: *\nAllow: /\nDisallow: /*?\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
 
 await mkdir(publicDir, { recursive: true });
 await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap, 'utf8');

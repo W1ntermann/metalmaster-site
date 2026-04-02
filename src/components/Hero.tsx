@@ -76,57 +76,57 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 md:pt-20 lg:pt-24">
 
-        {/* Зміна пропорцій: логотип займає 65% ширини, текст 35% */}
-        <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-6 lg:gap-8 items-center">
+        {/* Збалансована сітка: логотип більший, текст читабельний */}
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-8 lg:gap-12 items-center">
           
-          {/* Title Card - ЗМЕНШЕНИЙ текстовий блок */}
-          <div className="flex flex-col justify-center rounded-2xl border border-border/30 bg-background/20 backdrop-blur-sm p-5 sm:p-6 animate-fade-in-up animation-delay-200">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-bold text-foreground mb-3 leading-tight">
+          {/* Title Card - Органічний розмір тексту */}
+          <div className="flex flex-col justify-center rounded-2xl border border-border/30 bg-background/20 backdrop-blur-sm p-6 sm:p-8 animate-fade-in-up animation-delay-200">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-[1.2]">
               <span className="bg-gradient-laser bg-clip-text text-transparent">
                 Виготовлення металевих деталей
               </span>
               <br />
-              <span className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-semibold">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-semibold">
                 та виробів під замовлення
               </span>
             </h1>
 
-            <p className="text-xs sm:text-sm text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
               Лазерна різка, згинання, зварювання та порошкове фарбування.
               Працюємо з виробництвом, будівельними компаніями та інженерними проєктами.
             </p>
 
-            <div className="flex flex-wrap gap-1.5 mb-4">
+            <div className="flex flex-wrap gap-2 mb-6">
               {FEATURES.map((feature) => (
                 <div
                   key={feature.key}
-                  className="flex items-center gap-1.5 px-2 py-0.5 bg-primary/10 rounded-full"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full"
                 >
-                  <Check className="h-3 w-3 text-laser flex-shrink-0" />
-                  <span className="text-xs text-muted-foreground font-medium">
+                  <Check className="h-3.5 w-3.5 text-laser flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-muted-foreground font-medium">
                     {feature.text}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 variant="hero"
-                size="default"
+                size="lg"
                 onClick={handleContactClick}
-                className="group text-xs py-4 px-5 w-full sm:w-auto transition-all duration-300 hover:scale-105"
+                className="group text-sm sm:text-base py-5 px-6 w-full sm:w-auto transition-all duration-300 hover:scale-105"
                 aria-label="Замовити прорахунок вартості"
               >
                 Замовити прорахунок
-                <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
 
               <Button
                 variant="outline"
-                size="default"
+                size="lg"
                 onClick={scrollToServices}
-                className="text-xs py-4 px-5 w-full sm:w-auto backdrop-blur-sm bg-background/50 hover:bg-background/80 transition-all duration-300"
+                className="text-sm sm:text-base py-5 px-6 w-full sm:w-auto backdrop-blur-sm bg-background/50 hover:bg-background/80 transition-all duration-300"
                 aria-label="Переглянути наші послуги"
               >
                 Наші послуги
@@ -134,20 +134,20 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Logo Card - ГІГАНТСЬКИЙ логотип */}
-          <div className="flex items-center justify-center rounded-2xl border border-border/30 bg-background/20 backdrop-blur-sm p-4">
+          {/* Logo Card - Великий, але органічний */}
+          <div className="flex items-center justify-center rounded-2xl border border-border/30 bg-background/20 backdrop-blur-sm p-6 sm:p-8">
             <div className="relative w-full flex justify-center items-center">
               <img
                 src={logoImage}
                 alt="ARMIND - Виробництво металевих деталей"
                 className="
                   w-full 
-                  max-w-[600px] 
-                  sm:max-w-[700px] 
-                  md:max-w-[850px] 
-                  lg:max-w-[1000px] 
-                  xl:max-w-[1100px]
-                  2xl:max-w-[1200px]
+                  max-w-[500px] 
+                  sm:max-w-[600px] 
+                  md:max-w-[700px] 
+                  lg:max-w-[800px] 
+                  xl:max-w-[900px]
+                  2xl:max-w-[1000px]
                   h-auto
                   object-contain 
                   drop-shadow-2xl 
