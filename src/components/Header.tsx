@@ -197,6 +197,7 @@ const Header = () => {
                   <NavigationMenuTrigger 
                     className="text-foreground hover:text-primary transition-colors data-[state=open]:text-primary"
                     aria-label="Переглянути послуги"
+                    onClick={() => scrollToSection('services')}
                   >
                     Послуги
                   </NavigationMenuTrigger>
