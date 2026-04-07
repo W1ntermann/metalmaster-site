@@ -5,18 +5,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/armind.com.ua/:path*",
-      "destination": "https://www.armind.com.ua/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/armind.com.ua",
-      "destination": "https://www.armind.com.ua/",
-      "permanent": true
-    },
-    {
-      "source": "/:path((?!sitemap\\.xml|robots\\.txt|favicon.*|apple-touch-icon.*|site\\.webmanifest).*)?",
-      "destination": "https://www.armind.com.ua/:path",
+      "source": "/(.*)",
+      "destination": "https://www.armind.com.ua/$1",
       "permanent": true,
       "has": [
         {

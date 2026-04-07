@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="text-xl font-bold text-foreground">ARMIND</span>
             </div>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Armada Industry - це Повний цикл обробки металу. Виробництво, інженерний підхід, відповідальність за результат. Від проєктування до порошкового фарбування - все в одному виробництві
+              Armada Industry - це повний цикл обробки металу. Виробництво, інженерний підхід, відповідальність за результат. Від проєктування до порошкового фарбування - все в одному виробництві
             </p>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-muted-foreground">

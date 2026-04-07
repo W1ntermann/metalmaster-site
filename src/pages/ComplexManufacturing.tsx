@@ -28,12 +28,12 @@ import { makeWebhookService } from "@/services/makeWebhook";
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyBYVfh9EpY49WF3ROqQQs88RoWjvCUhWckOZ6GKn87x8eJLiAU2QmpxKN1gt4nS9YcQ/exec";
 
 // Імпорт картинок для галереї (замініть на реальні фото)
-import g1 from "@/assets/welding.jpg";
-import g2 from "@/assets/welding.jpg";
-import g3 from "@/assets/welding.jpg";
-import g4 from "@/assets/welding.jpg";
-import g5 from "@/assets/welding.jpg";
-import g6 from "@/assets/welding.jpg";
+import g1 from "@/assets/2.jpg";
+import g2 from "@/assets/3.jpg";
+import g3 from "@/assets/4.jpg";
+import g4 from "@/assets/5.jpg";
+import g5 from "@/assets/6.jpg";
+import g6 from "@/assets/7.jpg";
 
 // Типи для форми
 interface FormData {
@@ -315,12 +315,12 @@ const ComplexManufacturing = () => {
 
   // Дані для галереї
   const galleryImages = [
-    { id: 1, img: g1, title: "Металеві конструкції для промисловості" },
-    { id: 2, img: g2, title: "Архітектурні металеві елементи" },
-    { id: 3, img: g3, title: "Нестандартні металеві вироби" },
-    { id: 4, img: g4, title: "Зварні металоконструкції" },
-    { id: 5, img: g5, title: "Металеві каркаси та рами" },
-    { id: 6, img: g6, title: "Декоративні металеві конструкції" },
+    { id: 1, img: g1},
+    { id: 2, img: g2},
+    { id: 3, img: g3},
+    { id: 4, img: g4},
+    { id: 5, img: g5},
+    { id: 6, img: g6},
   ];
 
   // Опції для випадаючих списків
@@ -413,7 +413,7 @@ const ComplexManufacturing = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
-            Етапи вашого проекту
+            Етапи вашого проєкту
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20 relative group hover:border-primary/50 transition-all">
@@ -421,7 +421,7 @@ const ComplexManufacturing = () => {
                 <div className="w-12 h-12 bg-gradient-laser rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <PenTool className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Проектування</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Проєктування</h3>
                 <p className="text-white/70 text-sm">
                   Розробка креслень та 3D моделей з урахуванням технологічних можливостей та вимог замовника.
                 </p>
@@ -536,8 +536,8 @@ const ComplexManufacturing = () => {
               </h3>
               <div className="space-y-3">
                 {[
-                  "Розробка проектно-кошторисної документації",
-                  "CAD/CAM проектування та 3D моделювання",
+                  "Розробка проєктно-кошторисної документації",
+                  "CAD/CAM проєктування та 3D моделювання",
                   "Лазерна та гідроабразивна різка",
                   "Згинання та штамповка листового металу",
                   "MIG/MAG, TIG та лазерне зварювання",
@@ -590,11 +590,10 @@ const ComplexManufacturing = () => {
                 <div className="relative h-64 overflow-hidden">
                   <img 
                     src={work.img} 
-                    alt={work.title}
+                    alt={`Приклад роботи ${work.id}`}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                    <p className="text-white p-4 font-medium">{work.title}</p>
                   </div>
                 </div>
               </Card>
@@ -678,10 +677,10 @@ const ComplexManufacturing = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20">
               <h3 className="text-lg font-bold text-white mb-2">Які терміни виконання комплексних замовлень?</h3>
-              <p className="text-white/80">Терміни залежать від складності проекту та обсягу робіт. Зазвичай від 10 до 30 робочих днів.</p>
+              <p className="text-white/80">Терміни залежать від складності проєкту та обсягу робіт. Зазвичай від 10 до 30 робочих днів.</p>
             </Card>
             <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20">
-              <h3 className="text-lg font-bold text-white mb-2">Чи допомагаєте з проектуванням?</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Чи допомагаєте з проєктуванням?</h3>
               <p className="text-white/80">Так, наші інженери розроблять креслення та 3D-моделі на основі ваших ескізів або технічного завдання.</p>
             </Card>
             <Card className="p-6 bg-white/10 backdrop-blur-sm border-white/20">
@@ -701,14 +700,14 @@ const ComplexManufacturing = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Розрахувати вартість проекту
+              Розрахувати вартість проєкту
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Заповніть форму нижче. Ми проаналізуємо ваш проект і підготуємо 
+              Заповніть форму нижче. Ми проаналізуємо ваш проєкт і підготуємо 
               комерційну пропозицію протягом 24 годин
             </p>
             <p className="text-sm text-muted-foreground mt-2">
-              <span className="text-destructive">*</span> Обов'язкові поля: ім'я, телефон та опис проекту
+              <span className="text-destructive">*</span> Обов'язкові поля: ім'я, телефон та опис проєкту
             </p>
           </div>
 
