@@ -28,12 +28,12 @@ import { makeWebhookService } from "@/services/makeWebhook";
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyBYVfh9EpY49WF3ROqQQs88RoWjvCUhWckOZ6GKn87x8eJLiAU2QmpxKN1gt4nS9YcQ/exec";
 
 // Імпорт картинок для галереї (замініть на реальні фото)
-import g1 from "@/assets/2.jpg";
-import g2 from "@/assets/3.jpg";
-import g3 from "@/assets/4.jpg";
-import g4 from "@/assets/5.jpg";
-import g5 from "@/assets/6.jpg";
-import g6 from "@/assets/7.jpg";
+import g1 from "@/assets/complex-1.jpg";
+import g2 from "@/assets/complex-2.jpg";
+import g3 from "@/assets/complex-3.jpg";
+import g4 from "@/assets/complex-4.jpg";
+import g5 from "@/assets/complex-5.jpg";
+import g6 from "@/assets/complex-6.jpg";
 
 // Типи для форми
 interface FormData {

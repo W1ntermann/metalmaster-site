@@ -5,8 +5,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "https://www.armind.com.ua/$1",
+      "source": "/:path(.*)",
+      "destination": "https://www.armind.com.ua/:path",
       "permanent": true,
       "has": [
         {

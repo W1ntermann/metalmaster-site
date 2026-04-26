@@ -229,7 +229,7 @@ const ForCustomers = () => {
 
   const handleContactClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
-    window.open("https://www.armind.com.ua/contact", "_blank");
+    window.open("/contact", "_blank");
   }, []);
 
   return (
@@ -295,7 +295,7 @@ const ForCustomers = () => {
               {/* CTA buttons */}
               <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
                 <motion.a
-                  href="https://www.armind.com.ua/contact"
+                  href="/contact"
                   onClick={handleContactClick}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -458,7 +458,7 @@ const ForCustomers = () => {
 
             <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
               <motion.a
-                href="https://www.armind.com.ua/contact"
+                href="/contact"
                 onClick={handleContactClick}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
